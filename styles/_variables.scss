@@ -7,21 +7,27 @@ $primary-color-white: #FFFFFF;
 
 $secondary-color-darkblack: #000000;
 $secondary-color-mercury: #E1E1E1;
-$secondary-color-Alabaster: #FAFAFA;
+$secondary-color-alabaster: #FAFAFA;
 
 
 // Move font-face to another file??
 @font-face {
     font-family: 'NunitoSans-Regular';
-    src: url('../assets/fonts/NunitoSans-Regular.woff');
+    src: url('../assets/fonts/NunitoSans-Regular.woff') format(woff),
+         url('../assets/fonts/NunitoSans-Regular.woff2') format(woff2);
+    font-weight: 400;
 }
 
 @font-face {
     font-family: 'NunitoSans-Med';
-    src: url('../assets/fonts/NunitoSans-Medium.woff');
+    src: url('../assets/fonts/NunitoSans-Medium.woff') format(woff),
+         url('../assets/fonts/NunitoSans-Medium.woff2') format(woff2);
+    font-weight: 500;
 }
 
 @font-face {
     font-family: 'NunitoSans-Bold';
-    src: url('../assets/fonts/NunitoSans-Bold.woff');
+    src: url('../assets/fonts/NunitoSans-Bold.woff') format(woff),
+         url('../assets/fonts/NunitoSans-Bold.woff2') format(woff2);
+    font-weight: 700;
 }

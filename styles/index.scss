@@ -18,7 +18,7 @@
 }
 
 .about {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 0;
 
     &__image-container {
         padding: 1rem 0;
@@ -46,6 +46,19 @@
                 padding-top: 1.5rem;
                 padding-bottom: 0;
             }
+        }
+    }
+}
+
+.photo-gallery {
+    padding: 1rem;
+    background-color: $secondary-color-alabaster;
+
+    &__image-container {
+        padding-top: 1rem;
+
+        img {
+            width: 100%;
         }
     }
 }

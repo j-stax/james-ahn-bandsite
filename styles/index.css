@@ -1,14 +1,17 @@
 @font-face {
   font-family: "NunitoSans-Regular";
-  src: url("../assets/fonts/NunitoSans-Regular.woff");
+  src: url("../assets/fonts/NunitoSans-Regular.woff") format(woff), url("../assets/fonts/NunitoSans-Regular.woff2") format(woff2);
+  font-weight: 400;
 }
 @font-face {
   font-family: "NunitoSans-Med";
-  src: url("../assets/fonts/NunitoSans-Medium.woff");
+  src: url("../assets/fonts/NunitoSans-Medium.woff") format(woff), url("../assets/fonts/NunitoSans-Medium.woff2") format(woff2);
+  font-weight: 500;
 }
 @font-face {
   font-family: "NunitoSans-Bold";
-  src: url("../assets/fonts/NunitoSans-Bold.woff");
+  src: url("../assets/fonts/NunitoSans-Bold.woff") format(woff), url("../assets/fonts/NunitoSans-Bold.woff2") format(woff2);
+  font-weight: 700;
 }
 * {
   margin: 0;
@@ -71,7 +74,7 @@ h3 {
 }
 
 .about {
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1rem 0;
 }
 .about__image-container {
   padding: 1rem 0;
@@ -93,4 +96,15 @@ h3 {
 .about__bio p:first-child {
   padding-top: 1.5rem;
   padding-bottom: 0;
+}
+
+.photo-gallery {
+  padding: 1rem;
+  background-color: #FAFAFA;
+}
+.photo-gallery__image-container {
+  padding-top: 1rem;
+}
+.photo-gallery__image-container img {
+  width: 100%;
 }/*# sourceMappingURL=index.css.map */
