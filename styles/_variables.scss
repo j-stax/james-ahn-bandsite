@@ -8,3 +8,20 @@ $primary-color-white: #FFFFFF;
 $secondary-color-darkblack: #000000;
 $secondary-color-mercury: #E1E1E1;
 $secondary-color-Alabaster: #FAFAFA;
+
+
+// Move font-face to another file??
+@font-face {
+    font-family: 'NunitoSans-Regular';
+    src: url('../assets/fonts/NunitoSans-Regular.woff');
+}
+
+@font-face {
+    font-family: 'NunitoSans-Med';
+    src: url('../assets/fonts/NunitoSans-Medium.woff');
+}
+
+@font-face {
+    font-family: 'NunitoSans-Bold';
+    src: url('../assets/fonts/NunitoSans-Bold.woff');
+}

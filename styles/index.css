@@ -1,20 +1,63 @@
+@font-face {
+  font-family: "NunitoSans-Regular";
+  src: url("../assets/fonts/NunitoSans-Regular.woff");
+}
+@font-face {
+  font-family: "NunitoSans-Med";
+  src: url("../assets/fonts/NunitoSans-Medium.woff");
+}
+@font-face {
+  font-family: "NunitoSans-Bold";
+  src: url("../assets/fonts/NunitoSans-Bold.woff");
+}
 * {
   margin: 0;
 }
 
+body {
+  font-family: NunitoSans-Regular;
+}
+
 .nav {
-  text-align: center;
+  background-color: #323232;
 }
 .nav h1 {
-  font-size: 1.5rem;
-  padding: 1rem 0;
+  font-size: 2rem;
+  padding: 1rem;
+  max-height: 1.25rem;
+  max-width: 7.5rem;
+  margin: auto;
+  color: #FFFFFF;
 }
 .nav__tabs-container {
   display: flex;
+  text-align: center;
+  padding: 0;
 }
 .nav__tabs-container li {
   list-style-type: none;
   flex: 0 1 50%;
-  padding: 0.5rem;
-  border: 1px solid black;
+  padding: 1rem;
+  margin: 0;
+  font-size: 1rem;
+  color: #AFAFAF;
+}
+.nav__tabs-container li:hover {
+  color: #FFFFFF;
+  border-bottom: 5px solid #FFFFFF;
+  font-family: NunitoSans-Bold;
+}
+
+.hero {
+  padding: 10rem 0;
+  display: flex;
+  align-items: center;
+  background-image: url("../assets/images/hero-bio.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #FFFFFF;
+}
+.hero h2 {
+  padding-left: 1rem;
+  font-size: 2rem;
 }/*# sourceMappingURL=index.css.map */
