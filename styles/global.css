@@ -54,43 +54,4 @@ h3 {
   color: #FFFFFF;
   border-bottom: 5px solid #FFFFFF;
   font-family: NunitoSans-Bold;
-}
-
-.hero {
-  padding: 10rem 0;
-  display: flex;
-  align-items: center;
-  background-image: url("../assets/images/hero-bio.jpg");
-  background-position: center;
-  background-size: cover;
-  color: #FFFFFF;
-}
-.hero h2 {
-  padding-left: 1rem;
-  font-size: 2rem;
-}
-
-.about {
-  padding: 1.5rem 1rem;
-}
-.about__image-container {
-  padding: 1rem 0;
-}
-.about__image-container img {
-  width: 100%;
-}
-.about__quote {
-  font-family: NunitoSans-Bold;
-  text-align: justify;
-  padding-bottom: 0.5rem;
-}
-.about__citation {
-  font-family: NunitoSans-Bold;
-}
-.about__bio p {
-  padding: 1rem 0;
-}
-.about__bio p:first-child {
-  padding-top: 1.5rem;
-  padding-bottom: 0;
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=global.css.map */

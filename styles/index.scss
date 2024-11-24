@@ -1,47 +1,6 @@
 @use 'variables' as *;
 @use 'mixins' as *;
-
-* {
-    margin: 0;
-}
-
-body {
-    font-family: NunitoSans-Regular;
-}
-
-.nav {
-    background-color: $primary-color-black;
-    
-    h1 {
-        font-size: 2rem;
-        padding: 1rem;
-        max-height: 1.25rem;
-        max-width: 7.5rem;
-        margin: auto;
-        color: $primary-color-white;
-    }
-
-    &__tabs-container {
-        display: flex;
-        text-align: center;
-        padding: 0;
-
-        li {
-            list-style-type: none;
-            flex: 0 1 50%;
-            padding: 1rem;
-            margin: 0;
-            font-size: 1rem;
-            color: $primary-color-silver;
-
-            &:hover {
-                color: $primary-color-white;
-                border-bottom: 5px solid $primary-color-white;
-                font-family: NunitoSans-Bold;
-            }
-        }
-    }
-}
+@use 'global' as *;
 
 .hero {
     padding: 10rem 0;
@@ -51,9 +10,42 @@ body {
     background-position: center;
     background-size: cover;
     color: $primary-color-white;
+
     h2 {
         padding-left: 1rem;
         font-size: 2rem;
     }
-    
+}
+
+.about {
+    padding: 1.5rem 1rem;
+
+    &__image-container {
+        padding: 1rem 0;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__quote {
+        font-family: NunitoSans-Bold;
+        text-align: justify;
+        padding-bottom: 0.5rem;
+    }
+
+    &__citation {
+        font-family: NunitoSans-Bold;
+    }
+
+    &__bio {
+        p {
+            padding: 1rem 0;
+
+            &:first-child {
+                padding-top: 1.5rem;
+                padding-bottom: 0;
+            }
+        }
+    }
 }
