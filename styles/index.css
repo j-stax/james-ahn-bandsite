@@ -53,21 +53,21 @@ h3 {
   .nav {
     display: flex;
     align-items: center;
-    gap: 6rem;
-    height: 6rem;
+    gap: 3rem;
+    height: 5rem;
   }
 }
 .nav a {
   text-decoration: none;
 }
-.nav a h1 {
+.nav a h3 {
   margin: auto;
   padding: 1rem;
   max-width: 8rem;
   color: #FFFFFF;
 }
 @media screen and (min-width: 768px) {
-  .nav a h1 {
+  .nav a h3 {
     margin: 0;
     padding-left: 2.25rem;
   }
@@ -86,7 +86,6 @@ h3 {
   flex: 0 1 50%;
   text-decoration: none;
   color: #E1E1E1;
-  font-size: 1rem;
   padding: 0 0 1rem;
 }
 .nav__tabs-container a:hover {
@@ -100,7 +99,7 @@ h3 {
 }
 @media screen and (min-width: 768px) {
   .nav__tabs-container a {
-    padding-top: 23%;
+    padding-top: 21%;
   }
 }
 

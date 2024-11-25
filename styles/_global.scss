@@ -39,14 +39,14 @@ h3 {
     @include tablet {
         display: flex;
         align-items: center;
-        gap: 6rem;
-        height: 6rem;
+        gap: 3rem;
+        height: 5rem;
     }
 
     a {
         text-decoration: none;
 
-        h1 {
+        h3 {
             margin: auto;
             padding: 1rem;
             max-width: 8rem;
@@ -72,7 +72,6 @@ h3 {
             flex: 0 1 50%;
             text-decoration: none;
             color: $secondary-color-mercury;
-            font-size: 1rem;
             padding: 0 0 1rem;
 
             &:hover {
@@ -85,7 +84,7 @@ h3 {
             }
 
             @include tablet {
-                padding-top: 23%;
+                padding-top: 21%;
             }
         }
     }
