@@ -28,11 +28,22 @@ h1, h2 {
   font-weight: 700;
   font-size: 1.5rem;
 }
+@media screen and (min-width: 768px) {
+  h1, h2 {
+    font-size: 2.25rem;
+  }
+}
 
 h3 {
   font-family: NunitoSans-Med;
   font-weight: 500;
   font-size: 0.875rem;
+}
+@media screen and (min-width: 768px) {
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
 }
 
 .nav {
@@ -42,7 +53,7 @@ h3 {
   .nav {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 6rem;
     height: 6rem;
   }
 }
@@ -52,7 +63,7 @@ h3 {
 .nav a h1 {
   margin: auto;
   padding: 1rem;
-  width: 8rem;
+  max-width: 8rem;
   color: #FFFFFF;
 }
 @media screen and (min-width: 768px) {
@@ -107,7 +118,12 @@ h3 {
 }
 
 .about {
-  padding: 1.5rem 1rem 0;
+  padding: 1.5rem 1rem;
+}
+@media screen and (min-width: 768px) {
+  .about {
+    padding: 3rem 2.25rem 1rem;
+  }
 }
 .about__image-container {
   padding: 1rem 0;
@@ -115,22 +131,55 @@ h3 {
 .about__image-container img {
   width: 100%;
 }
+@media screen and (min-width: 768px) {
+  .about__image-container {
+    padding: 2rem 3.5rem 1.5rem;
+  }
+}
 .about__quote {
   font-family: NunitoSans-Bold;
   font-weight: 700;
-  text-align: justify;
+  line-height: 1.5;
   padding-bottom: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .about__quote {
+    padding: 0 3.5rem 0.5rem;
+  }
 }
 .about__citation {
   font-family: NunitoSans-Bold;
   font-weight: 700;
 }
-.about__bio p {
-  padding: 1rem 0;
+@media screen and (min-width: 768px) {
+  .about__citation {
+    padding: 0 3.5rem;
+  }
 }
-.about__bio p:first-child {
-  padding-top: 1.5rem;
-  padding-bottom: 0;
+@media screen and (min-width: 768px) {
+  .about__bio {
+    padding: 0 3.5rem;
+  }
+}
+.about__bio h3 {
+  padding: 1.5rem 0 0;
+}
+@media screen and (min-width: 768px) {
+  .about__bio h3 {
+    padding: 3rem 0 0;
+  }
+}
+.about__text-container {
+  line-height: 1.5;
+}
+@media screen and (min-width: 768px) {
+  .about__text-container {
+    display: flex;
+    gap: 2rem;
+  }
+}
+.about__text-container p {
+  padding: 1rem 0;
 }
 
 .photo-gallery {

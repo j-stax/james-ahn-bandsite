@@ -18,7 +18,11 @@
 }
 
 .about {
-    padding: 1.5rem 1rem 0;
+    padding: 1.5rem 1rem;
+
+    @include tablet {
+        padding: 3rem 2.25rem 1rem;
+    }
 
     &__image-container {
         padding: 1rem 0;
@@ -26,28 +30,57 @@
         img {
             width: 100%;
         }
+
+        @include tablet {
+            padding: 2rem 3.5rem 1.5rem;
+        }
     }
 
     &__quote {
         font-family: NunitoSans-Bold;
         font-weight: 700;
-        text-align: justify;
+        line-height: 1.5;
         padding-bottom: 0.5rem;
+
+        @include tablet {
+            padding: 0 3.5rem 0.5rem;
+        }
     }
 
     &__citation {
         font-family: NunitoSans-Bold;
         font-weight: 700;
+
+        @include tablet {
+            padding: 0 3.5rem;
+        }
     }
 
     &__bio {
+
+        @include tablet {
+            padding: 0 3.5rem;
+        }
+
+        h3 {
+            padding: 1.5rem 0 0;
+
+            @include tablet {
+                padding: 3rem 0 0 ;
+            }
+        }
+    }
+
+    &__text-container {
+        line-height: 1.5;
+
+        @include tablet {
+            display: flex;
+            gap: 2rem;
+        }
+
         p {
             padding: 1rem 0;
-
-            &:first-child {
-                padding-top: 1.5rem;
-                padding-bottom: 0;
-            }
         }
     }
 }

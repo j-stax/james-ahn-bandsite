@@ -16,12 +16,21 @@ h1, h2 {
     font-family: NunitoSans-Bold;
     font-weight: 700;
     font-size: 1.5rem;
+
+    @include tablet {
+        font-size: 2.25rem;
+    }
 }
 
 h3 {
     font-family: NunitoSans-Med;
     font-weight: 500;
     font-size: 0.875rem;
+
+    @include tablet {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
 }
 
 .nav {
@@ -30,7 +39,7 @@ h3 {
     @include tablet {
         display: flex;
         align-items: center;
-        gap: 2.5rem;
+        gap: 6rem;
         height: 6rem;
     }
 
@@ -40,7 +49,7 @@ h3 {
         h1 {
             margin: auto;
             padding: 1rem;
-            width: 8rem;
+            max-width: 8rem;
             color: $primary-color-white;
     
             @include tablet {
