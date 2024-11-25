@@ -30,6 +30,12 @@ h1, h2 {
 }
 @media screen and (min-width: 768px) {
   h1, h2 {
+    font-size: 3.75rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  h2 {
     font-size: 2.25rem;
   }
 }
@@ -111,9 +117,20 @@ h3 {
   background-position: center;
   background-size: cover;
   color: #FFFFFF;
+  position: relative;
 }
-.hero h2 {
+.hero h1 {
   padding-left: 1.5rem;
+  z-index: 1;
+}
+.hero__layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #323232;
+  opacity: 0.5;
 }
 
 .about {
