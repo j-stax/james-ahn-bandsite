@@ -27,22 +27,44 @@ h3 {
 .nav {
     background-color: $primary-color-black;
 
-    h1 {
-        margin: auto;
-        padding-top: 1rem;
-        width: 8rem;
-        color: $primary-color-white;
+    @include tablet {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        height: 6rem;
+    }
+
+    a {
+        text-decoration: none;
+
+        h1 {
+            margin: auto;
+            padding: 1rem;
+            width: 8rem;
+            color: $primary-color-white;
+    
+            @include tablet {
+                margin: 0;
+                padding-left: 2rem;
+            }
+        }
     }
 
     &__tabs-container {
         display: flex;
         text-align: center;
 
+        @include tablet {
+            gap: 2rem;
+            height: 100%;
+        }
+
         a {
             flex: 0 1 50%;
             text-decoration: none;
             color: $secondary-color-mercury;
-            padding: 0.5rem 0 1rem;
+            font-size: 1rem;
+            padding: 0 0 1rem;
 
             &:hover {
                 @include nav-active-and-hover;
@@ -51,6 +73,10 @@ h3 {
             &:active {
                 @include nav-active-and-hover;
                 font-family: NunitoSans-Bold;
+            }
+
+            @include tablet {
+                padding-top: 23%;
             }
         }
     }

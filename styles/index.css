@@ -38,21 +38,45 @@ h3 {
 .nav {
   background-color: #323232;
 }
-.nav h1 {
+@media screen and (min-width: 768px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    height: 6rem;
+  }
+}
+.nav a {
+  text-decoration: none;
+}
+.nav a h1 {
   margin: auto;
-  padding-top: 1rem;
+  padding: 1rem;
   width: 8rem;
   color: #FFFFFF;
+}
+@media screen and (min-width: 768px) {
+  .nav a h1 {
+    margin: 0;
+    padding-left: 2rem;
+  }
 }
 .nav__tabs-container {
   display: flex;
   text-align: center;
 }
+@media screen and (min-width: 768px) {
+  .nav__tabs-container {
+    gap: 2rem;
+    height: 100%;
+  }
+}
 .nav__tabs-container a {
   flex: 0 1 50%;
   text-decoration: none;
   color: #E1E1E1;
-  padding: 0.5rem 0 1rem;
+  font-size: 1rem;
+  padding: 0 0 1rem;
 }
 .nav__tabs-container a:hover {
   color: #FFFFFF;
@@ -63,9 +87,14 @@ h3 {
   border-bottom: 4px solid #FFFFFF;
   font-family: NunitoSans-Bold;
 }
+@media screen and (min-width: 768px) {
+  .nav__tabs-container a {
+    padding-top: 23%;
+  }
+}
 
 .hero {
-  padding: 6rem 0;
+  padding: 12rem 0;
   display: flex;
   align-items: center;
   background-image: url("../assets/images/hero-bio.jpg");
@@ -74,7 +103,7 @@ h3 {
   color: #FFFFFF;
 }
 .hero h2 {
-  padding-left: 1rem;
+  padding-left: 1.5rem;
 }
 
 .about {
