@@ -19,16 +19,19 @@
 
 body {
   font-family: NunitoSans-Regular;
+  font-weight: 400;
   font-size: 0.875rem;
 }
 
 h1, h2 {
   font-family: NunitoSans-Bold;
+  font-weight: 700;
   font-size: 1.5rem;
 }
 
 h3 {
   font-family: NunitoSans-Med;
+  font-weight: 500;
   font-size: 0.875rem;
 }
 
@@ -60,7 +63,7 @@ h3 {
 }
 
 .hero {
-  padding: 10rem 0;
+  padding: 6rem 0;
   display: flex;
   align-items: center;
   background-image: url("../assets/images/hero-bio.jpg");
@@ -70,7 +73,6 @@ h3 {
 }
 .hero h2 {
   padding-left: 1rem;
-  font-size: 2rem;
 }
 
 .about {
@@ -84,11 +86,13 @@ h3 {
 }
 .about__quote {
   font-family: NunitoSans-Bold;
+  font-weight: 700;
   text-align: justify;
   padding-bottom: 0.5rem;
 }
 .about__citation {
   font-family: NunitoSans-Bold;
+  font-weight: 700;
 }
 .about__bio p {
   padding: 1rem 0;
@@ -107,4 +111,33 @@ h3 {
 }
 .photo-gallery__image-container img {
   width: 100%;
+}
+
+.contacts {
+  background-color: #323232;
+  color: #FFFFFF;
+  padding: 1.5rem 1rem 0;
+}
+.contacts__socials {
+  padding: 1rem 0;
+}
+.contacts__socials img {
+  height: 1.5rem;
+  margin-right: 1.7rem;
+}
+.contacts__group {
+  padding: 1rem 0;
+}
+.contacts__single-line {
+  padding-bottom: 1.5rem;
+}
+
+.footer {
+  background-color: #323232;
+  color: #FFFFFF;
+  padding: 1rem 1rem;
+}
+.footer p {
+  font-size: 0.8rem;
+  padding: 0.5rem 0;
 }/*# sourceMappingURL=index.css.map */

@@ -19,16 +19,19 @@
 
 body {
   font-family: NunitoSans-Regular;
+  font-weight: 400;
   font-size: 0.875rem;
 }
 
 h1, h2 {
   font-family: NunitoSans-Bold;
+  font-weight: 700;
   font-size: 1.5rem;
 }
 
 h3 {
   font-family: NunitoSans-Med;
+  font-weight: 500;
   font-size: 0.875rem;
 }
 

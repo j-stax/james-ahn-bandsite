@@ -1,9 +1,10 @@
 @use 'variables' as *;
+@use 'fonts' as *;
 @use 'mixins' as *;
 @use 'global' as *;
 
 .hero {
-    padding: 10rem 0;
+    padding: 6rem 0;
     display: flex;
     align-items: center;
     background-image: url('../assets/images/hero-bio.jpg');
@@ -13,7 +14,6 @@
 
     h2 {
         padding-left: 1rem;
-        font-size: 2rem;
     }
 }
 
@@ -30,12 +30,14 @@
 
     &__quote {
         font-family: NunitoSans-Bold;
+        font-weight: 700;
         text-align: justify;
         padding-bottom: 0.5rem;
     }
 
     &__citation {
         font-family: NunitoSans-Bold;
+        font-weight: 700;
     }
 
     &__bio {
@@ -60,5 +62,39 @@
         img {
             width: 100%;
         }
+    }
+}
+
+.contacts {
+    background-color: $primary-color-black;
+    color: $primary-color-white;
+    padding: 1.5rem 1rem 0;
+
+    &__socials {
+        padding: 1rem 0;
+
+        img {
+            height: 1.5rem;
+            margin-right: 1.7rem;
+        }
+    }
+
+    &__group {
+        padding: 1rem 0;
+    }
+
+    &__single-line {
+        padding-bottom: 1.5rem;
+    }
+}
+
+.footer {
+    background-color: $primary-color-black;
+    color: $primary-color-white;
+    padding: 1rem 1rem;
+
+    p {
+        font-size: 0.8rem;
+        padding: 0.5rem 0;
     }
 }
