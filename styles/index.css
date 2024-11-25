@@ -69,7 +69,7 @@ h3 {
 @media screen and (min-width: 768px) {
   .nav a h1 {
     margin: 0;
-    padding-left: 2rem;
+    padding-left: 2.25rem;
   }
 }
 .nav__tabs-container {
@@ -118,7 +118,7 @@ h3 {
 }
 
 .about {
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1rem 1rem;
 }
 @media screen and (min-width: 768px) {
   .about {
@@ -186,17 +186,49 @@ h3 {
   padding: 1rem;
   background-color: #FAFAFA;
 }
+@media screen and (min-width: 768px) {
+  .photo-gallery {
+    padding: 3rem 2.25rem 2.25rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .photo-gallery__flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    padding-top: 2rem;
+  }
+}
 .photo-gallery__image-container {
   padding-top: 1rem;
 }
 .photo-gallery__image-container img {
   width: 100%;
 }
+@media screen and (min-width: 768px) {
+  .photo-gallery__image-container {
+    width: 30%;
+    padding: 0;
+  }
+}
 
 .contacts {
   background-color: #323232;
   color: #FFFFFF;
   padding: 1.5rem 1rem 0;
+}
+@media screen and (min-width: 768px) {
+  .contacts {
+    padding: 3rem 2.25rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .contacts__socials-container {
+    display: flex;
+    gap: 2.25rem;
+    align-items: center;
+  }
 }
 .contacts__socials {
   padding: 1rem 0;
@@ -205,19 +237,45 @@ h3 {
   height: 1.5rem;
   margin-right: 1.7rem;
 }
+.contacts__bandsite-text-top {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .contacts__bandsite-text-top {
+    display: block;
+    margin-left: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .contacts__group-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.25rem 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .contacts__group-container h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+}
 .contacts__group {
   padding: 1rem 0;
+}
+@media screen and (min-width: 768px) {
+  .contacts__group {
+    padding: 2.25rem 0;
+  }
 }
 .contacts__single-line {
   padding-bottom: 1.5rem;
 }
-
-.footer {
-  background-color: #323232;
-  color: #FFFFFF;
-  padding: 1rem 1rem;
+@media screen and (min-width: 768px) {
+  .contacts__bandsite-text-bottom {
+    display: none;
+  }
 }
-.footer p {
+.contacts__copyright p {
   font-size: 0.8rem;
   padding: 0.5rem 0;
 }/*# sourceMappingURL=index.css.map */

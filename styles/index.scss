@@ -18,7 +18,7 @@
 }
 
 .about {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 1rem;
 
     @include tablet {
         padding: 3rem 2.25rem 1rem;
@@ -89,11 +89,31 @@
     padding: 1rem;
     background-color: $secondary-color-alabaster;
 
+    @include tablet {
+        padding: 3rem 2.25rem 2.25rem;
+    }
+
+    &__flex-container {
+
+        @include tablet {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            padding-top: 2rem;
+        }
+    }
+
     &__image-container {
         padding-top: 1rem;
 
         img {
             width: 100%;
+        }
+
+        @include tablet {
+            width: 30%;
+            padding: 0;
         }
     }
 }
@@ -102,6 +122,18 @@
     background-color: $primary-color-black;
     color: $primary-color-white;
     padding: 1.5rem 1rem 0;
+
+    @include tablet {
+        padding: 3rem 2.25rem;
+    }
+
+    &__socials-container {
+        @include tablet {
+            display: flex;
+            gap: 2.25rem;
+            align-items: center;
+        }
+    }
 
     &__socials {
         padding: 1rem 0;
@@ -112,22 +144,55 @@
         }
     }
 
+    &__bandsite-text-top {
+        display: none;
+
+        @include tablet {
+            display: block;
+            margin-left: auto;
+        }
+    }
+
+    &__group-flex-container {
+        @include tablet {
+            display: flex;
+            justify-content: space-between;
+            padding: 2.25rem 0;
+        }
+    }
+
+    &__group-container {
+        h3 {
+            @include tablet {
+                font-size: 0.875rem;
+                font-weight: 600;
+            }
+        }
+    }
+
     &__group {
         padding: 1rem 0;
+
+        @include tablet {
+            padding: 2.25rem 0;
+        }
     }
 
     &__single-line {
         padding-bottom: 1.5rem;
     }
-}
 
-.footer {
-    background-color: $primary-color-black;
-    color: $primary-color-white;
-    padding: 1rem 1rem;
+    &__bandsite-text-bottom {
+        @include tablet {
+            display: none;
+        }
+    }
 
-    p {
-        font-size: 0.8rem;
-        padding: 0.5rem 0;
+    &__copyright {
+
+        p {
+            font-size: 0.8rem;
+            padding: 0.5rem 0;
+        } 
     }
 }
