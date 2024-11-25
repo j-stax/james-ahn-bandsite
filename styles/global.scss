@@ -1,5 +1,6 @@
 @use 'variables' as *;
 @use 'fonts' as *;
+@use 'mixins' as *;
 
 * {
     margin: 0;
@@ -36,18 +37,19 @@ h3 {
     &__tabs-container {
         display: flex;
         text-align: center;
-        padding: 0;
 
-        li {
-            list-style-type: none;
+        a {
             flex: 0 1 50%;
-            padding: 0.5rem 0 1rem;
-            margin: 0;
+            text-decoration: none;
             color: $secondary-color-mercury;
+            padding: 0.5rem 0 1rem;
 
             &:hover {
-                color: $primary-color-white;
-                border-bottom: 5px solid $primary-color-white;
+                @include nav-active-and-hover;
+            }
+
+            &:active {
+                @include nav-active-and-hover;
                 font-family: NunitoSans-Bold;
             }
         }

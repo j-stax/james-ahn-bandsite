@@ -12,3 +12,8 @@
     }
 }
 
+@mixin nav-active-and-hover {
+    color: $primary-color-white;
+    border-bottom: 4px solid $primary-color-white;
+}
+
