@@ -69,7 +69,8 @@ h3 {
 .nav a h3 {
   margin: auto;
   padding: 1rem;
-  max-width: 8rem;
+  max-width: 7.5rem;
+  text-align: center;
   color: #FFFFFF;
 }
 @media screen and (min-width: 768px) {
@@ -134,7 +135,7 @@ h3 {
 }
 
 .about {
-  padding: 1.5rem 1rem 1rem;
+  padding: 1.5rem 1rem 0.5rem;
 }
 @media screen and (min-width: 768px) {
   .about {
@@ -232,7 +233,7 @@ h3 {
 .contacts {
   background-color: #323232;
   color: #FFFFFF;
-  padding: 1.5rem 1rem 0;
+  padding: 1.5rem 1rem;
 }
 @media screen and (min-width: 768px) {
   .contacts {
@@ -285,6 +286,9 @@ h3 {
 }
 .contacts__single-line {
   padding-bottom: 1.5rem;
+}
+.contacts__bandsite-text-bottom {
+  font-size: 1.5rem;
 }
 @media screen and (min-width: 768px) {
   .contacts__bandsite-text-bottom {

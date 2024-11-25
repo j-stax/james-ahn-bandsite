@@ -30,7 +30,7 @@
 }
 
 .about {
-    padding: 1.5rem 1rem 1rem;
+    padding: 1.5rem 1rem 0.5rem;
 
     @include tablet {
         padding: 3rem 2.25rem 1rem;
@@ -133,7 +133,7 @@
 .contacts {
     background-color: $primary-color-black;
     color: $primary-color-white;
-    padding: 1.5rem 1rem 0;
+    padding: 1.5rem 1rem;
 
     @include tablet {
         padding: 3rem 2.25rem;
@@ -195,13 +195,14 @@
     }
 
     &__bandsite-text-bottom {
+        font-size: 1.5rem;
+
         @include tablet {
             display: none;
         }
     }
 
     &__copyright {
-
         p {
             font-size: 0.8rem;
             padding: 0.5rem 0;
