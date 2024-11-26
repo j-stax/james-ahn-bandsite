@@ -74,21 +74,33 @@ a {
 }
 .nav h3 {
   margin: auto;
-  padding: 1rem;
-  max-width: 7.5rem;
+  max-width: 8rem;
   text-align: center;
-  color: #FFFFFF;
 }
 @media screen and (min-width: 768px) {
   .nav h3 {
     margin: 0;
-    padding-left: 2.25rem;
+    margin-left: 2.25rem;
+    padding: 1rem;
   }
 }
 @media screen and (min-width: 1280px) {
   .nav h3 {
-    padding-left: 6rem;
+    margin-left: 6rem;
   }
+}
+.nav__logo-text {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+.nav__logo-text:hover {
+  transform: scale(1.05);
+}
+.nav__logo-text:active {
+  transform: scale(0.95);
 }
 .nav__tabs-container {
   display: flex;
@@ -123,7 +135,7 @@ a {
 
 @keyframes fly {
   0% {
-    transform: translate(110vw);
+    transform: translate(120vw, -5vh);
   }
   25% {
     transform: translate(90vw, 10vh);
@@ -293,7 +305,7 @@ a {
 }
 @media screen and (min-width: 1280px) {
   .photo-gallery {
-    padding: 3rem 5.5rem 2.25rem;
+    padding: 3rem 6rem 2.25rem;
   }
 }
 @media screen and (min-width: 768px) {

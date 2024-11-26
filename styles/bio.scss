@@ -154,13 +154,7 @@
     }
 
     @include desktop {
-        padding: 3rem 5.5rem 2.25rem;
-    }
-
-    h2 {
-        @include tablet {
-            
-        }
+        padding: 3rem 6rem 2.25rem;
     }
 
     &__flex-container {
