@@ -12,6 +12,12 @@
     }
 }
 
+@mixin main-header-bold {
+    font-family: NunitoSans-Bold;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
 @mixin nav-active-and-hover {
     color: $primary-color-white;
     border-bottom: 4px solid $primary-color-white;

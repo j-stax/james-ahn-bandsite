@@ -12,10 +12,8 @@ body {
     font-size: 0.875rem;
 }
 
-h1, h2 {
-    font-family: NunitoSans-Bold;
-    font-weight: 700;
-    font-size: 1.5rem;
+h1 {
+    @include main-header-bold;
 
     @include tablet {
         font-size: 3.75rem;
@@ -23,6 +21,8 @@ h1, h2 {
 }
 
 h2 {
+    @include main-header-bold;
+
     @include tablet {
         font-size: 2.25rem;
     }

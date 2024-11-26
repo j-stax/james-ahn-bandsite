@@ -23,17 +23,22 @@ body {
   font-size: 0.875rem;
 }
 
-h1, h2 {
+h1 {
   font-family: NunitoSans-Bold;
   font-weight: 700;
   font-size: 1.5rem;
 }
 @media screen and (min-width: 768px) {
-  h1, h2 {
+  h1 {
     font-size: 3.75rem;
   }
 }
 
+h2 {
+  font-family: NunitoSans-Bold;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
 @media screen and (min-width: 768px) {
   h2 {
     font-size: 2.25rem;
@@ -378,4 +383,4 @@ a {
 .contacts__copyright p {
   font-size: 0.8rem;
   padding: 0.5rem 0;
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=bio.css.map */
