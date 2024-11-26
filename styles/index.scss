@@ -13,9 +13,17 @@
     color: $primary-color-white;
     position: relative;
 
+    @include desktop {
+        padding: 15rem 0;
+    }
+
     h1 {
         padding-left: 1.5rem;
         z-index: 1;
+
+        @include desktop {
+            padding-left: 6rem;
+        }
     }
 
     &__layer {
@@ -36,6 +44,10 @@
         padding: 3rem 2.25rem 1rem;
     }
 
+    @include desktop {
+        padding: 3rem 6rem 1.5rem;
+    }
+
     &__image-container {
         padding: 1rem 0;
 
@@ -45,6 +57,10 @@
 
         @include tablet {
             padding: 2rem 3.5rem 1.5rem;
+        }
+
+        @include desktop {
+            padding: 2rem 5.5rem 2rem;
         }
     }
 
@@ -57,6 +73,12 @@
         @include tablet {
             padding: 0 3.5rem 0.5rem;
         }
+
+        @include desktop {
+            padding: 0 5.5rem 0.5rem;
+            width: 72%;
+            font-size: 1.5rem;
+        }
     }
 
     &__citation {
@@ -66,12 +88,21 @@
         @include tablet {
             padding: 0 3.5rem;
         }
+
+        @include desktop {
+            padding: 0 5.5rem;
+            font-size: 1rem;
+        }
     }
 
     &__bio {
 
         @include tablet {
             padding: 0 3.5rem;
+        }
+
+        @include desktop {
+            padding: 0 5.5rem;
         }
 
         h3 {
@@ -91,8 +122,16 @@
             gap: 2rem;
         }
 
+        @include desktop {
+            gap: 3rem;
+        }
+
         p {
             padding: 1rem 0;
+
+            @include desktop {
+                padding-top: 2.25rem;
+            }
         }
     }
 }
@@ -105,14 +144,28 @@
         padding: 3rem 2.25rem 2.25rem;
     }
 
+    @include desktop {
+        padding: 3rem 5.5rem 2.25rem;
+    }
+
+    h2 {
+        @include tablet {
+            
+        }
+    }
+
     &__flex-container {
 
         @include tablet {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 2rem;
             padding-top: 2rem;
+        }
+
+        @include desktop {
+            gap: 1.5rem;
         }
     }
 
@@ -124,8 +177,8 @@
         }
 
         @include tablet {
-            width: 30%;
             padding: 0;
+            flex: 0 1 30%;
         }
     }
 }
@@ -139,11 +192,19 @@
         padding: 3rem 2.25rem;
     }
 
+    @include desktop {
+        padding: 3rem 5.5rem;
+    }
+
     &__socials-container {
         @include tablet {
             display: flex;
             gap: 2.25rem;
             align-items: center;
+        }
+
+        @include tablet {
+            gap: 3.5rem;
         }
     }
 
@@ -170,6 +231,11 @@
             display: flex;
             justify-content: space-between;
             padding: 2.25rem 0;
+        }
+
+        @include desktop {
+            justify-content: flex-start;
+            gap: 5rem;
         }
     }
 

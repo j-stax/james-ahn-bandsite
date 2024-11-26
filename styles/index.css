@@ -52,6 +52,10 @@ h3 {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .nav {
   background-color: #323232;
 }
@@ -63,10 +67,7 @@ h3 {
     height: 5rem;
   }
 }
-.nav a {
-  text-decoration: none;
-}
-.nav a h3 {
+.nav h3 {
   margin: auto;
   padding: 1rem;
   max-width: 7.5rem;
@@ -74,9 +75,14 @@ h3 {
   color: #FFFFFF;
 }
 @media screen and (min-width: 768px) {
-  .nav a h3 {
+  .nav h3 {
     margin: 0;
     padding-left: 2.25rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .nav h3 {
+    padding-left: 6rem;
   }
 }
 .nav__tabs-container {
@@ -120,9 +126,19 @@ h3 {
   color: #FFFFFF;
   position: relative;
 }
+@media screen and (min-width: 1280px) {
+  .hero {
+    padding: 15rem 0;
+  }
+}
 .hero h1 {
   padding-left: 1.5rem;
   z-index: 1;
+}
+@media screen and (min-width: 1280px) {
+  .hero h1 {
+    padding-left: 6rem;
+  }
 }
 .hero__layer {
   position: absolute;
@@ -142,6 +158,11 @@ h3 {
     padding: 3rem 2.25rem 1rem;
   }
 }
+@media screen and (min-width: 1280px) {
+  .about {
+    padding: 3rem 6rem 1.5rem;
+  }
+}
 .about__image-container {
   padding: 1rem 0;
 }
@@ -151,6 +172,11 @@ h3 {
 @media screen and (min-width: 768px) {
   .about__image-container {
     padding: 2rem 3.5rem 1.5rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .about__image-container {
+    padding: 2rem 5.5rem 2rem;
   }
 }
 .about__quote {
@@ -164,6 +190,13 @@ h3 {
     padding: 0 3.5rem 0.5rem;
   }
 }
+@media screen and (min-width: 1280px) {
+  .about__quote {
+    padding: 0 5.5rem 0.5rem;
+    width: 72%;
+    font-size: 1.5rem;
+  }
+}
 .about__citation {
   font-family: NunitoSans-Bold;
   font-weight: 700;
@@ -173,9 +206,20 @@ h3 {
     padding: 0 3.5rem;
   }
 }
+@media screen and (min-width: 1280px) {
+  .about__citation {
+    padding: 0 5.5rem;
+    font-size: 1rem;
+  }
+}
 @media screen and (min-width: 768px) {
   .about__bio {
     padding: 0 3.5rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .about__bio {
+    padding: 0 5.5rem;
   }
 }
 .about__bio h3 {
@@ -195,8 +239,18 @@ h3 {
     gap: 2rem;
   }
 }
+@media screen and (min-width: 1280px) {
+  .about__text-container {
+    gap: 3rem;
+  }
+}
 .about__text-container p {
   padding: 1rem 0;
+}
+@media screen and (min-width: 1280px) {
+  .about__text-container p {
+    padding-top: 2.25rem;
+  }
 }
 
 .photo-gallery {
@@ -208,13 +262,23 @@ h3 {
     padding: 3rem 2.25rem 2.25rem;
   }
 }
+@media screen and (min-width: 1280px) {
+  .photo-gallery {
+    padding: 3rem 5.5rem 2.25rem;
+  }
+}
 @media screen and (min-width: 768px) {
   .photo-gallery__flex-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 2rem;
     padding-top: 2rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .photo-gallery__flex-container {
+    gap: 1.5rem;
   }
 }
 .photo-gallery__image-container {
@@ -225,8 +289,8 @@ h3 {
 }
 @media screen and (min-width: 768px) {
   .photo-gallery__image-container {
-    width: 30%;
     padding: 0;
+    flex: 0 1 30%;
   }
 }
 
@@ -240,11 +304,21 @@ h3 {
     padding: 3rem 2.25rem;
   }
 }
+@media screen and (min-width: 1280px) {
+  .contacts {
+    padding: 3rem 5.5rem;
+  }
+}
 @media screen and (min-width: 768px) {
   .contacts__socials-container {
     display: flex;
     gap: 2.25rem;
     align-items: center;
+  }
+}
+@media screen and (min-width: 768px) {
+  .contacts__socials-container {
+    gap: 3.5rem;
   }
 }
 .contacts__socials {
@@ -268,6 +342,12 @@ h3 {
     display: flex;
     justify-content: space-between;
     padding: 2.25rem 0;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .contacts__group-flex-container {
+    justify-content: flex-start;
+    gap: 5rem;
   }
 }
 @media screen and (min-width: 768px) {

@@ -39,6 +39,10 @@ h3 {
     }
 }
 
+a {
+    text-decoration: none;
+}
+
 .nav {
     background-color: $primary-color-black;
 
@@ -49,20 +53,21 @@ h3 {
         height: 5rem;
     }
 
-    a {
-        text-decoration: none;
 
-        h3 {
-            margin: auto;
-            padding: 1rem;
-            max-width: 7.5rem;
-            text-align: center;
-            color: $primary-color-white;
-    
-            @include tablet {
-                margin: 0;
-                padding-left: 2.25rem;
-            }
+    h3 {
+        margin: auto;
+        padding: 1rem;
+        max-width: 7.5rem;
+        text-align: center;
+        color: $primary-color-white;
+
+        @include tablet {
+            margin: 0;
+            padding-left: 2.25rem;
+        }
+
+        @include desktop {
+            padding-left: 6rem;
         }
     }
 
