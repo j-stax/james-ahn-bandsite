@@ -2,6 +2,7 @@
 @use './partials/variables' as *;
 @use './partials/fonts' as *;
 @use './partials/mixins' as *;
+@use './partials/animations' as *;
 
 .hero {
     padding: 12rem 0;
@@ -12,6 +13,7 @@
     background-size: cover;
     color: $primary-color-white;
     position: relative;
+    overflow: hidden;
 
     @include desktop {
         padding: 15rem 0;
@@ -34,6 +36,13 @@
         height: 100%;
         background-color: $primary-color-black;
         opacity: 0.5;
+    }
+
+    &__bee-emoji {
+        font-size: 3.5rem;
+        position: absolute;
+        left: -20%;
+        animation: fly 3s linear 2s 1 normal;
     }
 }
 
@@ -261,8 +270,18 @@
         }
     }
 
-    &__single-line {
-        padding-bottom: 1.5rem;
+    &__email {
+        a {
+            color: inherit;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &:visited {
+                color: inherit;
+            }
+        }
     }
 
     &__bandsite-text-bottom {
@@ -276,7 +295,7 @@
     &__copyright {
         p {
             font-size: 0.8rem;
-            padding: 0.5rem 0;
+            padding: 1rem 0 0.5rem;
         } 
     }
 }
