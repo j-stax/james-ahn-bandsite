@@ -129,9 +129,7 @@ a {
 }
 @media screen and (min-width: 768px) {
   .nav__tabs-container a {
-    padding-top: 17%;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-top: 21%;
   }
 }
 
