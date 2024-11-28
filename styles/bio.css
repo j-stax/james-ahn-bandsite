@@ -418,6 +418,18 @@ a {
 .contacts__email a:visited {
   color: inherit;
 }
+.contacts__copyright {
+  padding-top: 3.5rem;
+}
+@media screen and (min-width: 768px) {
+  .contacts__copyright {
+    padding-top: 0;
+  }
+}
+.contacts__copyright p {
+  font-size: 0.8rem;
+  padding: 1rem 0 0.5rem;
+}
 .contacts__bandsite-text-bottom {
   font-size: 1.5rem;
 }
@@ -425,8 +437,4 @@ a {
   .contacts__bandsite-text-bottom {
     display: none;
   }
-}
-.contacts__copyright p {
-  font-size: 0.8rem;
-  padding: 1rem 0 0.5rem;
 }/*# sourceMappingURL=bio.css.map */

@@ -278,18 +278,24 @@
         }
     }
 
+    &__copyright {
+        padding-top: 3.5rem;
+
+        @include tablet {
+            padding-top: 0;
+        }
+
+        p {
+            font-size: 0.8rem;
+            padding: 1rem 0 0.5rem;
+        } 
+    }
+
     &__bandsite-text-bottom {
         font-size: 1.5rem;
 
         @include tablet {
             display: none;
         }
-    }
-
-    &__copyright {
-        p {
-            font-size: 0.8rem;
-            padding: 1rem 0 0.5rem;
-        } 
     }
 }
