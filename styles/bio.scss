@@ -191,6 +191,45 @@
     }
 }
 
+.comments {
+    padding: 1rem;
+
+    &__flex-container {
+        display: flex;
+        padding-top: 1rem;
+    }
+
+    &__form {
+        min-height: 2.25rem;
+        width: 100%;
+
+        label {
+            display: block;
+            color: $primary-color-silver;
+            margin-bottom: 4px;
+        }
+    
+        input[type="text"] {
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 4px;
+        }
+    }
+
+    &__profile-pic {
+        width: 3rem;
+        height: 3rem;
+        border: 1px solid black;
+        border-radius: 50%;
+        display: inline-block;
+        background-image: url('../assets/images/profile-pic.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        margin-right: 1rem;
+    }
+}
+
 .contacts {
     background-color: $primary-color-black;
     color: $primary-color-white;
