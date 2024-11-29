@@ -1,7 +1,15 @@
+@keyframes fly-mobile {
+    0% { transform: translate(120vw, -10vh); }
+    25% { transform: translate(90vw, -15vh); }
+    50% { transform: translate(65vw, -10vh); }
+    75% { transform: translate(40vw, -5vh); }
+    100% { transform: translate(0, -10vh); }
+}
+
 @keyframes fly {
-    0% { transform: translate(120vw, -5vh); }
-    25% { transform: translate(90vw, 10vh); }
-    50% { transform: translate(60vw, -20vh); }
-    75% { transform: translate(30vw, -10vh); }
-    100% { transform: translate(0, -20vh); }
+    0% { transform: translate(120vw, -10vh); }
+    25% { transform: translate(100vw, -15vh); }
+    50% { transform: translate(80vw, -25vh); }
+    75% { transform: translate(50vw, -10vh); }
+    100% { transform: translate(0, -15vh); }
 }

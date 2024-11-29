@@ -5,21 +5,25 @@
 @use './partials/animations' as *;
 
 .hero {
-    padding: 12rem 0;
-    display: flex;
-    align-items: center;
+    height: 18rem;
     background-image: url('../assets/images/hero-bio.jpg');
     background-position: center;
     background-size: cover;
     color: $primary-color-white;
+    display: flex;
+    align-items: center;
     position: relative;
     overflow: hidden;
 
-    @include desktop {
-        padding: 15rem 0;
+    @include tablet {
+        height: 30rem;
     }
 
-    h1 {
+    @include desktop {
+        height: 35rem;
+    }
+
+    &__title-container {
         padding-left: 1.5rem;
         z-index: 1;
 
@@ -39,10 +43,15 @@
     }
 
     &__bee-emoji {
-        font-size: 3.5rem;
+        font-size: 2rem;
         position: absolute;
         left: -20%;
-        animation: fly 3s linear 2s 1 normal;
+        animation: fly-mobile 3s linear 2s 1 normal;
+
+        @include tablet {
+            font-size: 3rem;
+            animation: fly 3s linear 2s 1 normal;
+        }
     }
 }
 
