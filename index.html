@@ -103,13 +103,74 @@
         </section>
         <section class="comments">
             <h2>Join the Conversation</h2>
-            <div class="comments__flex-container">
-                <div class="comments__profile-pic"></div>
+            <div class="comments__new-comment-container">
+                <div class="comments__avatar"></div>
                 <form class="comments__form" action="">
-                    <label for="name">NAME</label>
-                    <input type="text" id="name" placeholder="Enter your name">
+                    <div class="comments__input-container--name">
+                        <label for="name">NAME</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="comments__input-container--comment">
+                        <label for="comment-input">COMMENT</label>
+                        <div>
+                            <textarea id="comment-input" rows="5" placeholder="Add a new comment"></textarea>
+                        </div>
+                    </div>
+                    <input class="comments__button" type="button" value="COMMENT">
                 </form>
             </div>
+            <hr />
+            <article class="comments__comment-component">
+                <div class="comments__avatar-placeholder"></div>
+                <div>
+                    <div class="comments__component-header">
+                        <p>Victor Pinto</p>
+                        <p>11/02/2023</p>
+                    </div>
+                    <p class="comments__text">
+                        This is art. This is inexplicable magic
+                        expressed in the purest way, everything
+                        that makes up this majestic work
+                        deserves reverence. Let us appreciate
+                        this for what it is and what it contains.
+                    </p>
+                </div>
+            </article>
+            <hr />
+            <article class="comments__comment-component">
+                <div class="comments__avatar-placeholder"></div>
+                <div>
+                    <div class="comments__component-header">
+                        <p>Christina Cabrera</p>
+                        <p>10/28/2023</p>
+                    </div>
+                    <p class="comments__text">
+                        I feel blessed to have seen them in
+                        person. What a show! They were just
+                        perfection. If there was one day of my
+                        life I could relive, this would be it. What
+                        an incredible day.
+                    </p>
+                </div>
+            </article>
+            <hr />
+            <article class="comments__comment-component">
+                <div class="comments__avatar-placeholder"></div>
+                <div>
+                    <div class="comments__component-header">
+                        <p>Issac Tadesse</p>
+                        <p>10/20/2023</p>
+                    </div>
+                    <p class="comments__text">
+                        I can t stop listening. Every time I hear
+                        one of their songs the vocals it gives
+                        me goosebumps. Shivers straight down
+                        my spine. What a beautiful expression of
+                        creativity. Can t get enough.
+                    </p>
+                </div>
+            </article>
+            <hr />
         </section>
     </main>
     <footer class="contacts">

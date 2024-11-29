@@ -194,39 +194,112 @@
 .comments {
     padding: 1rem;
 
-    &__flex-container {
+    &__new-comment-container {
         display: flex;
-        padding-top: 1rem;
+        padding: 1rem 0;
+    }
+
+    &__avatar {
+        @include avatar-frame;
+        background-image: url('../assets/images/profile-pic.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        margin: 1.5rem 1rem 0 0;
     }
 
     &__form {
-        min-height: 2.25rem;
         width: 100%;
 
         label {
             display: block;
             color: $primary-color-silver;
             margin-bottom: 4px;
+
+            &:last-child {
+                margin-top: 1rem;
+            }
         }
     
         input[type="text"] {
-            box-sizing: border-box;
-            width: 100%;
-            border-radius: 4px;
+            @include form-field-default;
+            min-height: 2.25rem; 
+
+            &:focus {
+                @include form-field-border-active;
+            }
+
+            &::placeholder {
+                color: $primary-color-black;
+            }
         }
     }
 
-    &__profile-pic {
-        width: 3rem;
-        height: 3rem;
-        border: 1px solid black;
-        border-radius: 50%;
-        display: inline-block;
-        background-image: url('../assets/images/profile-pic.jpg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+    &__input-container {
+
+        &--name {
+            margin-bottom: 1.5rem;
+        }
+
+        &--comment {
+            margin-bottom: 0.5rem;
+
+            textarea {
+                @include form-field-default;
+                font-family: inherit;
+                font-size: inherit;
+                resize: none;
+
+                &::placeholder {
+                    color: $primary-color-black;
+                }
+
+                &:focus {
+                    @include form-field-border-active;
+                }
+            }
+        }
+    }
+
+    &__button {
+        width: 100%;
+        padding: 0.75rem 0;
+        border: none;
+        border-radius: 4px;
+        color: $primary-color-white;
+        background-color: $primary-color-black;
+        font-size: 1.25rem;
+    }
+
+    hr {
+        border: 1px solid $secondary-color-mercury;
+    }
+
+    &__comment-component {
+        margin: 1rem 0;
+        display: flex;
+    }
+
+    &__avatar-placeholder {
+        @include avatar-frame;
+        background-color: $secondary-color-mercury;
         margin-right: 1rem;
+    }
+
+    &__component-header {
+        display: flex;
+        margin-bottom: 0.5rem;
+
+        p {
+            &:first-child {
+                margin-right: auto;
+                font-weight: 700;
+            }
+
+            &:last-child {
+                color: $primary-color-silver;
+            }
+        }
     }
 }
 
