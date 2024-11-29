@@ -30,6 +30,13 @@
     max-height: 2.25rem;
     border-radius: 50%;
     display: inline-block;
+
+    @include tablet {
+        min-width: 3rem;
+        max-width: 3rem;
+        min-height: 3rem;
+        max-height: 3rem;
+    }
 }
 
 @mixin form-field-default {
