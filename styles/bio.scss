@@ -194,9 +194,24 @@
 .comments {
     padding: 1rem;
 
+    @include tablet {
+        padding: 2.25rem;
+    }
+
+    &__body-container {
+        
+        @include tablet {
+            padding: 0 3.5rem;
+        }
+    }
+
     &__new-comment-container {
         display: flex;
         padding: 1rem 0;
+
+        @include tablet {
+            padding-bottom: 2.25rem;
+        }
     }
 
     &__avatar {
@@ -244,6 +259,10 @@
         &--comment {
             margin-bottom: 0.5rem;
 
+            @include tablet {
+                margin-bottom: 1rem;
+            }
+
             textarea {
                 @include form-field-default;
                 font-family: inherit;
@@ -261,6 +280,13 @@
         }
     }
 
+    &__button-container {
+
+        @include tablet {
+            text-align: right;
+        }
+    }
+
     &__button {
         width: 100%;
         padding: 0.75rem 0;
@@ -269,6 +295,10 @@
         color: $primary-color-white;
         background-color: $primary-color-black;
         font-size: 1.25rem;
+
+        @include tablet {
+            width: 30%;
+        }
     }
 
     hr {
@@ -278,6 +308,10 @@
     &__comment-component {
         margin: 1rem 0;
         display: flex;
+
+        @include tablet {
+            margin: 2.25rem 0;
+        }
     }
 
     &__avatar-placeholder {
