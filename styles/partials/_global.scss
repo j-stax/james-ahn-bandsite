@@ -50,39 +50,35 @@ a {
     @include tablet {
         display: flex;
         align-items: center;
-        gap: 2.5rem;
+        gap: 2.75rem;
         height: 5rem;
     }
 
-    h3 {
+    &__logo-container {
+        display: block;
         margin: auto;
-        max-width: 8rem;
+        width: 7.5rem;
+        padding: 1rem 0 0.5rem;
         text-align: center;
 
         @include tablet {
             margin: 0;
-            margin-left: 2.25rem;
+            margin-left: 1rem;
             padding: 1rem;
         }
 
         @include desktop {
-            margin-left: 6rem;
-        }
-    }
-
-    &__logo-text {
-        color: $primary-color-white;
-        font-size: 1.5rem;
-        padding: 0.5rem;
-        border-radius: 4px;
-        display: inline-block;
-
-        &:hover {
-            transform: scale(1.05);
+            margin-left: 5rem;
         }
 
-        &:active {
-            transform: scale(0.95);
+        img {
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
         }
     }
 
@@ -111,7 +107,7 @@ a {
             }
 
             @include tablet {
-                padding-top: 21%;
+                padding-top: 20%;
             }
         }
     }
