@@ -1,3 +1,32 @@
 @use './partials/global' as *;
 @use './partials/variables' as *;
 @use './partials/fonts' as *;
+@use './partials/mixins' as *;
+
+
+.hero {
+    background-image: url('../assets/images/hero-shows.jpg');
+    @include hero-layout-general;
+    height: 19rem;
+    padding: 1rem;
+
+    &__inner-layer {
+        @include hero-dark-layer;
+    }
+
+    &__outer-layer {
+        position: absolute;
+        padding-right: inherit;
+        z-index: 1;
+    }
+
+    &__title-container {
+        width: 70%;
+        color: $primary-color-white;
+        padding: 1.5rem 0 1.25rem;
+
+        h1 {
+            margin-top: 1rem;
+        }
+    }
+}
