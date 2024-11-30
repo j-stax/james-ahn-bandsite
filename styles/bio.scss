@@ -5,26 +5,34 @@
 @use './partials/animations' as *;
 
 .hero {
-    padding: 12rem 0;
-    display: flex;
-    align-items: center;
     background-image: url('../assets/images/hero-bio.jpg');
+    height: 18rem;
     background-position: center;
     background-size: cover;
     color: $primary-color-white;
+    display: flex;
+    align-items: center;
     position: relative;
     overflow: hidden;
 
-    @include desktop {
-        padding: 15rem 0;
+    @include tablet {
+        height: 30rem;
     }
 
-    h1 {
-        padding-left: 1.5rem;
+    @include desktop {
+        height: 35rem;
+    }
+
+    &__title-container {
+        margin-left: 1rem;
         z-index: 1;
 
+        @include tablet {
+            margin-left: 1.5rem;
+        }
+
         @include desktop {
-            padding-left: 6rem;
+            margin-left: 6rem;
         }
     }
 
@@ -39,10 +47,15 @@
     }
 
     &__bee-emoji {
-        font-size: 3.5rem;
+        font-size: 2rem;
         position: absolute;
         left: -20%;
-        animation: fly 3s linear 2s 1 normal;
+        animation: fly-mobile 3s linear 2s 1 normal;
+
+        @include tablet {
+            font-size: 3rem;
+            animation: fly 3s linear 2s 1 normal;
+        }
     }
 }
 
@@ -201,7 +214,7 @@
     }
 
     @include desktop {
-        padding: 3rem 5.5rem;
+        padding: 3rem 6rem;
     }
 
     &__socials-container {
@@ -225,13 +238,12 @@
         }
     }
 
-    &__bandsite-text-top {
+    &__logo-top {
         display: none;
 
         @include tablet {
             display: block;
             margin-left: auto;
-            padding-right: 0.5rem;
         }
     }
 
@@ -249,9 +261,21 @@
     }
 
     &__group-container {
+        margin-top: 1.5rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        @include tablet {
+            margin-top: 0;
+        }
+
         h3 {
+            font-size: 0.875rem;
+            font-weight: 500;
+
             @include tablet {
-                font-size: 0.875rem;
                 font-weight: 600;
             }
         }
@@ -279,11 +303,19 @@
         }
     }
 
+    &__logo-bottom {
+
+        @include tablet {
+            display: none;
+        }
+    }
+
     &__copyright {
-        padding-top: 3.5rem;
+        margin-top: 3.5rem;
 
         @include tablet {
             padding-top: 0;
+            margin-top: 0.5rem;
         }
 
         p {
@@ -291,12 +323,4 @@
             padding: 1rem 0 0.5rem;
         } 
     }
-
-    &__bandsite-text-bottom {
-        font-size: 1.5rem;
-
-        @include tablet {
-            display: none;
-        }
-    }
-}
+}   
