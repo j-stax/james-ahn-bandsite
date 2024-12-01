@@ -22,16 +22,42 @@ const data = [
 window.addEventListener("DOMContentLoaded", loadComments);
 
 function loadComments() {
-    for (let i = 1; i <= data.length; i++) {
-        let commentAuthor = document.querySelector(".comments__author-" + i);
-        let commentTimestamp = document.querySelector(".comments__timestamp-" + i);
-        let commentText = document.querySelector(".comments__text-" + i);
-
-        let commentObj = data[i-1];
-        commentAuthor.textContent = commentObj.author;
-        commentTimestamp.textContent = commentObj.timestamp;
-        commentText.textContent = commentObj.text;
+    for (let i = 0; i < data.length; i++) {
+        displayComment(data[i]);
     }
-    
+}
 
+function displayComment(commentObject) {
+    const parentNode = document.querySelector(".comments__body-container");
+    const newComponentNode = document.createElement("article");
+    newComponentNode.classList.add("comments__comment-component");
+    const newAvatarNode = document.createElement("div");
+    newAvatarNode.classList.add("comments__avatar-placeholder");
+    const newDivNode = document.createElement("div");
+    const newCommentHeaderNode = document.createElement("div");
+    newCommentHeaderNode.classList.add("comments__component-header");
+    const newCommentAuthorNode = document.createElement("p");
+    newCommentAuthorNode.classList.add("comments__author");
+    const newCommentTimestampNode = document.createElement("p");
+    newCommentTimestampNode.classList.add("comments__timestamp");
+    const newCommentNode = document.createElement("p");
+    newCommentNode.classList.add("comments__text");
+    const newDividerNode = document.createElement("hr");
+
+    const newAuthorTextNode = document.createTextNode(commentObject.author);
+    const newTimestampTextNode = document.createTextNode(commentObject.timestamp);
+    const newCommentTextNode = document.createTextNode(commentObject.text);
+
+    newCommentAuthorNode.appendChild(newAuthorTextNode);
+    newCommentTimestampNode.appendChild(newTimestampTextNode);
+    newCommentNode.appendChild(newCommentTextNode);
+
+    newCommentHeaderNode.appendChild(newCommentAuthorNode);
+    newCommentHeaderNode.appendChild(newCommentTimestampNode);
+    newDivNode.appendChild(newCommentHeaderNode);
+    newDivNode.appendChild(newCommentTextNode);
+    newComponentNode.appendChild(newAvatarNode);
+    newComponentNode.appendChild(newDivNode);
+    parentNode.appendChild(newComponentNode);
+    parentNode.appendChild(newDividerNode);
 }
