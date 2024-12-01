@@ -15,8 +15,7 @@
     }
 
     &__outer-layer {
-        position: absolute;
-        padding-right: inherit;
+        position: relative;
         z-index: 1;
     }
 
@@ -28,5 +27,18 @@
         h1 {
             margin-top: 1rem;
         }
+    }
+}
+
+.shows-listing {
+    padding: 1.5rem 1rem 1rem;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    hr {
+        border: 1px solid $secondary-color-mercury;
+        margin: 0 -1rem;
     }
 }

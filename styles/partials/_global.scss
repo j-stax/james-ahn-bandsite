@@ -54,7 +54,7 @@ a {
         height: 5rem;
     }
 
-    &__logo-container {
+    &__logo-link {
         display: block;
         margin: auto;
         width: 7.5rem;
@@ -114,5 +114,126 @@ a {
 
     &__bio {
         @include nav-active-and-hover;
+    }
+}
+
+.contacts {
+    background-color: $primary-color-black;
+    color: $primary-color-white;
+    padding: 1.5rem 1rem;
+
+    @include tablet {
+        padding: 3rem 2.25rem;
+    }
+
+    @include desktop {
+        padding: 3rem 6rem;
+    }
+
+    &__socials-container {
+        @include tablet {
+            display: flex;
+            gap: 2.25rem;
+            align-items: center;
+        }
+
+        @include tablet {
+            gap: 3.5rem;
+        }
+    }
+
+    &__socials {
+        padding: 1rem 0;
+
+        img {
+            height: 1.5rem;
+            margin-right: 1.7rem;
+        }
+    }
+
+    &__logo-top {
+        display: none;
+
+        @include tablet {
+            display: block;
+            margin-left: auto;
+        }
+    }
+
+    &__group-flex-container {
+        @include tablet {
+            display: flex;
+            justify-content: space-between;
+            padding: 2.25rem 0;
+        }
+
+        @include desktop {
+            justify-content: flex-start;
+            gap: 5rem;
+        }
+    }
+
+    &__group-container {
+        margin-top: 1.5rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        @include tablet {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 0.875rem;
+            font-weight: 500;
+
+            @include tablet {
+                font-weight: 600;
+            }
+        }
+    }
+
+    &__group {
+        padding: 1rem 0;
+
+        @include tablet {
+            padding: 2.25rem 0;
+        }
+    }
+
+    &__email {
+        a {
+            color: inherit;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &:visited {
+                color: inherit;
+            }
+        }
+    }
+
+    &__logo-bottom {
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &__copyright {
+        margin-top: 3.5rem;
+
+        @include tablet {
+            padding-top: 0;
+            margin-top: 0.5rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            padding: 1rem 0 0.5rem;
+        } 
     }
 }
