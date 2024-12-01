@@ -27,37 +27,46 @@ function loadComments() {
     }
 }
 
+// Create a new comment component and append to the DOM tree
 function displayComment(commentObject) {
+    // Create component elements
     const parentNode = document.querySelector(".comments__body-container");
     const newComponentNode = document.createElement("article");
-    newComponentNode.classList.add("comments__comment-component");
     const newAvatarNode = document.createElement("div");
-    newAvatarNode.classList.add("comments__avatar-placeholder");
     const newDivNode = document.createElement("div");
-    const newCommentHeaderNode = document.createElement("div");
-    newCommentHeaderNode.classList.add("comments__component-header");
+    const newCommentHeaderNode = document.createElement("div"); 
     const newCommentAuthorNode = document.createElement("p");
-    newCommentAuthorNode.classList.add("comments__author");
     const newCommentTimestampNode = document.createElement("p");
-    newCommentTimestampNode.classList.add("comments__timestamp");
     const newCommentNode = document.createElement("p");
-    newCommentNode.classList.add("comments__text");
     const newDividerNode = document.createElement("hr");
 
+    // Add class names for styling
+    newComponentNode.classList.add("comments__comment-component");
+    newAvatarNode.classList.add("comments__avatar-placeholder");
+    newCommentHeaderNode.classList.add("comments__component-header");
+    newCommentAuthorNode.classList.add("comments__author");
+    newCommentTimestampNode.classList.add("comments__timestamp");
+    newCommentNode.classList.add("comments__text");
+
+    // Create text nodes for comment object values
     const newAuthorTextNode = document.createTextNode(commentObject.author);
     const newTimestampTextNode = document.createTextNode(commentObject.timestamp);
     const newCommentTextNode = document.createTextNode(commentObject.text);
 
+    // Append the text nodes to their respective element nodes
     newCommentAuthorNode.appendChild(newAuthorTextNode);
     newCommentTimestampNode.appendChild(newTimestampTextNode);
     newCommentNode.appendChild(newCommentTextNode);
 
+    // Create the DOM tree for the comment component
     newCommentHeaderNode.appendChild(newCommentAuthorNode);
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
     newDivNode.appendChild(newCommentHeaderNode);
     newDivNode.appendChild(newCommentTextNode);
     newComponentNode.appendChild(newAvatarNode);
     newComponentNode.appendChild(newDivNode);
+
+    // Append the comment component to the comments section in the DOM tree
     parentNode.appendChild(newComponentNode);
     parentNode.appendChild(newDividerNode);
 }
