@@ -30,11 +30,42 @@
     }
 }
 
-.shows-listing {
+.shows {
     padding: 1.5rem 1rem 1rem;
 
     h2 {
         margin-bottom: 1rem;
+    }
+
+    &__component {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__label {
+        color: $primary-color-silver;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+
+    &__date {
+        font-weight: 700;
+    }
+
+    button {
+        padding: 1rem 0;
+        margin-top: 0.5rem;
+        width: 100%;
+        font-size: 1.25rem;
+        border: none;
+        border-radius: 4px;
+        background-color: $primary-color-black;
+        color: $primary-color-white;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     hr {
