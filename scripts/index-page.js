@@ -36,6 +36,8 @@ const dateMonthMap = {
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
+// TODO: onChange form validation?; form button animation; shows page
+
 // Initialize dynamic page features
 function loadedHandler() {
     loadComments();
@@ -79,7 +81,7 @@ function submitHandler(event) {
             text: commentVal
         };
 
-        data.push(newCommentObj);
+        data.splice(0, 0, newCommentObj);   // Add to the front of the list
         resetCommentsContainer();
         loadComments();
         form.reset();
