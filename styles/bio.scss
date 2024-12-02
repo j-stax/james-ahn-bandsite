@@ -264,7 +264,7 @@
 
     &__input-container {
 
-        &--name {
+        &--user {
             margin-bottom: 1.5rem;
         }
 
@@ -305,6 +305,10 @@
         background-color: $primary-color-black;
         font-size: 1rem;
 
+        &:hover {
+            cursor: pointer;
+        }
+
         @include tablet {
             width: 30%;
         }
@@ -331,6 +335,10 @@
         @include avatar-frame;
         background-color: $secondary-color-mercury;
         margin-right: 1rem;
+    }
+
+    &__text-container {
+        width: 100%;
     }
 
     &__component-header {
