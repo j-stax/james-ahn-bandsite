@@ -47,12 +47,15 @@ function createShowsSection() {
     showsHeaderNode.appendChild(showsHeaderTextNode);
     showsSectionNode.appendChild(showsHeaderNode);
 
-    for (let showObject of showsData) {
-        let showComponentNode = createShowComponent(showObject);
+    for (let i = 0; i < showsData.length; i++) {
+        let showComponentNode = createShowComponent(showsData[i]);
         let dividerNode = document.createElement("hr");
         showsSectionNode.appendChild(showComponentNode);
         showsSectionNode.appendChild(dividerNode);
     }
+
+    const firstShowComponentNode = showsSectionNode.children[1];
+    firstShowComponentNode.classList.add("shows__first-component");
 
     // Attach section to the DOM tree
     mainElementNode.appendChild(showsSectionNode);
