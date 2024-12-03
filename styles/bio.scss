@@ -309,6 +309,11 @@
             cursor: pointer;
         }
 
+        &:active {
+            background: radial-gradient($secondary-color-mercury, $primary-color-black);
+            transform: scale(0.95);
+        }
+
         @include tablet {
             width: 30%;
         }

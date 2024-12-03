@@ -36,7 +36,7 @@ const dateMonthMap = {
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
-// TODO: onChange form validation?; form button animation; shows page
+// TODO: onChange form validation?; Shows page tablet
 
 // Initialize dynamic page features
 function loadedHandler() {
