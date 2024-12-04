@@ -42,6 +42,8 @@ function createShowsSection() {
     // Create section, header elements; construct partial tree
     const showsSectionNode = document.createElement("section");
     showsSectionNode.classList.add("shows");
+    const showsComponentContainerNode = document.createElement("div");
+    showsComponentContainerNode.classList.add("shows__component-container");
     const showsHeaderNode = document.createElement("h2");
     const showsHeaderTextNode = document.createTextNode("Shows");
     showsHeaderNode.appendChild(showsHeaderTextNode);
@@ -50,14 +52,16 @@ function createShowsSection() {
     for (let i = 0; i < showsData.length; i++) {
         let showComponentNode = createShowComponent(showsData[i]);
         let dividerNode = document.createElement("hr");
-        showsSectionNode.appendChild(showComponentNode);
-        showsSectionNode.appendChild(dividerNode);
+        showsComponentContainerNode.appendChild(showComponentNode);
+        showsComponentContainerNode.appendChild(dividerNode);
     }
 
-    const firstShowComponentNode = showsSectionNode.children[1];
-    firstShowComponentNode.classList.add("shows__first-component");
+    // Assign modifier class to the first component
+    const firstShowComponentNode = showsComponentContainerNode.children[0];
+    firstShowComponentNode.classList.add("shows__component--first");
 
-    // Attach section to the DOM tree
+    // Attach component container to section element, then section to main.
+    showsSectionNode.appendChild(showsComponentContainerNode);
     mainElementNode.appendChild(showsSectionNode);
 }
 
