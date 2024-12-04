@@ -36,13 +36,14 @@ const dateMonthMap = {
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
-// TODO: onChange form validation?; Shows page tablet
+// TODO: onChange form validation?; Shows page desktop
 
 // Initialize dynamic page features
 function loadedHandler() {
     loadComments();
-    const commentForm = document.querySelector(".comments__form");
-    commentForm.addEventListener("submit", submitHandler);
+    document.querySelector(".comments__form").addEventListener("submit", submitHandler);
+    document.querySelector(".nav__bio").style.color = "#FFFFFF";
+    document.querySelector(".nav__shows").style.removeProperty("border-bottom");
 }
 
 function loadComments() {

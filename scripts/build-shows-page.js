@@ -31,8 +31,15 @@ const showsData = [
     },
 ];
 
-// Once HTML is loaded and parsed, develop the Shows section
-window.addEventListener("DOMContentLoaded", createShowsSection);
+// Once HTML is loaded and parsed, call function to initialize dynamic features
+window.addEventListener("DOMContentLoaded", loadedHandler);
+
+// Initialize dynamic page features
+function loadedHandler() {
+    createShowsSection();
+    document.querySelector(".nav__shows").style.color = "#FFFFFF";
+    document.querySelector(".nav__bio").style.removeProperty("border-bottom");
+}
 
 // Construct the Shows section and attach to the DOM tree
 function createShowsSection() {

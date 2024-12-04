@@ -4,6 +4,13 @@
 @use './partials/mixins' as *;
 
 
+.nav {
+    &__shows {
+        @include nav-hover;
+        font-weight: 700;
+    }
+}
+
 .hero {
     background-image: url('../assets/images/hero-shows.jpg');
     @include hero-layout-general;

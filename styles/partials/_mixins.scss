@@ -44,7 +44,7 @@
     opacity: 0.5;
 }
 
-@mixin nav-active-and-hover {
+@mixin nav-hover {
     color: $primary-color-white;
     border-bottom: 4px solid $primary-color-white;
 }

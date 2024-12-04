@@ -98,11 +98,11 @@ a {
             padding: 0 0 1rem;
 
             &:hover {
-                @include nav-active-and-hover;
+                @include nav-hover;
             }
 
             &:active {
-                @include nav-active-and-hover;
+                @include nav-hover;
                 font-family: NunitoSans-Bold;
             }
 
@@ -110,10 +110,6 @@ a {
                 padding-top: 20%;
             }
         }
-    }
-
-    &__bio {
-        @include nav-active-and-hover;
     }
 }
 
