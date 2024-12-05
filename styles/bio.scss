@@ -199,7 +199,11 @@
 
         @include tablet {
             padding: 0;
-            flex: 0 1 30%;
+            flex: 0 1 31%;
+        }
+
+        @include desktop {
+            flex: 0 1 31.5%;
         }
     }
 }
