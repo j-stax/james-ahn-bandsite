@@ -98,11 +98,11 @@ a {
             padding: 0 0 1rem;
 
             &:hover {
-                @include nav-hover;
+                @include nav-hover-and-active;
             }
 
             &:active {
-                @include nav-hover;
+                @include nav-hover-and-active;
                 font-family: NunitoSans-Bold;
             }
 

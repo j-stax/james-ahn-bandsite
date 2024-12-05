@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
 
 // TODO: onChange form validation?; Shows page desktop
 
-// Initialize dynamic page features
+// Display comments on page; style navigation tab as active
 function loadedHandler() {
     loadComments();
     document.querySelector(".comments__form").addEventListener("submit", submitHandler);
