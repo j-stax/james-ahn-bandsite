@@ -103,6 +103,7 @@ function resetCommentsContainer() {
     let commentsContainer = document.querySelector(".comments__body-container");
     const childNodes = commentsContainer.children;
 
+
     for (let i = childNodes.length-1; i > 1; i--) {
         let childNode = commentsContainer.children[i];
         childNode.parentNode.removeChild(childNode);
