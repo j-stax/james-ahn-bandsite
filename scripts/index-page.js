@@ -1,19 +1,24 @@
 const data = [
     {
+        user: "James Bond",
+        timestamp: new Date(2024, 11, 5, 13, 5, 30),
+        text: "This is a comment to test the timestamp feature."
+    },
+    {
         user: "Victor Pinto",
-        timestamp: "11/02/2023",
+        timestamp: new Date(2023, 10, 2),
         text: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
                 "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
     },
     {
         user: "Christina Cabrera",
-        timestamp: "10/28/2023",
+        timestamp: new Date(2023, 9, 28),
         text: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
                 "If there was one day of my life I could relive, this would be it. What an incredible day."
     },
     {
         user: "Issac Tadesse",
-        timestamp: "10/20/2023",
+        timestamp: new Date(2023, 9, 20),
         text: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
     }
@@ -73,13 +78,13 @@ function submitHandler(event) {
         document.getElementById("user").style.borderColor = "#E1E1E1";
         document.getElementById("comment").style.borderColor = "#E1E1E1";
 
-        let date = new Date();
-        date = `${dateMonthMap[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}`;
+        const date = new Date();
+        // date = `${dateMonthMap[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}`;
 
         const newCommentObj = {
-            user: userVal,
+            user: toTitleCase(userVal),
             timestamp: date,
-            text: commentVal
+            text: commentVal[0].toUpperCase() + commentVal.slice(1)
         };
 
         data.splice(0, 0, newCommentObj);   // Add to the front of the list
@@ -96,7 +101,6 @@ function isValid(inputField) {
     }
     return true;
 }
-
 
 // Clear all comments from the page
 function resetCommentsContainer() {
@@ -134,7 +138,7 @@ function createNewCommentComponent(commentObject) {
 
     // Create text nodes for comment object values
     const newUserTextNode = document.createTextNode(commentObject.user);
-    const newTimestampTextNode = document.createTextNode(commentObject.timestamp);
+    const newTimestampTextNode = document.createTextNode(getTimeDiff(commentObject.timestamp));     // Convert timestamp to time passed from current
     const newCommentTextNode = document.createTextNode(commentObject.text);
 
     // Append the text nodes to their respective element nodes
@@ -153,4 +157,49 @@ function createNewCommentComponent(commentObject) {
     // Append the comment component to the comments section in the DOM tree
     parentNode.appendChild(newComponentNode);
     parentNode.appendChild(newDividerNode);
+}
+
+/* Calculates difference between input date/time and current date/time,
+ * and returns the amount of time passed as a string.
+*/
+function getTimeDiff(prevDate) {
+    const msToMin = 60 * 1000;          // milliseconds to one minute
+    const msToHour = msToMin * 60;      // milliseconds to one hour
+    const msToDay = msToHour * 24;      // milliseconds to one day
+    const msToMonth = msToDay * 30;     // milliseconds to one month
+    const msToYear = msToDay * 365;     // milliseconds to one year
+    const diff = new Date() - prevDate;
+
+    if (diff < msToMin) {
+        const diffSeconds = Math.round(diff / 1000);
+        return diffSeconds === 0 ? "Now" : `${diffSeconds} seconds ago`;
+    }
+    else if (diff < msToHour) {
+        const diffMinutes = Math.round(diff / msToMin);
+        return diffMinutes > 1 ? `${diffMinutes} minutes ago` : `${diffMinutes} minute ago`;
+    }
+    else if (diff < msToDay) {
+        const diffHrs = Math.round(diff / msToHour);
+        return diffHrs > 1 ? `${diffHrs} hours ago` : `${diffHrs} hour ago`;
+    }
+    else if (diff < msToMonth) {
+        const diffDays = Math.round(diff / msToDay);
+        return diffDays > 1 ? `${diffDays} days ago` : `${diffDays} day ago`;
+    }
+    else if (diff < msToYear) {
+        const diffMonths = Math.round(diff / msToMonth);
+        return diffMonths > 1 ? `${diffMonths} months ago` : `${diffMonths} month ago`;
+    }
+    else {
+        const diffYears = Math.round(diff / msToYear);
+        return diffYears > 1 ? `${diffYears} years ago` : `${diffYears} year ago`;
+    }
+}
+
+function toTitleCase(str) {
+    const sections = str.split(" ");
+    sections.forEach((item, index) => {
+        sections[index] = item[0].toUpperCase() + item.slice(1);
+    });
+    return sections.join(" ");
 }
