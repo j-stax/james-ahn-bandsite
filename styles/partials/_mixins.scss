@@ -78,3 +78,9 @@
     outline: none;
     border-color: $primary-color-black;
 }
+
+@mixin shows-labels {
+    color: $primary-color-silver;
+    text-transform: uppercase;
+    font-weight: 700;
+}

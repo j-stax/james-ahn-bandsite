@@ -41,33 +41,55 @@ function loadedHandler() {
     document.querySelector(".nav__bio").style.removeProperty("border-bottom");
 }
 
+//-------------TODO: CLEAN UP BELOW SECTION?!!
+
 // Construct the Shows section and attach to the DOM tree
 function createShowsSection() {
     // Find and assign parent node
     const mainElementNode = document.querySelector("main");
 
-    // Create section, header elements; construct partial tree
+    // Create the necessary elements/nodes
     const showsSectionNode = document.createElement("section");
     showsSectionNode.classList.add("shows");
     const showsComponentContainerNode = document.createElement("div");
     showsComponentContainerNode.classList.add("shows__component-container");
     const showsHeaderNode = document.createElement("h2");
     const showsHeaderTextNode = document.createTextNode("Shows");
-    showsHeaderNode.appendChild(showsHeaderTextNode);
-    showsSectionNode.appendChild(showsHeaderNode);
+    const showsLabelsForTabletNode = document.createElement("div");
+    showsLabelsForTabletNode.classList.add("shows__tablet-labels");
+    const dateLabelForTabletNode = document.createElement("p");
+    const venueLabelForTabletNode = document.createElement("p");
+    const locationLabelForTabletNode = document.createElement("p");
+    const labelsForTabletBtn = document.createElement("button");
+    const dateTextNode = document.createTextNode("date");
+    const venueTextNode = document.createTextNode("venue");
+    const locationTextNode = document.createTextNode("location");
+    const labelsForTabletBtnTextNode = document.createTextNode("buy tickets");
 
+    // Append text nodes to respective parent nodes; build partial tree
+    showsHeaderNode.appendChild(showsHeaderTextNode);
+    dateLabelForTabletNode.appendChild(dateTextNode);
+    venueLabelForTabletNode.appendChild(venueTextNode);
+    locationLabelForTabletNode.appendChild(locationTextNode);
+    labelsForTabletBtn.appendChild(labelsForTabletBtnTextNode);
+    showsLabelsForTabletNode.appendChild(dateLabelForTabletNode);
+    showsLabelsForTabletNode.appendChild(venueLabelForTabletNode);
+    showsLabelsForTabletNode.appendChild(locationLabelForTabletNode);
+    showsLabelsForTabletNode.appendChild(labelsForTabletBtn);
+
+    // Construct the shows component and append to container node
     for (let i = 0; i < showsData.length; i++) {
+        if (i == 0) {
+            showsComponentContainerNode.appendChild(showsLabelsForTabletNode);
+        }
         let showComponentNode = createShowComponent(showsData[i]);
         let dividerNode = document.createElement("hr");
         showsComponentContainerNode.appendChild(showComponentNode);
         showsComponentContainerNode.appendChild(dividerNode);
     }
 
-    // Assign modifier class to the first component
-    const firstShowComponentNode = showsComponentContainerNode.children[0];
-    firstShowComponentNode.classList.add("shows__component--first");
-
-    // Attach component container to section element, then section to main.
+    // Complete the DOM tree for the shows section
+    showsSectionNode.appendChild(showsHeaderNode);
     showsSectionNode.appendChild(showsComponentContainerNode);
     mainElementNode.appendChild(showsSectionNode);
 }
@@ -88,9 +110,9 @@ function createShowComponent(showObject) {
 
     // Add respective classes or attributes
     showComponentContainerNode.classList.add("shows__component");
-    dateContainerNode.classList.add("shows__container--date");
-    venueContainerNode.classList.add("shows__container--venue");
-    locationContainerNode.classList.add("shows__container--location");
+    dateContainerNode.classList.add("shows__container");
+    venueContainerNode.classList.add("shows__container");
+    locationContainerNode.classList.add("shows__container");
     dateLabelNode.classList.add("shows__label");
     venueLabelNode.classList.add("shows__label");
     locationLabelNode.classList.add("shows__label");
