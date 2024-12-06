@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/bio.css">
+    <script src="https://kit.fontawesome.com/883886845b.js" crossorigin="anonymous"></script>
     <script src="./scripts/index-page.js" defer></script>
     <title>Bandsite</title>
 </head>
@@ -108,7 +109,12 @@
             <h2>Join the Conversation</h2>
             <div class="comments__body-container">
                 <div class="comments__new-comment-container">
-                    <div class="comments__avatar"></div>
+                    <div class="comments__new-avatar-container">
+                        <input class="comments__avatar-file-input" type="file" accept="image/*" />
+                        <div class="comments__avatar-file-icon-btn">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                    </div>
                     <form class="comments__form">
                         <div class="comments__input-container--user">
                             <label for="user">NAME</label>
