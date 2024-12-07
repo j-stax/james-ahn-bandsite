@@ -347,11 +347,7 @@
     &__button {
         width: 100%;
         padding: 0.75rem 0;
-        border: none;
-        border-radius: 4px;
-        color: $primary-color-white;
-        background-color: $primary-color-black;
-        font-size: 1rem;
+        @include button-default;
 
         @include tablet {
             width: 30%;
@@ -366,8 +362,7 @@
         }
 
         &:active {
-            background: radial-gradient($primary-color-black 20%, $primary-color-silver 80%);
-            transform: scale(0.95);
+            @include button-active;
         }
     }
 
