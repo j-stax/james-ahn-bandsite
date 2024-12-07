@@ -152,7 +152,13 @@
             }
 
             &:active {
-                background-color: $secondary-color-mercury;
+                &:not(:has(button:active)) {
+                    background-color: $secondary-color-mercury;
+                }
+            }
+
+            &:has(button:active) {
+                background-color: $secondary-color-alabaster;
             }
         }
     }
