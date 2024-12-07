@@ -353,6 +353,14 @@
         background-color: $primary-color-black;
         font-size: 1rem;
 
+        @include tablet {
+            width: 30%;
+        }
+
+        @include desktop {
+            width: 35%;
+        }
+
         &:hover {
             cursor: pointer;
         }
@@ -360,14 +368,6 @@
         &:active {
             background: radial-gradient($primary-color-black 20%, $primary-color-silver 80%);
             transform: scale(0.95);
-        }
-
-        @include tablet {
-            width: 30%;
-        }
-
-        @include desktop {
-            width: 35%;
         }
     }
 

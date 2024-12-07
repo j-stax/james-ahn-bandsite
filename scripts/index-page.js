@@ -24,20 +24,21 @@ const data = [
     }
 ];
 
-const dateMonthMap = {
-    0: "01",
-    1: "02",
-    2: "03",
-    3: "04",
-    4: "05",
-    5: "06",
-    6: "07",
-    7: "08",
-    8: "09",
-    9: "10",
-    10: "11",
-    11: "12"
-};
+/* Used for initial implentation of timestamp */
+// const dateMonthMap = {
+//     0: "01",
+//     1: "02",
+//     2: "03",
+//     3: "04",
+//     4: "05",
+//     5: "06",
+//     6: "07",
+//     7: "08",
+//     8: "09",
+//     9: "10",
+//     10: "11",
+//     11: "12"
+// };
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
@@ -60,28 +61,31 @@ function loadedHandler() {
     });
 }
 
+// Generate and display all comments from the comments list
 function loadComments() {
     for (let commentObj of data) {
         createNewCommentComponent(commentObj);
     }
 }
 
-// Comments section avatar file upload function
+// Read the uploaded image file and display the image
 function readFile(input) {
-    // Check that a file was successfully uploaded
-    if (input.files && input.files[0]) {
-        const file = input.files[0];
-        const url = URL.createObjectURL(file);
-        const avatarElem = document.querySelector(".comments__new-avatar-container");
+    try {
+        // Check that a file was successfully uploaded
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const url = URL.createObjectURL(file);
+            const avatarElem = document.querySelector(".comments__new-avatar-container");
 
-        // Display the image
-        avatarElem.style.backgroundImage = `url(${url})`;
-        avatarElem.classList.add("comments__avatar-image-position");
-        document.querySelector(".comments__avatar-file-icon-btn").style.visibility = "hidden";
+            // Display the image
+            avatarElem.style.backgroundImage = `url(${url})`;
+            avatarElem.classList.add("comments__avatar-image-position");
+            document.querySelector(".comments__avatar-file-icon-btn").style.visibility = "hidden";
+        }
     }
-    else {
-        alert("Error: File upload not successful. Please try again.");
-        console.log("Error uploading file. Only image files accepted.");
+    catch (exception) {
+        alert("Error: File upload failed. Only image files accepted.");
+        console.log("File upload error.");
     }
 }
 
@@ -97,6 +101,7 @@ function submitHandler(event) {
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
     
+    // Only submit the form if the text fields are filled
     if (!isValid(userVal)) {
         document.getElementById("user").style.borderColor = "#D22D2D";
     }
@@ -110,8 +115,9 @@ function submitHandler(event) {
         document.getElementById("comment").style.borderColor = "#E1E1E1";
 
         const date = new Date();
-        // date = `${dateMonthMap[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}`;
+        // date = `${dateMonthMap[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}`;   // Previous timestamp format
 
+        // New comment object
         const newCommentObj = {
             avatar: avatarURL ? avatarURL : null,
             user: toTitleCase(userVal),
@@ -121,15 +127,15 @@ function submitHandler(event) {
 
         data.splice(0, 0, newCommentObj);   // Add to the front of the list
         resetCommentsContainer();
-        avatarElem.style.removeProperty("background-image");
+        avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
         avatarIcon.style.visibility = "visible";
-        loadComments();
-        form.reset();
+        loadComments();  // Display all comments including newly submitted comment
+        form.reset();   // Clear input text fields
     }
 }
 
-// Form validation
+// Form validation helper function
 function isValid(inputField) {
     if (inputField.length == 0 || inputField == null) {
         return false;
@@ -137,7 +143,7 @@ function isValid(inputField) {
     return true;
 }
 
-// Clear all comments from the page
+// Clear all comments from the page by clearing the section from the DOM tree
 function resetCommentsContainer() {
     let commentsContainer = document.querySelector(".comments__body-container");
     const childNodes = commentsContainer.children;
@@ -162,7 +168,7 @@ function createNewCommentComponent(commentObject) {
     const newCommentNode = document.createElement("p");
     const newDividerNode = document.createElement("hr");
 
-    // Add class names for styling
+    // Add class names for style rulesets
     newComponentNode.classList.add("comments__comment-component");
     newAvatarNode.classList.add("comments__avatar-placeholder");
     newCommentTextContainerNode.classList.add("comments__text-container");
@@ -173,10 +179,10 @@ function createNewCommentComponent(commentObject) {
 
     // Create text nodes for comment object values
     const newUserTextNode = document.createTextNode(commentObject.user);
-    const newTimestampTextNode = document.createTextNode(getTimeDiff(commentObject.timestamp));     // Convert timestamp to time passed from current
+    const newTimestampTextNode = document.createTextNode(getTimeDiff(commentObject.timestamp));     // Get time passed from current date/time and use as timestamp
     const newCommentTextNode = document.createTextNode(commentObject.text);
 
-    // Check for avatar URL
+    // Check if user uploaded an avatar file
     if (commentObject.avatar) {
         newAvatarNode.style.backgroundImage = commentObject.avatar;
         newAvatarNode.classList.add("comments__avatar-image-position");
