@@ -39,6 +39,8 @@ function loadedHandler() {
     createShowsSection();
     document.querySelector(".nav__shows").style.color = "#FFFFFF";
     document.querySelector(".nav__bio").style.removeProperty("border-bottom");
+    const showsComponents = document.querySelectorAll(".shows__component");
+    showsComponents.forEach(element => element.addEventListener("click", selectComponent.bind(element)));
 }
 
 //-------------TODO: CLEAN UP BELOW SECTION?!!
@@ -150,4 +152,15 @@ function createShowComponent(showObject) {
     showComponentContainerNode.appendChild(buyTicketsBtnNode);
 
     return showComponentContainerNode;
+}
+
+function selectComponent() {
+    this.classList.toggle("selected");
+    const components = document.querySelectorAll(".shows__component");
+    for (let comp of components) {
+        if (comp === this) {
+            continue;
+        }
+        comp.classList.remove("selected");
+    }
 }

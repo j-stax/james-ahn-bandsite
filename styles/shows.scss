@@ -147,18 +147,19 @@
             }
 
             &:hover {
-                background-color: $secondary-color-alabaster;
                 cursor: pointer;
+            }
+
+            &:not(.selected) {
+                &:hover {
+                    background-color: $secondary-color-alabaster;
+                }
             }
 
             &:active {
                 &:not(:has(button:active)) {
                     background-color: $secondary-color-mercury;
                 }
-            }
-
-            &:has(button:active) {
-                background-color: $secondary-color-alabaster;
             }
         }
     }
@@ -205,4 +206,8 @@
             margin: 0;
         }
     }
+}
+
+.selected {
+    background-color: $secondary-color-mercury;
 }
