@@ -155,12 +155,6 @@
                     background-color: $secondary-color-alabaster;
                 }
             }
-
-            &:active {
-                &:not(:has(button:active)) {
-                    background-color: $secondary-color-mercury;
-                }
-            }
         }
     }
 

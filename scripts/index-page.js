@@ -42,8 +42,6 @@ const data = [
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
-// TODO: onChange form validation?; CLEAN UP THIS PAGE AND ADD/REMOVE COMMENTS
-
 /* Display comments on page.
  * Style navigation tab as active.
  * Add event listeners to elements.

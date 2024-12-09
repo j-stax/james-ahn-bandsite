@@ -40,10 +40,10 @@ function loadedHandler() {
     document.querySelector(".nav__shows").style.color = "#FFFFFF";
     document.querySelector(".nav__bio").style.removeProperty("border-bottom");
     const showsComponents = document.querySelectorAll(".shows__component");
-    showsComponents.forEach(element => element.addEventListener("click", selectComponent.bind(element)));
+    showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
+    const showsButtons = document.querySelectorAll(".shows__button");
+    showsButtons.forEach(button => button.addEventListener("click", (event) => event.stopPropagation()));
 }
-
-//-------------TODO: CLEAN UP BELOW SECTION?!!
 
 // Construct the Shows section and attach to the DOM tree
 function createShowsSection() {
@@ -81,6 +81,7 @@ function createShowsSection() {
 
     // Construct the shows component and append to container node
     for (let i = 0; i < showsData.length; i++) {
+        // Add headers for tablet and desktop views
         if (i == 0) {
             showsComponentContainerNode.appendChild(showsLabelsForTabletNode);
         }
@@ -122,6 +123,7 @@ function createShowComponent(showObject) {
     venueNode.classList.add("shows__venue");
     locationNode.classList.add("shows__location");
     buyTicketsBtnNode.type = "button";
+    buyTicketsBtnNode.classList.add("shows__button");
 
     // Create text nodes for labels and showObject values and append to parent nodes
     const dateLabelTextNode = document.createTextNode("date");
@@ -154,7 +156,7 @@ function createShowComponent(showObject) {
     return showComponentContainerNode;
 }
 
-function selectComponent() {
+function selectComponent(event) {
     this.classList.toggle("selected");
     const components = document.querySelectorAll(".shows__component");
     for (let comp of components) {
