@@ -23,6 +23,8 @@
 //                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
 //     }
 // ];
+const avatarMap = {}
+let api = null;
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
@@ -42,13 +44,12 @@ async function loadedHandler() {
         readFile(e.target);
     });
 
-    const api = await getApi();
-    loadComments(api);
+    await getApi();
+    loadComments();
 }
 
 // Create and return instance of API object
 async function getApi() {
-    let api = null;
     try {
         const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
         if (response.status === 200) {
@@ -62,13 +63,12 @@ async function getApi() {
     catch (err) {
         console.log(err);
     }
-
-    return api;
-}
+}   
 
 // Generate and display all comments from the comments list
-async function loadComments(api) {
+async function loadComments() {
     const data = await api.getComments();
+    data.sort((a, b) => b.timestamp - a.timestamp);
     
     for (let commentObj of data) {
         createNewCommentComponent(commentObj);
@@ -99,7 +99,7 @@ function readFile(input) {
 /* Comment form handler.
  * Validates inputs and appends new comment component to the page.
 */
-function submitHandler(event) {
+async function submitHandler(event) {
     event.preventDefault();
     const form = event.target;
     const nameVal = form.name.value.trim();
@@ -121,18 +121,20 @@ function submitHandler(event) {
         document.getElementById("name").style.borderColor = "#E1E1E1";
         document.getElementById("comment").style.borderColor = "#E1E1E1";
 
-        const date = new Date();
-        // date = `${dateMonthMap[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}`;   // Previous timestamp format
-
         // New comment object
         const newCommentObj = {
-            avatar: avatarURL ? avatarURL : null,
+            // avatar: avatarURL ? avatarURL : null,
             name: toTitleCase(nameVal),
-            timestamp: date,
-            text: commentVal[0].toUpperCase() + commentVal.slice(1)
+            // timestamp: new Date(),
+            comment: commentVal[0].toUpperCase() + commentVal.slice(1)
         };
 
-        data.splice(0, 0, newCommentObj);   // Add to the front of the list
+        // data.splice(0, 0, newCommentObj);   // Add to the front of the list
+
+        // API works, cache avatarURL to avatarMap using return comment id; then fix loadComments()/createNewCommentComponent();
+        // And make api postComment() return the response.data
+        const responseObj = await api.postComment(newCommentObj);   
+
         resetCommentsContainer();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
@@ -154,7 +156,6 @@ function isValid(inputField) {
 function resetCommentsContainer() {
     let commentsContainer = document.querySelector(".comments__body-container");
     const childNodes = commentsContainer.children;
-
 
     for (let i = childNodes.length-1; i > 1; i--) {
         let childNode = commentsContainer.children[i];

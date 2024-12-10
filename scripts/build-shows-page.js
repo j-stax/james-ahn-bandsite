@@ -56,6 +56,8 @@ const monthMap = {
     11: "Dec"
 }
 
+let api = null;
+
 //----------TODO: Convert API date values to readable dates
 
 // Once HTML is loaded and parsed, call function to initialize dynamic features
@@ -66,8 +68,8 @@ async function loadedHandler() {
     document.querySelector(".nav__shows").style.color = "#FFFFFF";
     document.querySelector(".nav__bio").style.removeProperty("border-bottom");
 
-    const api = await getApi();
-    await createShowsSection(api);
+    await getApi();
+    await createShowsSection();
 
     const showsComponents = document.querySelectorAll(".shows__component");
     showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
@@ -76,7 +78,6 @@ async function loadedHandler() {
 }
 
 async function getApi() {
-    let api = null;
     try {
         const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
         if (response.status === 200) {
@@ -90,12 +91,10 @@ async function getApi() {
     catch (err) {
         console.log(err);
     }
-
-    return api;
 }
 
 // Construct the Shows section and attach to the DOM tree
-async function createShowsSection(api) {
+async function createShowsSection() {
     const showsData = await api.getShows();
 
     // Find and assign parent node

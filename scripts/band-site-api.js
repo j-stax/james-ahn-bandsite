@@ -8,7 +8,7 @@ class BandSiteApi {
         try {
             const response = await axios.post(`${this.baseURL}comments?api_key=${this.apiKey}`, commentObject);
             if (response.status === 200) {
-                return response.data;
+                console.log(response.data);
             }
             else {
                 console.log(`Status: ${response.status}`);
