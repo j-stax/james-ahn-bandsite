@@ -1,25 +1,25 @@
 const data = [
     {
-        user: "James Bond",
+        name: "James Bond",
         timestamp: new Date(2024, 11, 5, 13, 5, 30),
-        text: "This is a comment to test the timestamp feature."
+        comment: "This is a comment to test the timestamp feature."
     },
     {
-        user: "Victor Pinto",
+        name: "Victor Pinto",
         timestamp: new Date(2023, 10, 2),
-        text: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
+        comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
                 "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
     },
     {
-        user: "Christina Cabrera",
+        name: "Christina Cabrera",
         timestamp: new Date(2023, 9, 28),
-        text: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
+        comment: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
                 "If there was one day of my life I could relive, this would be it. What an incredible day."
     },
     {
-        user: "Issac Tadesse",
+        name: "Issac Tadesse",
         timestamp: new Date(2023, 9, 20),
-        text: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
+        comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
     }
 ];
@@ -93,23 +93,23 @@ function readFile(input) {
 function submitHandler(event) {
     event.preventDefault();
     const form = event.target;
-    const userVal = form.user.value.trim();
+    const nameVal = form.name.value.trim();
     const commentVal = form.comment.value.trim();
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
     
     // Only submit the form if the text fields are filled
-    if (!isValid(userVal)) {
-        document.getElementById("user").style.borderColor = "#D22D2D";
+    if (!isValid(nameVal)) {
+        document.getElementById("name").style.borderColor = "#D22D2D";
     }
 
     if (!isValid(commentVal)) {
         document.getElementById("comment").style.borderColor = "#D22D2D";
     }
 
-    if (isValid(userVal) && isValid(commentVal)) {
-        document.getElementById("user").style.borderColor = "#E1E1E1";
+    if (isValid(nameVal) && isValid(commentVal)) {
+        document.getElementById("name").style.borderColor = "#E1E1E1";
         document.getElementById("comment").style.borderColor = "#E1E1E1";
 
         const date = new Date();
@@ -118,9 +118,9 @@ function submitHandler(event) {
         // New comment object
         const newCommentObj = {
             avatar: avatarURL ? avatarURL : null,
-            user: toTitleCase(userVal),
+            name: toTitleCase(nameVal),
             timestamp: date,
-            text: commentVal[0].toUpperCase() + commentVal.slice(1)
+            comment: commentVal[0].toUpperCase() + commentVal.slice(1)
         };
 
         data.splice(0, 0, newCommentObj);   // Add to the front of the list
@@ -161,7 +161,7 @@ function createNewCommentComponent(commentObject) {
     const newAvatarNode = document.createElement("div");
     const newCommentTextContainerNode = document.createElement("div");
     const newCommentHeaderNode = document.createElement("div"); 
-    const newCommentUserNode = document.createElement("p");
+    const newCommentNameNode = document.createElement("p");
     const newCommentTimestampNode = document.createElement("p");
     const newCommentNode = document.createElement("p");
     const newDividerNode = document.createElement("hr");
@@ -171,14 +171,14 @@ function createNewCommentComponent(commentObject) {
     newAvatarNode.classList.add("comments__avatar-placeholder");
     newCommentTextContainerNode.classList.add("comments__text-container");
     newCommentHeaderNode.classList.add("comments__component-header");
-    newCommentUserNode.classList.add("comments__user");
+    newCommentNameNode.classList.add("comments__name");
     newCommentTimestampNode.classList.add("comments__timestamp");
     newCommentNode.classList.add("comments__text");
 
     // Create text nodes for comment object values
-    const newUserTextNode = document.createTextNode(commentObject.user);
+    const newNameTextNode = document.createTextNode(commentObject.name);
     const newTimestampTextNode = document.createTextNode(getTimeDiff(commentObject.timestamp));     // Get time passed from current date/time and use as timestamp
-    const newCommentTextNode = document.createTextNode(commentObject.text);
+    const newCommentTextNode = document.createTextNode(commentObject.comment);
 
     // Check if user uploaded an avatar file
     if (commentObject.avatar) {
@@ -187,12 +187,12 @@ function createNewCommentComponent(commentObject) {
     }
 
     // Append the text nodes to their respective element nodes
-    newCommentUserNode.appendChild(newUserTextNode);
+    newCommentNameNode.appendChild(newNameTextNode);
     newCommentTimestampNode.appendChild(newTimestampTextNode);
     newCommentNode.appendChild(newCommentTextNode);
 
     // Create the DOM tree for the comment component
-    newCommentHeaderNode.appendChild(newCommentUserNode);
+    newCommentHeaderNode.appendChild(newCommentNameNode);
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
     newCommentTextContainerNode.appendChild(newCommentTextNode);
