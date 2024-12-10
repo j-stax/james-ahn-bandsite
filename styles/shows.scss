@@ -14,7 +14,7 @@
 .hero {
     background-image: url('../assets/images/hero-shows.jpg');
     @include hero-layout-general;
-    height: 19rem;
+    height: 20rem;
     padding: 1rem;
 
     @include tablet {
