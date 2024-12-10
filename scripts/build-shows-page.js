@@ -31,6 +31,33 @@
 //     },
 // ];
 
+const dayMap = {
+    0: "Mon",
+    1: "Tue",
+    2: "Wed",
+    3: "Thu",
+    4: "Fri",
+    5: "Sat",
+    6: "Sun"
+}
+
+const monthMap = {
+    0: "Jan",
+    1: "Feb",
+    2: "Mar",
+    3: "Apr",
+    4: "May",
+    5: "Jun",
+    6: "Jul",
+    7: "Aug",
+    8: "Sept",
+    9: "Oct",
+    10: "Nov",
+    11: "Dec"
+}
+
+//----------TODO: Convert API date values to readable dates
+
 // Once HTML is loaded and parsed, call function to initialize dynamic features
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
@@ -153,7 +180,7 @@ function createShowComponent(showObject) {
     const dateLabelTextNode = document.createTextNode("date");
     const venueLabelTextNode = document.createTextNode("venue");
     const locationLabelTextNode = document.createTextNode("location");
-    const dateTextNode = document.createTextNode(showObject.date);
+    const dateTextNode = document.createTextNode(msToDate(showObject.date));
     const venueTextNode = document.createTextNode(showObject.place);
     const locationTextNode = document.createTextNode(showObject.location);
     const btnTextNode = document.createTextNode("buy tickets");
@@ -189,4 +216,10 @@ function selectComponent() {
         }
         comp.classList.remove("selected");
     }
+}
+
+function msToDate(ms) {
+    const date = new Date(ms);
+    const day = date.getDate().toString().length == 1 ? `0${date.getDate()}` : date.getDate();
+    return `${dayMap[date.getDay()]} ${monthMap[date.getMonth()]} ${day} ${date.getFullYear()}`;
 }
