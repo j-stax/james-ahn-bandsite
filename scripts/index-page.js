@@ -129,11 +129,13 @@ async function submitHandler(event) {
             comment: commentVal[0].toUpperCase() + commentVal.slice(1)
         };
 
-        // data.splice(0, 0, newCommentObj);   // Add to the front of the list
-
-        // API works, cache avatarURL to avatarMap using return comment id; then fix loadComments()/createNewCommentComponent();
-        // And make api postComment() return the response.data
+        // API call
         const responseObj = await api.postComment(newCommentObj);   
+
+        // Cache avatar file path to local store
+        if (avatarURL) {
+            avatarMap[responseObj.id] = avatarURL.slice(4, -1);
+        }
 
         resetCommentsContainer();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
@@ -190,9 +192,9 @@ function createNewCommentComponent(commentObject) {
     const newTimestampTextNode = document.createTextNode(getTimeDiff(commentObject.timestamp));     // Get time passed from current date/time and use as timestamp
     const newCommentTextNode = document.createTextNode(commentObject.comment);
 
-    // Check if user uploaded an avatar file
-    if (commentObject.avatar) {
-        newAvatarNode.style.backgroundImage = commentObject.avatar;
+    // Check if user uploaded an avatar file and retrieve if true
+    if (commentObject.id in avatarMap) {
+        newAvatarNode.style.backgroundImage = `url(${avatarMap[commentObject.id]})`;
         newAvatarNode.classList.add("comments__avatar-image-position");
     }
 
