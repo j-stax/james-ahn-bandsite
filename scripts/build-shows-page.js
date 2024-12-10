@@ -1,52 +1,76 @@
-const showsData = [
-    {
-        date: "Mon Sept 09 2024",
-        venue: "Ronald Lane",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Tues Sept 17 2024",
-        venue: "Pier 3 East",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Sat Oct 12 2024",
-        venue: "View Lounge",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Sat Nov 16 2024",
-        venue: "Hyatt Agency",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Fri Nov 29 2024",
-        venue: "Moscow Center",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Dec 18 2024",
-        venue: "Press Club",
-        location: "San Francisco, CA"
-    },
-];
+// const showsData = [
+//     {
+//         date: "Mon Sept 09 2024",
+//         venue: "Ronald Lane",
+//         location: "San Francisco, CA"
+//     },
+//     {
+//         date: "Tues Sept 17 2024",
+//         venue: "Pier 3 East",
+//         location: "San Francisco, CA"
+//     },
+//     {
+//         date: "Sat Oct 12 2024",
+//         venue: "View Lounge",
+//         location: "San Francisco, CA"
+//     },
+//     {
+//         date: "Sat Nov 16 2024",
+//         venue: "Hyatt Agency",
+//         location: "San Francisco, CA"
+//     },
+//     {
+//         date: "Fri Nov 29 2024",
+//         venue: "Moscow Center",
+//         location: "San Francisco, CA"
+//     },
+//     {
+//         date: "Dec 18 2024",
+//         venue: "Press Club",
+//         location: "San Francisco, CA"
+//     },
+// ];
 
 // Once HTML is loaded and parsed, call function to initialize dynamic features
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
 // Initialize dynamic page features
-function loadedHandler() {
-    createShowsSection();
+async function loadedHandler() {
     document.querySelector(".nav__shows").style.color = "#FFFFFF";
     document.querySelector(".nav__bio").style.removeProperty("border-bottom");
+
+    const api = await getApi();
+    await createShowsSection(api);
+
     const showsComponents = document.querySelectorAll(".shows__component");
     showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
     const showsButtons = document.querySelectorAll(".shows__button");
     showsButtons.forEach(button => button.addEventListener("click", (event) => event.stopPropagation()));
 }
 
+async function getApi() {
+    let api = null;
+    try {
+        const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
+        if (response.status === 200) {
+            const apiKey = response.data["api_key"];
+            api = new BandSiteApi(apiKey);
+        }
+        else {
+            console.log(response.status);
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+    return api;
+}
+
 // Construct the Shows section and attach to the DOM tree
-function createShowsSection() {
+async function createShowsSection(api) {
+    const showsData = await api.getShows();
+
     // Find and assign parent node
     const mainElementNode = document.querySelector("main");
 
@@ -130,7 +154,7 @@ function createShowComponent(showObject) {
     const venueLabelTextNode = document.createTextNode("venue");
     const locationLabelTextNode = document.createTextNode("location");
     const dateTextNode = document.createTextNode(showObject.date);
-    const venueTextNode = document.createTextNode(showObject.venue);
+    const venueTextNode = document.createTextNode(showObject.place);
     const locationTextNode = document.createTextNode(showObject.location);
     const btnTextNode = document.createTextNode("buy tickets");
     dateLabelNode.appendChild(dateLabelTextNode);
@@ -156,7 +180,7 @@ function createShowComponent(showObject) {
     return showComponentContainerNode;
 }
 
-function selectComponent(event) {
+function selectComponent() {
     this.classList.toggle("selected");
     const components = document.querySelectorAll(".shows__component");
     for (let comp of components) {

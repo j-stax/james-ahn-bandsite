@@ -41,12 +41,13 @@ async function loadedHandler() {
     document.querySelector(".comments__avatar-file-input").addEventListener("change", (e) => {
         readFile(e.target);
     });
+
     const api = await getApi();
     loadComments(api);
 }
 
+// Create and return instance of API object
 async function getApi() {
-    // Create instance of API object
     let api = null;
     try {
         const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');

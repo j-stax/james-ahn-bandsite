@@ -53,7 +53,7 @@ class BandSiteApi {
         try {
             const response = await axios.get(`${this.baseURL}showdates?api_key=${this.apiKey}`);
             if (response.status === 200) {
-                console.log(response.data);
+                return response.data;
             }
             else {
                 console.log(`Status: ${response.status}`);
@@ -70,14 +70,14 @@ async function main() {
     const apiKey = response.data["api_key"];
     const api = new BandSiteApi(apiKey);
     // await api.getComments();
-    // await api.getShows();
-    const newCommentObj = {
-        name: "Bruce Wayne",
-        comment: "No comment."
-    }
-    const res = await api.postComment(newCommentObj);
-    const delObject = await api.deleteComment(res.id);
-    console.log(`Comment deleted: ${delObject.id}`);
+    await api.getShows();
+    // const newCommentObj = {
+    //     name: "Bruce Wayne",
+    //     comment: "No comment."
+    // }
+    // const res = await api.postComment(newCommentObj);
+    // const delObject = await api.deleteComment(res.id);
+    // console.log(`Comment deleted: ${delObject.id}`);
 }
 
 // main();
