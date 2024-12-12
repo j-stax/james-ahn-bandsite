@@ -34,6 +34,21 @@ class BandSiteApi {
         }
     }
 
+    async likeComment(commentId) {
+        try {
+            const response = await axios.put(`${this.baseURL}comments/${commentId}/like?api_key=${this.apiKey}`);
+            if (response.status === 200) {
+                return response.data;
+            }
+            else {
+                console.log(`Status: ${response.status}`)
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     async deleteComment(commentId) {
         try {
             const response = await axios.delete(`${this.baseURL}comments/${commentId}?api_key=${this.apiKey}`);
@@ -69,8 +84,10 @@ async function main() {
     const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
     const apiKey = response.data["api_key"];
     const api = new BandSiteApi(apiKey);
-    // await api.getComments();
-    await api.getShows();
+    const comments = await api.getComments();
+    console.log(comments[0]);
+    await api.likeComment(comments[0].id);
+    // await api.getShows();
     // const newCommentObj = {
     //     name: "Bruce Wayne",
     //     comment: "No comment."

@@ -24,7 +24,7 @@
 //     }
 // ];
 const avatarMap = {}
-let api = null;
+let api = new BandSiteApi("e0e17602-8abb-43b0-bad7-f76c77577c8a");
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
@@ -44,7 +44,7 @@ async function loadedHandler() {
         readFile(e.target);
     });
 
-    await getApi();
+    // await getApi();
     loadComments();
 }
 
@@ -54,6 +54,7 @@ async function getApi() {
         const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
         if (response.status === 200) {
             const apiKey = response.data["api_key"];
+            console.log(apiKey);
             api = new BandSiteApi(apiKey);
         }
         else {
@@ -72,6 +73,18 @@ async function loadComments() {
     
     for (let commentObj of data) {
         createNewCommentComponent(commentObj);
+    }
+
+    // Hide filled hearts initially
+    const heartsFilled = document.querySelectorAll(".comments__heart-solid");
+    for (let heart of heartsFilled) {
+        heart.style.display = "none";
+    }
+
+    // Add likes event listeners
+    const heartsRegular = document.querySelectorAll(".comments__heart-regular");
+    for (let heart of heartsRegular) {
+        heart.addEventListener("click", heartClickHandler);
     }
 }
 
@@ -176,21 +189,26 @@ function createNewCommentComponent(commentObject) {
     const newCommentNameNode = document.createElement("p");
     const newCommentTimestampNode = document.createElement("p");
     const newCommentNode = document.createElement("p");
+    const newCommentLikesContainerNode = document.createElement("div");
+    const newCommentLikesSpanNode = document.createElement("span");
     const newDividerNode = document.createElement("hr");
 
     // Add class names for style rulesets
     newComponentNode.classList.add("comments__comment-component");
+    newComponentNode.id = commentObject.id;
     newAvatarNode.classList.add("comments__avatar-placeholder");
     newCommentTextContainerNode.classList.add("comments__text-container");
     newCommentHeaderNode.classList.add("comments__component-header");
     newCommentNameNode.classList.add("comments__name");
     newCommentTimestampNode.classList.add("comments__timestamp");
     newCommentNode.classList.add("comments__text");
+    newCommentLikesContainerNode.classList.add("comments__likes");
 
     // Create text nodes for comment object values
     const newNameTextNode = document.createTextNode(commentObject.name);
     const newTimestampTextNode = document.createTextNode(getTimeDiff(commentObject.timestamp));     // Get time passed from current date/time and use as timestamp
     const newCommentTextNode = document.createTextNode(commentObject.comment);
+    const newCommentLikesTextNode = document.createTextNode(commentObject.likes + " Likes");
 
     // Check if user uploaded an avatar file and retrieve if true
     if (commentObject.id in avatarMap) {
@@ -202,18 +220,41 @@ function createNewCommentComponent(commentObject) {
     newCommentNameNode.appendChild(newNameTextNode);
     newCommentTimestampNode.appendChild(newTimestampTextNode);
     newCommentNode.appendChild(newCommentTextNode);
+    newCommentLikesSpanNode.appendChild(newCommentLikesTextNode);
 
     // Create the DOM tree for the comment component
     newCommentHeaderNode.appendChild(newCommentNameNode);
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
+    newCommentLikesContainerNode.innerHTML = "<i class=\"fa-regular fa-heart comments__heart-regular\"></i>";
+    newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid\"></i>";
+    newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
     newCommentTextContainerNode.appendChild(newCommentTextNode);
+    newCommentTextContainerNode.appendChild(newCommentLikesContainerNode);
     newComponentNode.appendChild(newAvatarNode);
     newComponentNode.appendChild(newCommentTextContainerNode);
 
     // Append the comment component to the comments section in the DOM tree
     parentNode.appendChild(newComponentNode);
     parentNode.appendChild(newDividerNode);
+}
+
+async function heartClickHandler(event) {
+    const heartIcon = event.target
+    // Swap icons for clicked appearance
+    heartIcon.style.display = "none";
+    heartIcon.nextElementSibling.style.display = "inline";
+
+    // Update likes count
+    const commentComponentElem = event.target.parentNode.parentNode.parentNode;
+    const updatedCommentObj = await api.likeComment(commentComponentElem.id);
+    heartIcon.nextElementSibling.nextElementSibling.textContent = `${updatedCommentObj.likes} Likes`;
+
+    // Reset heart display
+    setTimeout(() => {
+        heartIcon.style.display = "inline";
+        heartIcon.nextElementSibling.style.display = "none";
+    }, 5000);
 }
 
 /* Calculates difference between input date/time and current date/time,
