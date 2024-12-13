@@ -185,6 +185,7 @@ function createNewCommentComponent(commentObject) {
     const newComponentNode = document.createElement("article");
     const newAvatarNode = document.createElement("div");
     const newCommentTextContainerNode = document.createElement("div");
+    const newCommentDeleteIconContainerNode = document.createElement("div");
     const newCommentHeaderNode = document.createElement("div"); 
     const newCommentNameNode = document.createElement("p");
     const newCommentTimestampNode = document.createElement("p");
@@ -195,9 +196,10 @@ function createNewCommentComponent(commentObject) {
 
     // Add class names for style rulesets
     newComponentNode.classList.add("comments__comment-component");
-    newComponentNode.id = commentObject.id;
+    newComponentNode.id = commentObject.id;                                 // Use id provided by API
     newAvatarNode.classList.add("comments__avatar-placeholder");
     newCommentTextContainerNode.classList.add("comments__text-container");
+    newCommentDeleteIconContainerNode.classList.add("comments__delete-icon-container");
     newCommentHeaderNode.classList.add("comments__component-header");
     newCommentNameNode.classList.add("comments__name");
     newCommentTimestampNode.classList.add("comments__timestamp");
@@ -225,9 +227,11 @@ function createNewCommentComponent(commentObject) {
     // Create the DOM tree for the comment component
     newCommentHeaderNode.appendChild(newCommentNameNode);
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
+    newCommentDeleteIconContainerNode.innerHTML += "<i class=\"fa-solid fa-minus\"></i>";
     newCommentLikesContainerNode.innerHTML = "<i class=\"fa-regular fa-heart comments__heart-regular\"></i>";
     newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid\"></i>";
     newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
+    newCommentTextContainerNode.appendChild(newCommentDeleteIconContainerNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
     newCommentTextContainerNode.appendChild(newCommentTextNode);
     newCommentTextContainerNode.appendChild(newCommentLikesContainerNode);

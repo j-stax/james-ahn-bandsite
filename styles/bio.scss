@@ -371,21 +371,26 @@
     }
 
     &__comment-component {
-        margin: 1rem 0;
+        margin: 0.25rem 0 1rem;
         display: flex;
 
         @include tablet {
-            margin: 1.5rem 0;
+            margin: 0.5rem 0 1.5rem;
         }
     }
 
     &__avatar-placeholder {
         @include avatar-frame;
         margin-right: 1rem;
+        margin-top: 1.25rem;
     }
 
     &__text-container {
         width: 100%;
+    }
+
+    &__delete-icon-container {
+        text-align: right;
     }
 
     &__component-header {
@@ -401,6 +406,10 @@
             &:last-child {
                 color: $primary-color-silver;
             }
+        }
+
+        i {
+            margin-left: 0.5rem;
         }
     }
 
