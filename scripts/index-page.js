@@ -83,9 +83,11 @@ async function loadComments() {
 
     // Add likes event listeners
     const heartsRegular = document.querySelectorAll(".comments__heart-regular");
-    for (let heart of heartsRegular) {
-        heart.addEventListener("click", heartClickHandler);
-    }
+    heartsRegular.forEach(heart => heart.addEventListener("click", heartClickHandler));
+
+    // Add delete icon event listener
+    const deleteIcons = document.querySelectorAll(".comments__delete-icon");
+    deleteIcons.forEach(icon => icon.addEventListener("click", deleteCommentHandler));
 }
 
 // Read the uploaded image file and display the image
@@ -173,7 +175,7 @@ function resetCommentsContainer() {
     const childNodes = commentsContainer.children;
 
     for (let i = childNodes.length-1; i > 1; i--) {
-        let childNode = commentsContainer.children[i];
+        let childNode = childNodes[i];
         childNode.parentNode.removeChild(childNode);
     }
 }
@@ -227,7 +229,7 @@ function createNewCommentComponent(commentObject) {
     // Create the DOM tree for the comment component
     newCommentHeaderNode.appendChild(newCommentNameNode);
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
-    newCommentDeleteIconContainerNode.innerHTML += "<i class=\"fa-solid fa-minus\"></i>";
+    newCommentDeleteIconContainerNode.innerHTML += "<i class=\"fa-solid fa-minus comments__delete-icon\"></i>";
     newCommentLikesContainerNode.innerHTML = "<i class=\"fa-regular fa-heart comments__heart-regular\"></i>";
     newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid\"></i>";
     newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
@@ -259,6 +261,14 @@ async function heartClickHandler(event) {
         heartIcon.style.display = "inline";
         heartIcon.nextElementSibling.style.display = "none";
     }, 5000);
+}
+
+async function deleteCommentHandler(event) {
+    const commentComponentElem = event.target.parentNode.parentNode.parentNode;
+    const commentId = commentComponentElem.id;
+    await api.deleteComment(commentId);
+    resetCommentsContainer();
+    loadComments();
 }
 
 /* Calculates difference between input date/time and current date/time,

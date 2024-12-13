@@ -391,6 +391,16 @@
 
     &__delete-icon-container {
         text-align: right;
+
+        i {
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:active {
+                background-color: $secondary-color-mercury;
+            }
+        }
     }
 
     &__component-header {
@@ -435,8 +445,4 @@
     &__heart-solid {
         display: none;
     }
-}
-
-.hidden {
-    display: none;
 }
