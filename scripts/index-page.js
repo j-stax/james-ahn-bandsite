@@ -48,7 +48,8 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
 */ 
 function loadedHandler() {
     loadComments();
-    document.querySelector(".nav__bio").style.color = "#FFFFFF";
+    // document.querySelector(".nav__bio").style.color = "#FFFFFF";
+    document.querySelector(".nav__bio").classList.add("nav__selected");
     document.querySelector(".nav__shows").style.removeProperty("border-bottom");
     document.querySelector(".comments__form").addEventListener("submit", submitHandler);
     document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {

@@ -5,9 +5,8 @@
 
 
 .nav {
-    &__shows {
-        @include nav-hover-and-active;
-        font-weight: 700;
+    &__bio {
+        color: $secondary-color-mercury;
     }
 }
 
