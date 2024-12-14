@@ -34,8 +34,8 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
  * Display comments on page.
 */ 
 async function loadedHandler() {
-    document.querySelector(".nav__bio").style.color = "#FFFFFF";
-    document.querySelector(".nav__shows").style.removeProperty("border-bottom");
+    document.querySelector(".nav__bio").classList.add("nav__selected");
+    document.querySelector(".nav__shows").classList.remove("nav__selected");
     document.querySelector(".comments__form").addEventListener("submit", submitHandler);
     document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
         document.querySelector(".comments__avatar-file-input").click();

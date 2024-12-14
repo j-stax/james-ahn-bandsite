@@ -65,8 +65,8 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
 
 // Initialize dynamic page features
 async function loadedHandler() {
-    document.querySelector(".nav__shows").style.color = "#FFFFFF";
-    document.querySelector(".nav__bio").style.removeProperty("border-bottom");
+    document.querySelector(".nav__shows").classList.add("nav__selected");
+    document.querySelector(".nav__bio").classList.remove("nav__selected");
 
     await getApi();
     await createShowsSection();

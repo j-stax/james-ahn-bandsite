@@ -94,7 +94,6 @@ a {
         a {
             flex: 0 1 50%;
             text-decoration: none;
-            color: $secondary-color-mercury;
             padding: 0 0 1rem;
 
             &:hover {
@@ -110,6 +109,11 @@ a {
                 padding-top: 20%;
             }
         }
+    }
+
+    &__selected {
+        @include nav-hover-and-active;
+        font-weight: 700;
     }
 }
 
