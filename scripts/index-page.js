@@ -263,12 +263,17 @@ async function heartClickHandler(event) {
     }, 5000);
 }
 
+// Remove comment and make delete API call
 async function deleteCommentHandler(event) {
     const commentComponentElem = event.target.parentNode.parentNode.parentNode;
     const commentId = commentComponentElem.id;
-    await api.deleteComment(commentId);
-    resetCommentsContainer();
-    loadComments();
+    const horizontalLine = commentComponentElem.nextElementSibling;
+    const commentsBodyContainer = document.querySelector(".comments__body-container");
+
+    await api.deleteComment(commentId); // API call
+
+    commentsBodyContainer.removeChild(horizontalLine);
+    commentsBodyContainer.removeChild(commentComponentElem);
 }
 
 /* Calculates difference between input date/time and current date/time,
