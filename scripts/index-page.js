@@ -54,8 +54,8 @@ function loadedHandler() {
     document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
         document.querySelector(".comments__avatar-file-input").click();
     });
-    document.querySelector(".comments__avatar-file-input").addEventListener("change", (e) => {
-        readFile(e.target);
+    document.querySelector(".comments__avatar-file-input").addEventListener("change", (event) => {
+        readFile(event.target);
     });
 }
 
@@ -99,7 +99,8 @@ function submitHandler(event) {
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
     
-    // Only submit the form if the text fields are filled
+    // Only submit the form if the text fields are filled.
+    // Adding and removing classes would not work on empty input for form validation.
     if (!isValid(nameVal)) {
         document.getElementById("name").style.borderColor = "#D22D2D";
     }
