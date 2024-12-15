@@ -4,6 +4,17 @@
 @use './partials/mixins' as *;
 @use './partials/animations' as *;
 
+.nav {
+    &__bio {
+        @include nav-active-and-hover;
+        font-weight: 700;
+    }
+
+    &__shows {
+        color: $secondary-color-mercury;
+    }
+}
+
 .hero {
     background-image: url('../assets/images/hero-bio.jpg');
     height: 18rem;

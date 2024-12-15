@@ -2,11 +2,9 @@
 @use 'fonts' as *;
 @use 'mixins' as *;
 
-* {
-    margin: 0;
-}
 
 body {
+    margin: 0;
     font-family: NunitoSans-Regular;
     font-weight: 400;
     font-size: 0.875rem;
@@ -92,8 +90,6 @@ a {
 
         a {
             flex: 0 1 50%;
-            text-decoration: none;
-            color: $secondary-color-mercury;
             padding: 0 0 1rem;
 
             &:hover {
