@@ -58,8 +58,6 @@ const monthMap = {
 
 let api = null;
 
-//----------TODO: Convert API date values to readable dates
-
 // Once HTML is loaded and parsed, call function to initialize dynamic features
 window.addEventListener("DOMContentLoaded", loadedHandler);
 

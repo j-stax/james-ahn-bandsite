@@ -24,7 +24,7 @@
 //     }
 // ];
 const avatarMap = {}
-let api = new BandSiteApi("e0e17602-8abb-43b0-bad7-f76c77577c8a");
+let api = new BandSiteApi("e0e17602-8abb-43b0-bad7-f76c77577c8a");  // TO BE CHANGED TO let api = undefined
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
@@ -40,11 +40,11 @@ async function loadedHandler() {
     document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
         document.querySelector(".comments__avatar-file-input").click();
     });
-    document.querySelector(".comments__avatar-file-input").addEventListener("change", (e) => {
-        readFile(e.target);
+    document.querySelector(".comments__avatar-file-input").addEventListener("change", (event) => {
+        readFile(event.target);
     });
 
-    // await getApi();
+    // await getApi();  // TO BE UNCOMMENTED
     loadComments();
 }
 
@@ -91,6 +91,7 @@ async function loadComments() {
 }
 
 // Read the uploaded image file and display the image
+// Adding and removing classes would not work on empty input for form validation.
 function readFile(input) {
     try {
         // Check that a file was successfully uploaded
