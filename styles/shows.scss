@@ -14,10 +14,10 @@
     background-image: url('../assets/images/hero-shows.jpg');
     @include hero-layout-general;
     height: 20rem;
-    padding: 1rem;
+    padding: 1rem 1rem 2.5rem;
 
     @include tablet {
-        padding: 2.25rem 2.25rem 0;
+        padding: 2.25rem 2.25rem 1.5rem;
     }
 
     @include desktop {
@@ -43,10 +43,11 @@
     &__title-container {
         width: 70%;
         color: $primary-color-white;
-        padding: 1.5rem 0 1.25rem;
+        padding: 1.5rem 0 1.75rem;
 
         @include tablet {
             width: 75%;
+            padding-bottom: 2rem;
         }
 
         @include desktop {
