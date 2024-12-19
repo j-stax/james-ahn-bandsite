@@ -290,7 +290,15 @@ function getTimeDiff(prevDate) {
 
     if (diff < msToMin) {
         const diffSeconds = Math.round(diff / 1000);
-        return diffSeconds === 0 ? "Now" : `${diffSeconds} seconds ago`;
+        if (diffSeconds <= 0) {
+            return "Now";
+        }
+        else if (diffSeconds === 1) {
+            return "1 second ago";
+        }
+        else {
+            return `${diffSeconds} seconds ago`;
+        }
     }
     else if (diff < msToHour) {
         const diffMinutes = Math.round(diff / msToMin);
