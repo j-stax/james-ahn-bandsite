@@ -5,8 +5,11 @@
 
 
 .nav {
-    &__bio {
-        color: $secondary-color-mercury;
+    &__tab {
+        &--shows {
+            @include nav-hover-and-active;
+            font-weight: 700;
+        }
     }
 }
 
