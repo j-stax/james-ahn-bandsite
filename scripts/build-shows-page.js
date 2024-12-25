@@ -37,8 +37,6 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
 // Initialize dynamic page features
 function loadedHandler() {
     createShowsSection();
-    document.querySelector(".nav__shows").classList.add("nav__selected");
-    document.querySelector(".nav__bio").classList.remove("nav__selected");
     const showsComponents = document.querySelectorAll(".shows__component");
     showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
     const showsButtons = document.querySelectorAll(".shows__button");

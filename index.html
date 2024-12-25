@@ -31,7 +31,7 @@
         <section class="about">
             <h2>About the Musicians</h2>
             <div class="about__image-container">
-                <img src="./assets/images/band.jpg" alt="band image">
+                <img class="about__image" src="./assets/images/band.jpg" alt="band image">
             </div>
             <blockquote class="about__quote">
                 "We push each other to be the best. It's not
@@ -40,9 +40,9 @@
             </blockquote>
             <p class="about__citation">- Lead vocalist of The Bees Knees</p>
             <article class="about__bio">
-                <h3>The Bees Knees</h3>
+                <h3 class="about__bio-header">The Bees Knees</h3>
                 <div class="about__text-container">
-                    <p>
+                    <p class="about__text">
                         The Bees Knees is a pop rock band originating
                         from San Francisco, California. The band
                         consists a dynamic lineup featuring two lead
@@ -56,7 +56,7 @@
                         with more support, pushing The Bees Knees to
                         sign with a well known record label.
                     </p>
-                    <p>
+                    <p class="about__text">
                         From there, the band has soared, gaining
                         international recognition and ranking in the top
                         10 on the Poster Charts. New fans immediately
@@ -76,15 +76,15 @@
         <section class="photo-gallery">
             <h2>Photo Gallery</h2>
             <div class="photo-gallery__flex-container">
-                <img src="./assets/images/Photo-gallery-1.jpg" alt="image1">
-                <img src="./assets/images/Photo-gallery-2.jpg" alt="image2">
-                <img src="./assets/images/Photo-gallery-3.jpg" alt="image3">
-                <img src="./assets/images/Photo-gallery-4.jpg" alt="image4">
-                <img src="./assets/images/Photo-gallery-5.jpg" alt="image5">
-                <img src="./assets/images/Photo-gallery-6.jpg" alt="image6">
-                <img src="./assets/images/Photo-gallery-7.jpg" alt="image7">
-                <img src="./assets/images/Photo-gallery-8.jpg" alt="image8">
-                <img src="./assets/images/Photo-gallery-9.jpg" alt="image9">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-1.jpg" alt="image1">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-2.jpg" alt="image2">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-3.jpg" alt="image3">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-4.jpg" alt="image4">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-5.jpg" alt="image5">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-6.jpg" alt="image6">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-7.jpg" alt="image7">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-8.jpg" alt="image8">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-9.jpg" alt="image9">
             </div>
         </section>
         <section class="comments">
@@ -99,13 +99,25 @@
                     </div>
                     <form class="comments__form">
                         <div class="comments__input-container--name">
-                            <label for="name">NAME</label>
-                            <input type="text" id="name" placeholder="Enter your name">
+                            <label class="comments__label" for="name">NAME</label>
+                            <input 
+                                class="comments__input comments__input--name" 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="Enter your name"
+                            >
                         </div>
                         <div class="comments__input-container--comment">
-                            <label for="comment">COMMENT</label>
+                            <label class="comments__label" for="comment">COMMENT</label>
                             <div>
-                                <textarea id="comment" rows="5" placeholder="Add a new comment"></textarea>
+                                <textarea 
+                                    class="comments__input comments__input--comment" 
+                                    id="comment" 
+                                    name="comment" 
+                                    rows="5" 
+                                    placeholder="Add a new comment"
+                                ></textarea>
                             </div>
                         </div>
                         <div class="comments__button-container">

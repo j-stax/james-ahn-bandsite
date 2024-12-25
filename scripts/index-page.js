@@ -48,8 +48,6 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
 */ 
 function loadedHandler() {
     loadComments();
-    document.querySelector(".nav__bio").classList.add("nav__selected");
-    document.querySelector(".nav__shows").classList.remove("nav__selected");
     document.querySelector(".comments__form").addEventListener("submit", submitHandler);
     document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
         document.querySelector(".comments__avatar-file-input").click();
@@ -95,6 +93,7 @@ function submitHandler(event) {
     const form = event.target;
     const nameVal = form.name.value.trim();
     const commentVal = form.comment.value.trim();
+    console.log(nameVal, commentVal);
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
