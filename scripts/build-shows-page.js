@@ -54,13 +54,18 @@ function createShowsSection() {
     const showsComponentContainerNode = document.createElement("div");
     showsComponentContainerNode.classList.add("shows__component-container");
     const showsHeaderNode = document.createElement("h2");
+    showsHeaderNode.classList.add("shows__header");
     const showsHeaderTextNode = document.createTextNode("Shows");
     const showsLabelsForTabletNode = document.createElement("div");
     showsLabelsForTabletNode.classList.add("shows__tablet-labels");
     const dateLabelForTabletNode = document.createElement("p");
+    dateLabelForTabletNode.classList.add("shows__tablet-table-header");
     const venueLabelForTabletNode = document.createElement("p");
+    venueLabelForTabletNode.classList.add("shows__tablet-table-header");
     const locationLabelForTabletNode = document.createElement("p");
+    locationLabelForTabletNode.classList.add("shows__tablet-table-header");
     const labelsForTabletBtn = document.createElement("button");
+    labelsForTabletBtn.classList.add("shows__tablet-hidden-btn");
     const dateTextNode = document.createTextNode("date");
     const venueTextNode = document.createTextNode("venue");
     const locationTextNode = document.createTextNode("location");
@@ -85,6 +90,7 @@ function createShowsSection() {
         }
         let showComponentNode = createShowComponent(showsData[i]);
         let dividerNode = document.createElement("hr");
+        dividerNode.classList.add("shows__divider");
         showsComponentContainerNode.appendChild(showComponentNode);
         showsComponentContainerNode.appendChild(dividerNode);
     }
