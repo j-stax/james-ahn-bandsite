@@ -93,9 +93,9 @@ function submitHandler(event) {
     const form = event.target;
     const nameVal = form.name.value.trim();
     const commentVal = form.comment.value.trim();
-    console.log(nameVal, commentVal);
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
+    console.log(avatarURL);
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
     
     // Only submit the form if the text fields are filled.
@@ -148,8 +148,7 @@ function resetCommentsContainer() {
 
 
     for (let i = childNodes.length-1; i > 1; i--) {
-        let childNode = commentsContainer.children[i];
-        childNode.parentNode.removeChild(childNode);
+        childNodes[i].parentNode.removeChild(childNodes[i]);
     }
 }
 
