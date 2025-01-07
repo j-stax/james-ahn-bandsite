@@ -124,7 +124,7 @@ function submitHandler(event) {
         };
 
         data.splice(0, 0, newCommentObj);   // Add to the front of the list
-        resetCommentsContainer();
+        clearComments();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
         avatarIcon.style.visibility = "visible";
@@ -142,13 +142,13 @@ function isValid(inputField) {
 }
 
 // Clear all comments from the page by clearing the section from the DOM tree
-function resetCommentsContainer() {
-    let commentsContainer = document.querySelector(".comments__body-container");
+function clearComments() {
+    const commentsContainer = document.querySelector(".comments__body-container");
     const childNodes = commentsContainer.children;
 
 
     for (let i = childNodes.length-1; i > 1; i--) {
-        childNodes[i].parentNode.removeChild(childNodes[i]);
+        commentsContainer.removeChild(childNodes[i]);
     }
 }
 
