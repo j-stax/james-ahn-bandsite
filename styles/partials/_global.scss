@@ -50,7 +50,7 @@ a {
     @include tablet {
         display: flex;
         align-items: center;
-        gap: 2.5rem;
+        gap: 2.75rem;
         height: 5rem;
     }
 
@@ -71,14 +71,13 @@ a {
             margin-left: 5rem;
         }
 
-        img {
-            &:hover {
-                transform: scale(1.05);
-            }
+    &__logo {
+        &:hover {
+            transform: scale(1.05);
+        }
 
-            &:active {
-                transform: scale(0.95);
-            }
+        &:active {
+            transform: scale(0.95);
         }
     }
 
@@ -90,23 +89,149 @@ a {
             gap: 2rem;
             height: 100%;
         }
+    }
 
-        a {
-            flex: 0 1 50%;
-            padding: 0 0 1rem;
+    &__tab {
+        flex: 0 1 50%;
+        padding: 0 0 1rem;
+        color: $secondary-color-mercury;
 
-            &:hover {
-                @include nav-active-and-hover;
-            }
+        &:hover {
+            @include nav-hover-and-active;
+        }
 
-            &:active {
-                @include nav-active-and-hover;
-                font-family: NunitoSans-Bold;
-            }
+        &:active {
+            @include nav-hover-and-active;
+            font-family: NunitoSans-Bold;
+        }
 
-            @include tablet {
-                padding-top: 21%;
-            }
+        @include tablet {
+            padding-top: 20%;
         }
     }
+}
+
+.contacts {
+    background-color: $primary-color-black;
+    color: $primary-color-white;
+    padding: 1.5rem 1rem;
+
+    @include tablet {
+        padding: 3rem 2.25rem;
+    }
+
+    @include desktop {
+        padding: 3rem 6rem;
+    }
+
+    &__socials-container {
+        @include tablet {
+            display: flex;
+            gap: 2.25rem;
+            align-items: center;
+        }
+
+        @include tablet {
+            gap: 3.5rem;
+        }
+    }
+
+    &__socials {
+        padding: 1rem 0;
+    }
+
+    &__icon {
+        height: 1.5rem;
+            margin-right: 1.7rem;
+    }
+
+    &__logo-top-anchor {
+        margin-left: auto;
+    }
+
+    &__logo-top {
+        display: none;
+
+        @include tablet {
+            display: block;
+        }
+    }
+
+    &__group-flex-container {
+        @include tablet {
+            display: flex;
+            justify-content: space-between;
+            padding: 2.25rem 0;
+        }
+
+        @include desktop {
+            justify-content: flex-start;
+            gap: 5rem;
+        }
+    }
+
+    &__group-container {
+        margin-top: 1.5rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        @include tablet {
+            margin-top: 0;
+        }
+    }
+
+    &__group-header {
+        font-size: 0.875rem;
+        font-weight: 500;
+
+        @include tablet {
+            font-weight: 600;
+        }
+    }
+
+    &__group {
+        padding: 1rem 0;
+
+        @include tablet {
+            padding: 2.25rem 0;
+        }
+    }
+
+    &__email-link {
+        color: inherit;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: inherit;
+        }
+    }
+
+    &__logo-bottom {
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &__copyright {
+        margin-top: 3.5rem;
+
+        @include tablet {
+            padding-top: 0;
+            margin-top: 0.5rem;
+        }
+    }
+
+    &__copyright-text {
+        font-size: 0.8rem;
+        padding: 1rem 0 0.5rem;
+    }
+}
+
+.hidden {
+    display: none;
 }

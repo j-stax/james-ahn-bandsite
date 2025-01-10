@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/bio.css">
+    <script src="https://kit.fontawesome.com/883886845b.js" crossorigin="anonymous"></script>
+    <script src="./scripts/index-page.js" defer></script>
     <title>Bandsite</title>
 </head>
 <body>
     <header>
         <nav class="nav">
             <a class="nav__logo-link" href="./index.html">
-                <img src="./assets/logos/Logo-bandsite.svg" alt="Bandsite logo">
+                <img class="nav__logo" src="./assets/logos/Logo-bandsite.svg" alt="Bandsite logo">
             </a>
             <div class="nav__tabs-container">
-                <a class="nav__bio" href="./index.html">Biography</a>
-                <a class="nav__shows" href="">Shows</a>
+                <a class="nav__tab nav__tab--bio" href="./index.html">Biography</a>
+                <a class="nav__tab nav__tab--shows" href="./pages/shows.html">Shows</a>
             </div>
         </nav>
     </header>
@@ -29,7 +31,7 @@
         <section class="about">
             <h2>About the Musicians</h2>
             <div class="about__image-container">
-                <img src="./assets/images/band.jpg" alt="band image">
+                <img class="about__image" src="./assets/images/band.jpg" alt="band image">
             </div>
             <blockquote class="about__quote">
                 "We push each other to be the best. It's not
@@ -38,9 +40,9 @@
             </blockquote>
             <p class="about__citation">- Lead vocalist of The Bees Knees</p>
             <article class="about__bio">
-                <h3>The Bees Knees</h3>
+                <h3 class="about__bio-header">The Bees Knees</h3>
                 <div class="about__text-container">
-                    <p>
+                    <p class="about__text">
                         The Bees Knees is a pop rock band originating
                         from San Francisco, California. The band
                         consists a dynamic lineup featuring two lead
@@ -54,7 +56,7 @@
                         with more support, pushing The Bees Knees to
                         sign with a well known record label.
                     </p>
-                    <p>
+                    <p class="about__text">
                         From there, the band has soared, gaining
                         international recognition and ranking in the top
                         10 on the Poster Charts. New fans immediately
@@ -74,15 +76,68 @@
         <section class="photo-gallery">
             <h2>Photo Gallery</h2>
             <div class="photo-gallery__flex-container">
-                <img src="./assets/images/Photo-gallery-1.jpg" alt="image1">
-                <img src="./assets/images/Photo-gallery-2.jpg" alt="image2">
-                <img src="./assets/images/Photo-gallery-3.jpg" alt="image3">
-                <img src="./assets/images/Photo-gallery-4.jpg" alt="image4">
-                <img src="./assets/images/Photo-gallery-5.jpg" alt="image5">
-                <img src="./assets/images/Photo-gallery-6.jpg" alt="image6">
-                <img src="./assets/images/Photo-gallery-7.jpg" alt="image7">
-                <img src="./assets/images/Photo-gallery-8.jpg" alt="image8">
-                <img src="./assets/images/Photo-gallery-9.jpg" alt="image9">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-1.jpg" alt="image1">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-2.jpg" alt="image2">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-3.jpg" alt="image3">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-4.jpg" alt="image4">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-5.jpg" alt="image5">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-6.jpg" alt="image6">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-7.jpg" alt="image7">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-8.jpg" alt="image8">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-9.jpg" alt="image9">
+            </div>
+        </section>
+        <section class="comments">
+            <h2>Join the Conversation</h2>
+            <div class="comments__body-container">
+                <div class="comments__new-comment-container">
+                    <div class="comments__new-avatar-container">
+                        <input class="comments__avatar-file-input" type="file" accept="image/*" />
+                        <div class="comments__avatar-file-icon-btn">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                    </div>
+                    <form class="comments__form">
+                        <div class="comments__input-container--name">
+                            <label class="comments__label" for="name">NAME</label>
+                            <input 
+                                class="comments__input comments__input--name" 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="Enter your name"
+                            >
+                        </div>
+                        <div class="comments__input-container--comment">
+                            <label class="comments__label" for="comment">COMMENT</label>
+                            <div>
+                                <textarea 
+                                    class="comments__input comments__input--comment" 
+                                    id="comment" 
+                                    name="comment" 
+                                    rows="5" 
+                                    placeholder="Add a new comment"
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div class="comments__button-container">
+                            <input class="comments__button" type="submit" value="COMMENT">
+                        </div>
+                    </form>
+                </div>
+                <hr />
+                <!-- Example of one comment component to-be created in JS -->
+                <!-- <article class="comments__comment-component">
+                    <div class="comments__avatar-placeholder"></div>
+                    <div class="comments__text-container">
+                        <div class="comments__component-header">
+                            <p class="comments__name">John Doe</p>
+                            <p class="comments__timestamp">12/1/2024</p>
+                        </div>
+                        <p class="comments__text">This is some comment</p>
+                    </div>
+                </article>
+                <hr /> -->
             </div>
         </section>
     </main>
@@ -91,52 +146,56 @@
             <h2>Get in Touch</h2>
             <div class="contacts__socials">
                 <a href="https://www.instagram.com/" target="_blank">
-                    <img src="./assets/icons/Icon-instagram.svg" alt="Instagram icon">
+                    <img class="contacts__icon" src="./assets/icons/Icon-instagram.svg" alt="Instagram icon">
                 </a>
                 <a href="https://www.facebook.com/" target="_blank">
-                    <img src="./assets/icons/Icon-facebook.svg" alt="Facebook icon">
+                    <img class="contacts__icon" src="./assets/icons/Icon-facebook.svg" alt="Facebook icon">
                 </a>
                 <a href="https://x.com/" target="_blank">
-                    <img src="./assets/icons/Icon-twitter.svg" alt="Twitter icon">
+                    <img class="contacts__icon" src="./assets/icons/Icon-twitter.svg" alt="Twitter icon">
                 </a>
             </div>
-            <img class="contacts__logo-top" src="./assets/logos/Logo-bandsite.svg" alt="Bandsite logo">
+            <a class="contacts__logo-top-anchor" href="index.html">
+                <img class="contacts__logo-top" src="./assets/logos/Logo-bandsite.svg" alt="Bandsite logo">
+            </a>
         </div>
         <div class="contacts__group-flex-container">
             <div class="contacts__group-container">
-                <h3>The Bees Knees Management</h3>
+                <h3 class="contacts__group-header">The Bees Knees Management</h3>
                 <div class="contacts__group">
                     <p>503 Broadway Penthouse,</p>
                     <p>New York, NY 10012, USA</p>
                 </div>
                 <p class="contacts__email">
-                    <a href="mailto:info@thebeesknees.com">info@thebeesknees.com</a>
+                    <a class="contacts__email-link" href="mailto:info@thebeesknees.com">info@thebeesknees.com</a>
                 </p>
             </div>
             <div class="contacts__group-container">
-                <h3>Limitless Artist Group</h3>
+                <h3 class="contacts__group-header">Limitless Artist Group</h3>
                 <div class="contacts__group">
                     <p>Booking Agent for</p>
                     <p>US / South America / Japan</p>
                 </div>
                 <p class="contacts__email">
-                    <a href="mailto:bookings@limitlessag.com">bookings@limitlessag.com</a>
+                    <a class="contacts__email-link" href="mailto:bookings@limitlessag.com">bookings@limitlessag.com</a>
                 </p>
             </div>
             <div class="contacts__group-container">
-                <h3>ARCH Entertainment</h3>
+                <h3 class="contacts__group-header">ARCH Entertainment</h3>
                 <div class="contacts__group">
                     <p>Booking Agent for</p>
                     <p>UK / EU / AU</p>
                 </div>
                 <p class="contacts__email">
-                    <a href="mailto:bookings@archentertainment.com">bookings@archentertainment.com</a>
+                    <a class="contacts__email-link" href="mailto:bookings@archentertainment.com">bookings@archentertainment.com</a>
                 </p>
             </div>
         </div>
         <div class="contacts__copyright">
-            <img class="contacts__logo-bottom" src="./assets/logos/Logo-bandsite.svg" alt="Bandsite logo">
-            <p>Copyright The Bees Knees &copy; 2023 All Rights Reserved</p>
+            <a href="index.html">
+                <img class="contacts__logo-bottom" src="./assets/logos/Logo-bandsite.svg" alt="Bandsite logo">
+            </a>
+            <p class="contacts__copyright-text">Copyright The Bees Knees &copy; 2023 All Rights Reserved</p>
         </div>
     </footer>
 </body>
