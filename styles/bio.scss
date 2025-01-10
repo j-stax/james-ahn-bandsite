@@ -79,7 +79,7 @@
     }
 
     &__quote {
-        font-family: NunitoSans-Bold;
+        font-family: NunitoSans;
         font-weight: 700;
         line-height: 1.5;
         padding-bottom: 0.5rem;
@@ -96,7 +96,7 @@
     }
 
     &__citation {
-        font-family: NunitoSans-Bold;
+        font-family: NunitoSans;
         font-weight: 700;
 
         @include tablet {
