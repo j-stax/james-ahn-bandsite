@@ -160,7 +160,7 @@ function createShowComponent(showObject) {
     return showComponentContainerNode;
 }
 
-function selectComponent(event) {
+function selectComponent() {
     this.classList.toggle("selected");
     const components = document.querySelectorAll(".shows__component");
     for (let comp of components) {
