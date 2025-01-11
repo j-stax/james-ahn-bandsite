@@ -1,5 +1,6 @@
 const data = [
     {
+        avatar: `url(\"../assets/images/Mohan-muruge.jpg\")`,
         name: "James Bond",
         timestamp: new Date(2024, 11, 5, 13, 5, 30),
         comment: "This is a comment to test the timestamp feature."
@@ -95,7 +96,6 @@ function submitHandler(event) {
     const commentVal = form.comment.value.trim();
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
-    console.log(avatarURL);
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
     
     // Only submit the form if the text fields are filled.
@@ -145,7 +145,6 @@ function isValid(inputField) {
 function clearComments() {
     const commentsContainer = document.querySelector(".comments__body-container");
     const childNodes = commentsContainer.children;
-
 
     for (let i = childNodes.length-1; i > 1; i--) {
         commentsContainer.removeChild(childNodes[i]);
