@@ -65,7 +65,7 @@ function createShowsSection() {
     const locationLabelForTabletNode = document.createElement("p");
     locationLabelForTabletNode.classList.add("shows__tablet-table-header");
     const labelsForTabletBtn = document.createElement("button");
-    labelsForTabletBtn.classList.add("shows__tablet-hidden-btn");
+    labelsForTabletBtn.classList.add("shows__button", "shows__tablet-hidden-btn");
     const dateTextNode = document.createTextNode("date");
     const venueTextNode = document.createTextNode("venue");
     const locationTextNode = document.createTextNode("location");
