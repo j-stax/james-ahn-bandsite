@@ -1,11 +1,6 @@
 const data = [
     {
         avatar: `url(\"../assets/images/Mohan-muruge.jpg\")`,
-        name: "James Bond",
-        timestamp: new Date(2024, 11, 5, 13, 5, 30),
-        comment: "This is a comment to test the timestamp feature."
-    },
-    {
         name: "Victor Pinto",
         timestamp: new Date(2023, 10, 2),
         comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
@@ -25,7 +20,7 @@ const data = [
     }
 ];
 
-/* Used for initial implentation of timestamp */
+// Used for initial implentation of timestamp
 // const dateMonthMap = {
 //     0: "01",
 //     1: "02",
@@ -77,12 +72,12 @@ function readFile(input) {
             // Display the image
             avatarElem.style.backgroundImage = `url(${url})`;
             avatarElem.classList.add("comments__avatar-image-position");
-            document.querySelector(".comments__avatar-file-icon-btn").style.visibility = "hidden";
+            document.querySelector(".comments__avatar-file-icon-btn i").style.setProperty("visibility", "hidden");
         }
     }
     catch (exception) {
         alert("Error: File upload failed. Only image files accepted.");
-        console.log("File upload error.");
+        console.log(exception);
     }
 }
 
@@ -96,7 +91,7 @@ function submitHandler(event) {
     const commentVal = form.comment.value.trim();
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
-    const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
+    const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn i");
     
     // Only submit the form if the text fields are filled.
     // Adding and removing classes would not work on empty input for form validation.

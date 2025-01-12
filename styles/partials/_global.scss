@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: NunitoSans;
+    font-family: NunitoSans, sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
 }
@@ -30,9 +30,9 @@ h2 {
 }
 
 h3 {
-    font-family: NunitoSans;
+    font-family: NunitoSans, sans-serif;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 1rem;
 
     @include tablet {
         font-size: 1.5rem;
@@ -103,7 +103,7 @@ a {
 
         &:active {
             @include nav-hover-and-active;
-            font-family: NunitoSans;
+            font-family: NunitoSans, sans-serif;
             font-weight: 700;
         }
 
