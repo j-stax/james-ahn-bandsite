@@ -210,7 +210,7 @@ function createNewCommentComponent(commentObject) {
     newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
     newCommentTextContainerNode.appendChild(newCommentDeleteIconContainerNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
-    newCommentTextContainerNode.appendChild(newCommentTextNode);
+    newCommentTextContainerNode.appendChild(newCommentNode);
     newCommentTextContainerNode.appendChild(newCommentLikesContainerNode);
     newComponentNode.appendChild(newAvatarNode);
     newComponentNode.appendChild(newCommentTextContainerNode);

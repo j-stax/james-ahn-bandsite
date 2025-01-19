@@ -353,11 +353,11 @@
     }
 
     &__comment-component {
-        margin: 0.25rem 0 1rem;
+        margin: 0.25rem 0 0.75rem;
         display: flex;
 
         @include tablet {
-            margin: 0.5rem 0 1.5rem;
+            margin: 0.5rem 0 1rem;
         }
     }
 
@@ -387,7 +387,6 @@
 
     &__component-header {
         display: flex;
-        margin-bottom: 0.5rem;
     }
 
     &__name {
@@ -397,6 +396,10 @@
 
     &__timestamp {
         color: $primary-color-silver;
+    }
+
+    &__text {
+        padding: 0.5rem 0 0.25rem;
     }
 
     &__likes {
