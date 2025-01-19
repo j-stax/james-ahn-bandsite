@@ -1,30 +1,5 @@
-// const data = [
-//     {
-//         name: "James Bond",
-//         timestamp: new Date(2024, 11, 5, 13, 5, 30),
-//         comment: "This is a comment to test the timestamp feature."
-//     },
-//     {
-//         name: "Victor Pinto",
-//         timestamp: new Date(2023, 10, 2),
-//         comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
-//                 "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
-//     },
-//     {
-//         name: "Christina Cabrera",
-//         timestamp: new Date(2023, 9, 28),
-//         comment: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
-//                 "If there was one day of my life I could relive, this would be it. What an incredible day."
-//     },
-//     {
-//         name: "Issac Tadesse",
-//         timestamp: new Date(2023, 9, 20),
-//         comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
-//                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
-//     }
-// ];
 const avatarMap = {}
-let api = new BandSiteApi("e0e17602-8abb-43b0-bad7-f76c77577c8a");  // TO BE CHANGED TO let api = undefined
+let api = null;
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
@@ -44,27 +19,9 @@ async function loadedHandler() {
         readFile(event.target);
     });
 
-    // await getApi();  // TO BE UNCOMMENTED
+    api = await BandSiteApi.getInstance();
     loadComments();
-}
-
-// Create and return instance of API object
-async function getApi() {
-    try {
-        const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
-        if (response.status === 200) {
-            const apiKey = response.data["api_key"];
-            console.log(apiKey);
-            api = new BandSiteApi(apiKey);
-        }
-        else {
-            console.log(response.status);
-        }
-    }
-    catch (err) {
-        console.log(err);
-    }
-}   
+} 
 
 // Generate and display all comments from the comments list
 async function loadComments() {

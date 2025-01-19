@@ -1,36 +1,4 @@
-// const showsData = [
-//     {
-//         date: "Mon Sept 09 2024",
-//         venue: "Ronald Lane",
-//         location: "San Francisco, CA"
-//     },
-//     {
-//         date: "Tues Sept 17 2024",
-//         venue: "Pier 3 East",
-//         location: "San Francisco, CA"
-//     },
-//     {
-//         date: "Sat Oct 12 2024",
-//         venue: "View Lounge",
-//         location: "San Francisco, CA"
-//     },
-//     {
-//         date: "Sat Nov 16 2024",
-//         venue: "Hyatt Agency",
-//         location: "San Francisco, CA"
-//     },
-//     {
-//         date: "Fri Nov 29 2024",
-//         venue: "Moscow Center",
-//         location: "San Francisco, CA"
-//     },
-//     {
-//         date: "Dec 18 2024",
-//         venue: "Press Club",
-//         location: "San Francisco, CA"
-//     },
-// ];
-
+// Converts integer representation of the days of the week to plain English
 const dayMap = {
     0: "Mon",
     1: "Tue",
@@ -41,6 +9,7 @@ const dayMap = {
     6: "Sun"
 }
 
+// Converts integer representation of the months to 
 const monthMap = {
     0: "Jan",
     1: "Feb",
@@ -66,29 +35,13 @@ async function loadedHandler() {
     document.querySelector(".nav__shows").classList.add("nav__selected");
     document.querySelector(".nav__bio").classList.remove("nav__selected");
 
-    await getApi();
+    api = await BandSiteApi.getInstance();
     await createShowsSection();
 
     const showsComponents = document.querySelectorAll(".shows__component");
     showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
     const showsButtons = document.querySelectorAll(".shows__button");
     showsButtons.forEach(button => button.addEventListener("click", (event) => event.stopPropagation()));
-}
-
-async function getApi() {
-    try {
-        const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
-        if (response.status === 200) {
-            const apiKey = response.data["api_key"];
-            api = new BandSiteApi(apiKey);
-        }
-        else {
-            console.log(response.status);
-        }
-    }
-    catch (err) {
-        console.log(err);
-    }
 }
 
 // Construct the Shows section and attach to the DOM tree

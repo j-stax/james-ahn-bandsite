@@ -4,6 +4,32 @@ class BandSiteApi {
         this.baseURL = "https://unit-2-project-api-25c1595833b2.herokuapp.com/";
     }
 
+    static async getInstance() {
+        const storedApiKey = sessionStorage.getItem('apiKey');
+        if (storedApiKey) {
+            BandSiteApi.instance = new BandSiteApi(storedApiKey);
+            console.log(`Api instance retrieved from storage: ${BandSiteApi.instance}`);
+        }
+        else {
+            try {
+                const response = await axios.get("https://unit-2-project-api-25c1595833b2.herokuapp.com/register");
+                if (response.status === 200) {
+                    const apiKey = response.data.api_key;
+                    BandSiteApi.instance = new BandSiteApi(apiKey);
+                    sessionStorage.setItem('apiKey', apiKey);
+                    console.log(`New Api instance init: ${BandSiteApi.instance}`);
+                }
+                else {
+                    console.log(`Status: ${response.status}`);
+                }
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        return BandSiteApi.instance;
+    }
+
     async postComment(commentObject) {
         try {
             const response = await axios.post(`${this.baseURL}comments?api_key=${this.apiKey}`, commentObject);
