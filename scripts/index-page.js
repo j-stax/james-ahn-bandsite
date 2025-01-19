@@ -54,9 +54,7 @@ async function loadComments() {
 
     // Hide filled hearts initially
     const heartsFilled = document.querySelectorAll(".comments__heart-solid");
-    for (let heart of heartsFilled) {
-        heart.style.display = "none";   // FIX ME!!!: CHECK IF CLASS IS ALREADY DISPLAYING NONE
-    }
+    heartsFilled.forEach(heart => heart.style.setProperty("display", "none"));
 
     // Add likes event listeners
     const heartsRegular = document.querySelectorAll(".comments__heart-regular");
@@ -206,7 +204,7 @@ function createNewCommentComponent(commentObject) {
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
     newCommentDeleteIconContainerNode.innerHTML += "<i class=\"fa-solid fa-minus comments__delete-icon\"></i>";
     newCommentLikesContainerNode.innerHTML = "<i class=\"fa-regular fa-heart comments__heart-regular\"></i>";
-    newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid\"></i>";
+    newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid hidden\"></i>";
     newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
     newCommentTextContainerNode.appendChild(newCommentDeleteIconContainerNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
