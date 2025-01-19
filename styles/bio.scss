@@ -6,10 +6,13 @@
 
 
 .nav {
-    &__shows {
-        color: $secondary-color-mercury;
+    &__tab {
+        &--bio {
+            @include nav-hover-and-active;
+            font-weight: 700;
+        }
     }
-}
+} 
 
 .hero {
     background-image: url('../assets/images/hero-bio.jpg');
@@ -62,10 +65,6 @@
     &__image-container {
         padding: 1rem 0;
 
-        img {
-            width: 100%;
-        }
-
         @include tablet {
             padding: 2rem 3.5rem 1.5rem;
         }
@@ -75,29 +74,34 @@
         }
     }
 
+    &__image {
+        width: 100%;
+    }
+
     &__quote {
-        font-family: NunitoSans-Bold;
+        font-family: NunitoSans, sans-serif;
         font-weight: 700;
         line-height: 1.5;
         padding-bottom: 0.5rem;
 
         @include tablet {
             padding: 0 3.5rem 0.5rem;
+            font-size: 1.5rem;
         }
 
         @include desktop {
             padding: 0 5.5rem 0.5rem;
-            width: 72%;
-            font-size: 1.5rem;
+            width: 70%;
         }
     }
 
     &__citation {
-        font-family: NunitoSans-Bold;
+        font-family: NunitoSans;
         font-weight: 700;
 
         @include tablet {
             padding: 0 3.5rem;
+            font-size: 1rem;
         }
 
         @include desktop {
@@ -115,34 +119,31 @@
         @include desktop {
             padding: 0 5.5rem;
         }
+    }
 
-        h3 {
-            padding: 1.5rem 0 0;
+    &__bio-header {
+        padding: 1.5rem 0 0;
 
-            @include tablet {
-                padding: 3rem 0 0 ;
-            }
+        @include tablet {
+            padding: 3rem 0 0 ;
         }
     }
 
     &__text-container {
         line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem 0;
 
         @include tablet {
-            display: flex;
+            flex-direction: row;
             gap: 2rem;
+            padding: 1.5rem 0;
         }
 
         @include desktop {
             gap: 3rem;
-        }
-
-        p {
-            padding: 1rem 0;
-
-            @include desktop {
-                padding-top: 2.25rem;
-            }
         }
     }
 }
@@ -172,24 +173,24 @@
         @include desktop {
             padding-top: 1.5rem;
         }
+    }
 
-        img {
-            width: 100%;
-            margin-top: 1rem;
-            filter: grayscale(100%);
+    &__image {
+        width: 100%;
+        margin-top: 1rem;
+        filter: grayscale(100%);
 
-            &:hover {
-                filter: grayscale(0);
-            }
+        &:hover {
+            filter: grayscale(0);
+        }
 
-            @include tablet {
-                padding: 0;
-                width: 30%;
-            }
+        @include tablet {
+            padding: 0;
+            width: 30%;
+        }
 
-            @include desktop {
-                width: 31.5%;
-            }
+        @include desktop {
+            width: 31.5%;
         }
     }
 }
@@ -256,7 +257,6 @@
 
         &:hover {
             cursor: pointer;
-            background-color: $primary-color-silver;
 
             i {
                 transform: scale(1.05);
@@ -277,57 +277,43 @@
 
     &__form {
         width: 100%;
+    }
 
-        label {
-            display: block;
-            color: $primary-color-silver;
-            margin-bottom: 4px;
-
-            &:last-child {
-                margin-top: 1rem;
-            }
-        }
-    
-        input[type="text"] {
-            @include form-field-default;
-            min-height: 2.25rem; 
-
-            @include tablet {
-                min-height: 3rem;
-            }
-
-            &:focus {
-                @include form-field-border-active;
-            }
-
-            &::placeholder {
-                color: $primary-color-black;
-            }
-        }
+    &__label {
+        display: block;
+        color: $primary-color-silver;
+        margin-bottom: 4px;      
     }
 
     &__input-container {
-
         &--name {
             margin-bottom: 1.5rem;
         }
+    }
+
+    &__input {
+        @include form-field-default;
+        font-family: inherit;
+        font-size: inherit;
+
+        &:focus {
+            @include form-field-border-active;
+        }
+
+        &::placeholder {
+            color: $primary-color-black;
+        }
+
+        &--name {
+            min-height: 2.25rem; 
+          
+            @include tablet {
+                min-height: 3rem;
+            }
+        }
 
         &--comment {
-
-            textarea {
-                @include form-field-default;
-                font-family: inherit;
-                font-size: inherit;
-                resize: none;
-
-                &::placeholder {
-                    color: $primary-color-black;
-                }
-
-                &:focus {
-                    @include form-field-border-active;
-                }
-            }
+            resize: none;
         }
     }
 
@@ -402,21 +388,15 @@
     &__component-header {
         display: flex;
         margin-bottom: 0.5rem;
+    }
 
-        p {
-            &:first-child {
-                margin-right: auto;
-                font-weight: 700;
-            }
+    &__name {
+        margin-right: auto;
+        font-weight: 700;
+    }
 
-            &:last-child {
-                color: $primary-color-silver;
-            }
-        }
-
-        i {
-            margin-left: 0.5rem;
-        }
+    &__timestamp {
+        color: $primary-color-silver;
     }
 
     &__likes {

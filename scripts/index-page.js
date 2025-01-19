@@ -1,3 +1,25 @@
+// const data = [
+//     {
+//         avatar: `url(\"../assets/images/Mohan-muruge.jpg\")`,
+//         name: "Victor Pinto",
+//         timestamp: new Date(2023, 10, 2),
+//         comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
+//                 "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
+//     },
+//     {
+//         name: "Christina Cabrera",
+//         timestamp: new Date(2023, 9, 28),
+//         comment: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
+//                 "If there was one day of my life I could relive, this would be it. What an incredible day."
+//     },
+//     {
+//         name: "Issac Tadesse",
+//         timestamp: new Date(2023, 9, 20),
+//         comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
+//                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
+//     }
+// ];
+
 const avatarMap = {}
 let api = null;
 
@@ -9,8 +31,6 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
  * Display comments on page.
 */ 
 async function loadedHandler() {
-    document.querySelector(".nav__bio").classList.add("nav__selected");
-    document.querySelector(".nav__shows").classList.remove("nav__selected");
     document.querySelector(".comments__form").addEventListener("submit", submitHandler);
     document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
         document.querySelector(".comments__avatar-file-input").click();
@@ -35,7 +55,7 @@ async function loadComments() {
     // Hide filled hearts initially
     const heartsFilled = document.querySelectorAll(".comments__heart-solid");
     for (let heart of heartsFilled) {
-        heart.style.display = "none";
+        heart.style.display = "none";   // FIX ME!!!: CHECK IF CLASS IS ALREADY DISPLAYING NONE
     }
 
     // Add likes event listeners
@@ -60,12 +80,12 @@ function readFile(input) {
             // Display the image
             avatarElem.style.backgroundImage = `url(${url})`;
             avatarElem.classList.add("comments__avatar-image-position");
-            document.querySelector(".comments__avatar-file-icon-btn").style.visibility = "hidden";
+            document.querySelector(".comments__avatar-file-icon-btn i").style.setProperty("visibility", "hidden");
         }
     }
     catch (exception) {
         alert("Error: File upload failed. Only image files accepted.");
-        console.log("File upload error.");
+        console.log(exception);
     }
 }
 
@@ -79,7 +99,7 @@ async function submitHandler(event) {
     const commentVal = form.comment.value.trim();
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
-    const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn");
+    const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn i");
     
     // Only submit the form if the text fields are filled
     if (!isValid(nameVal)) {
@@ -96,9 +116,7 @@ async function submitHandler(event) {
 
         // New comment object
         const newCommentObj = {
-            // avatar: avatarURL ? avatarURL : null,
             name: toTitleCase(nameVal),
-            // timestamp: new Date(),
             comment: commentVal[0].toUpperCase() + commentVal.slice(1)
         };
 
@@ -110,7 +128,7 @@ async function submitHandler(event) {
             avatarMap[responseObj.id] = avatarURL.slice(4, -1);
         }
 
-        resetCommentsContainer();
+        clearComments();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
         avatarIcon.style.visibility = "visible";
@@ -128,13 +146,12 @@ function isValid(inputField) {
 }
 
 // Clear all comments from the page by clearing the section from the DOM tree
-function resetCommentsContainer() {
-    let commentsContainer = document.querySelector(".comments__body-container");
+function clearComments() {
+    const commentsContainer = document.querySelector(".comments__body-container");
     const childNodes = commentsContainer.children;
 
     for (let i = childNodes.length-1; i > 1; i--) {
-        let childNode = childNodes[i];
-        childNode.parentNode.removeChild(childNode);
+        commentsContainer.removeChild(childNodes[i]);
     }
 }
 

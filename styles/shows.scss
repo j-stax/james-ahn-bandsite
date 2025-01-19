@@ -5,8 +5,11 @@
 
 
 .nav {
-    &__bio {
-        color: $secondary-color-mercury;
+    &__tab {
+        &--shows {
+            @include nav-hover-and-active;
+            font-weight: 700;
+        }
     }
 }
 
@@ -53,10 +56,14 @@
         @include desktop {
             width: 50%;
         }
+    }
 
-        h1 {
-            margin-top: 1rem;
-        }
+    &__title-sub {
+        font-size: 1.5rem;
+    }
+
+    &__title-main {
+        margin-top: 1rem;
     }
 
     &__embedded-music-container {
@@ -84,7 +91,7 @@
         gap: 10rem;
     }
 
-    h2 {
+    &__header {
         margin-bottom: 0.5rem;
 
         @include tablet {
@@ -102,19 +109,23 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            p {
-                width: 100%;
-            }
-
-            button {
-                visibility: hidden;
-            }
         }
 
         @include desktop {
             padding-top: 0.5rem;
             margin-bottom: 1rem;
+        }
+    }
+
+    &__tablet-table-header {
+        @include tablet {
+            width: 100%;
+        }
+    }
+
+    &__tablet-hidden-btn {
+        @include tablet {
+            visibility: hidden;
         }
     }
 
@@ -151,10 +162,12 @@
             align-items: center;
             justify-content: space-between;
             padding: 1.5rem 1.3rem;;
+        }
+    }
 
-            div {
-                flex: 0 1 100%;
-            }
+    &__container {
+        @include tablet {
+            flex: 0 1 100%;
         }
     }
 
@@ -171,7 +184,7 @@
         font-weight: 700;
     }
 
-    button {
+    &__button {
         padding: 1rem 0;
         margin-top: 0.5rem;
         width: 100%;
@@ -192,7 +205,7 @@
         }
     }
 
-    hr {
+    &__divider {
         border: 1px solid $secondary-color-mercury;
         margin: 0 -1rem;
 

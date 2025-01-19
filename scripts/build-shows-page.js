@@ -32,12 +32,9 @@ window.addEventListener("DOMContentLoaded", loadedHandler);
 
 // Initialize dynamic page features
 async function loadedHandler() {
-    document.querySelector(".nav__shows").classList.add("nav__selected");
-    document.querySelector(".nav__bio").classList.remove("nav__selected");
-
     api = await BandSiteApi.getInstance();
     await createShowsSection();
-
+  
     const showsComponents = document.querySelectorAll(".shows__component");
     showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
     const showsButtons = document.querySelectorAll(".shows__button");
@@ -57,13 +54,18 @@ async function createShowsSection() {
     const showsComponentContainerNode = document.createElement("div");
     showsComponentContainerNode.classList.add("shows__component-container");
     const showsHeaderNode = document.createElement("h2");
+    showsHeaderNode.classList.add("shows__header");
     const showsHeaderTextNode = document.createTextNode("Shows");
     const showsLabelsForTabletNode = document.createElement("div");
     showsLabelsForTabletNode.classList.add("shows__tablet-labels");
     const dateLabelForTabletNode = document.createElement("p");
+    dateLabelForTabletNode.classList.add("shows__tablet-table-header");
     const venueLabelForTabletNode = document.createElement("p");
+    venueLabelForTabletNode.classList.add("shows__tablet-table-header");
     const locationLabelForTabletNode = document.createElement("p");
+    locationLabelForTabletNode.classList.add("shows__tablet-table-header");
     const labelsForTabletBtn = document.createElement("button");
+    labelsForTabletBtn.classList.add("shows__button", "shows__tablet-hidden-btn");
     const dateTextNode = document.createTextNode("date");
     const venueTextNode = document.createTextNode("venue");
     const locationTextNode = document.createTextNode("location");
@@ -88,6 +90,7 @@ async function createShowsSection() {
         }
         let showComponentNode = createShowComponent(showsData[i]);
         let dividerNode = document.createElement("hr");
+        dividerNode.classList.add("shows__divider");
         showsComponentContainerNode.appendChild(showComponentNode);
         showsComponentContainerNode.appendChild(dividerNode);
     }

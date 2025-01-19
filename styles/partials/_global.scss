@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: NunitoSans-Regular;
+    font-family: NunitoSans, sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
 }
@@ -30,9 +30,9 @@ h2 {
 }
 
 h3 {
-    font-family: NunitoSans-Med;
+    font-family: NunitoSans, sans-serif;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 1rem;
 
     @include tablet {
         font-size: 1.5rem;
@@ -70,15 +70,15 @@ a {
         @include desktop {
             margin-left: 5rem;
         }
+    }
 
-        img {
-            &:hover {
-                transform: scale(1.05);
-            }
+    &__logo {
+        &:hover {
+            transform: scale(1.05);
+        }
 
-            &:active {
-                transform: scale(0.95);
-            }
+        &:active {
+            transform: scale(0.95);
         }
     }
 
@@ -90,23 +90,25 @@ a {
             gap: 2rem;
             height: 100%;
         }
+    }
 
-        a {
-            flex: 0 1 50%;
-            padding: 0 0 1rem;
+    &__tab {
+        flex: 0 1 50%;
+        padding: 0 0 1rem;
+        color: $secondary-color-mercury;
 
-            &:hover {
-                @include nav-hover-and-active;
-            }
+        &:hover {
+            @include nav-hover-and-active;
+        }
 
-            &:active {
-                @include nav-hover-and-active;
-                font-family: NunitoSans-Bold;
-            }
+        &:active {
+            @include nav-hover-and-active;
+            font-family: NunitoSans, sans-serif;
+            font-weight: 700;
+        }
 
-            @include tablet {
-                padding-top: 20%;
-            }
+        @include tablet {
+            padding-top: 20%;
         }
     }
 
@@ -143,11 +145,15 @@ a {
 
     &__socials {
         padding: 1rem 0;
+    }
 
-        img {
-            height: 1.5rem;
+    &__icon {
+        height: 1.5rem;
             margin-right: 1.7rem;
-        }
+    }
+
+    &__logo-top-anchor {
+        margin-left: auto;
     }
 
     &__logo-top {
@@ -155,7 +161,6 @@ a {
 
         @include tablet {
             display: block;
-            margin-left: auto;
         }
     }
 
@@ -182,14 +187,14 @@ a {
         @include tablet {
             margin-top: 0;
         }
+    }
 
-        h3 {
-            font-size: 0.875rem;
-            font-weight: 500;
+    &__group-header {
+        font-size: 0.875rem;
+        font-weight: 500;
 
-            @include tablet {
-                font-weight: 600;
-            }
+        @include tablet {
+            font-weight: 600;
         }
     }
 
@@ -201,22 +206,19 @@ a {
         }
     }
 
-    &__email {
-        a {
+    &__email-link {
+        color: inherit;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:visited {
             color: inherit;
-
-            &:hover {
-                text-decoration: underline;
-            }
-
-            &:visited {
-                color: inherit;
-            }
         }
     }
 
     &__logo-bottom {
-
         @include tablet {
             display: none;
         }
@@ -229,11 +231,11 @@ a {
             padding-top: 0;
             margin-top: 0.5rem;
         }
+    }
 
-        p {
-            font-size: 0.8rem;
-            padding: 1rem 0 0.5rem;
-        } 
+    &__copyright-text {
+        font-size: 0.8rem;
+        padding: 1rem 0 0.5rem;
     }
 }
 
