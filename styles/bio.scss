@@ -306,7 +306,7 @@
 
         &--name {
             min-height: 2.25rem; 
-
+          
             @include tablet {
                 min-height: 3rem;
             }
@@ -353,21 +353,36 @@
     }
 
     &__comment-component {
-        margin: 1rem 0;
+        margin: 0.25rem 0 1rem;
         display: flex;
 
         @include tablet {
-            margin: 1.5rem 0;
+            margin: 0.5rem 0 1.5rem;
         }
     }
 
     &__avatar-placeholder {
         @include avatar-frame;
         margin-right: 1rem;
+        margin-top: 1.25rem;
     }
 
     &__text-container {
         width: 100%;
+    }
+
+    &__delete-icon-container {
+        text-align: right;
+
+        i {
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:active {
+                background-color: $secondary-color-mercury;
+            }
+        }
     }
 
     &__component-header {
@@ -382,5 +397,28 @@
 
     &__timestamp {
         color: $primary-color-silver;
+    }
+
+    &__likes {
+        text-align: right;
+
+        i {
+            font-size: 1rem;
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:active {
+                transform: scale(0.90);
+            }
+        }
+
+        span {
+            margin-left: 0.25rem;
+        }
+    }
+
+    &__heart-solid {
+        display: none;
     }
 }

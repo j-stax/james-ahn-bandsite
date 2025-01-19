@@ -1,42 +1,40 @@
-const showsData = [
-    {
-        date: "Mon Sept 09 2024",
-        venue: "Ronald Lane",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Tues Sept 17 2024",
-        venue: "Pier 3 East",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Sat Oct 12 2024",
-        venue: "View Lounge",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Sat Nov 16 2024",
-        venue: "Hyatt Agency",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Fri Nov 29 2024",
-        venue: "Moscow Center",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Dec 18 2024",
-        venue: "Press Club",
-        location: "San Francisco, CA"
-    },
-];
+// Converts integer representation of the days of the week to plain English
+const dayMap = {
+    0: "Mon",
+    1: "Tue",
+    2: "Wed",
+    3: "Thu",
+    4: "Fri",
+    5: "Sat",
+    6: "Sun"
+}
+
+// Converts integer representation of the months to 
+const monthMap = {
+    0: "Jan",
+    1: "Feb",
+    2: "Mar",
+    3: "Apr",
+    4: "May",
+    5: "Jun",
+    6: "Jul",
+    7: "Aug",
+    8: "Sept",
+    9: "Oct",
+    10: "Nov",
+    11: "Dec"
+}
+
+let api = null;
 
 // Once HTML is loaded and parsed, call function to initialize dynamic features
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
 // Initialize dynamic page features
-function loadedHandler() {
-    createShowsSection();
+async function loadedHandler() {
+    api = await BandSiteApi.getInstance();
+    await createShowsSection();
+  
     const showsComponents = document.querySelectorAll(".shows__component");
     showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
     const showsButtons = document.querySelectorAll(".shows__button");
@@ -44,7 +42,9 @@ function loadedHandler() {
 }
 
 // Construct the Shows section and attach to the DOM tree
-function createShowsSection() {
+async function createShowsSection() {
+    const showsData = await api.getShows();
+
     // Find and assign parent node
     const mainElementNode = document.querySelector("main");
 
@@ -133,8 +133,8 @@ function createShowComponent(showObject) {
     const dateLabelTextNode = document.createTextNode("date");
     const venueLabelTextNode = document.createTextNode("venue");
     const locationLabelTextNode = document.createTextNode("location");
-    const dateTextNode = document.createTextNode(showObject.date);
-    const venueTextNode = document.createTextNode(showObject.venue);
+    const dateTextNode = document.createTextNode(msToDate(showObject.date));
+    const venueTextNode = document.createTextNode(showObject.place);
     const locationTextNode = document.createTextNode(showObject.location);
     const btnTextNode = document.createTextNode("buy tickets");
     dateLabelNode.appendChild(dateLabelTextNode);
@@ -169,4 +169,10 @@ function selectComponent() {
         }
         comp.classList.remove("selected");
     }
+}
+
+function msToDate(ms) {
+    const date = new Date(ms);
+    const day = date.getDate().toString().length == 1 ? `0${date.getDate()}` : date.getDate();
+    return `${dayMap[date.getDay()]} ${monthMap[date.getMonth()]} ${day} ${date.getFullYear()}`;
 }

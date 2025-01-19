@@ -1,49 +1,36 @@
-const data = [
-    {
-        avatar: `url(\"../assets/images/Mohan-muruge.jpg\")`,
-        name: "Victor Pinto",
-        timestamp: new Date(2023, 10, 2),
-        comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
-                "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
-    },
-    {
-        name: "Christina Cabrera",
-        timestamp: new Date(2023, 9, 28),
-        comment: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
-                "If there was one day of my life I could relive, this would be it. What an incredible day."
-    },
-    {
-        name: "Issac Tadesse",
-        timestamp: new Date(2023, 9, 20),
-        comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
-                "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
-    }
-];
+// const data = [
+//     {
+//         avatar: `url(\"../assets/images/Mohan-muruge.jpg\")`,
+//         name: "Victor Pinto",
+//         timestamp: new Date(2023, 10, 2),
+//         comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
+//                 "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
+//     },
+//     {
+//         name: "Christina Cabrera",
+//         timestamp: new Date(2023, 9, 28),
+//         comment: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
+//                 "If there was one day of my life I could relive, this would be it. What an incredible day."
+//     },
+//     {
+//         name: "Issac Tadesse",
+//         timestamp: new Date(2023, 9, 20),
+//         comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
+//                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
+//     }
+// ];
 
-// Used for initial implentation of timestamp
-// const dateMonthMap = {
-//     0: "01",
-//     1: "02",
-//     2: "03",
-//     3: "04",
-//     4: "05",
-//     5: "06",
-//     6: "07",
-//     7: "08",
-//     8: "09",
-//     9: "10",
-//     10: "11",
-//     11: "12"
-// };
+const avatarMap = {}
+let api = null;
 
 window.addEventListener("DOMContentLoaded", loadedHandler);
 
-/* Display comments on page.
- * Style navigation tab as active.
+/* Style navigation tab as active.
  * Add event listeners to elements.
+ * Register API key.
+ * Display comments on page.
 */ 
-function loadedHandler() {
-    loadComments();
+async function loadedHandler() {
     document.querySelector(".comments__form").addEventListener("submit", submitHandler);
     document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
         document.querySelector(".comments__avatar-file-input").click();
@@ -51,16 +38,37 @@ function loadedHandler() {
     document.querySelector(".comments__avatar-file-input").addEventListener("change", (event) => {
         readFile(event.target);
     });
-}
+
+    api = await BandSiteApi.getInstance();
+    loadComments();
+} 
 
 // Generate and display all comments from the comments list
-function loadComments() {
+async function loadComments() {
+    const data = await api.getComments();
+    data.sort((a, b) => b.timestamp - a.timestamp);
+    
     for (let commentObj of data) {
         createNewCommentComponent(commentObj);
     }
+
+    // Hide filled hearts initially
+    const heartsFilled = document.querySelectorAll(".comments__heart-solid");
+    for (let heart of heartsFilled) {
+        heart.style.display = "none";   // FIX ME!!!: CHECK IF CLASS IS ALREADY DISPLAYING NONE
+    }
+
+    // Add likes event listeners
+    const heartsRegular = document.querySelectorAll(".comments__heart-regular");
+    heartsRegular.forEach(heart => heart.addEventListener("click", heartClickHandler));
+
+    // Add delete icon event listener
+    const deleteIcons = document.querySelectorAll(".comments__delete-icon");
+    deleteIcons.forEach(icon => icon.addEventListener("click", deleteCommentHandler));
 }
 
 // Read the uploaded image file and display the image
+// Adding and removing classes would not work on empty input for form validation.
 function readFile(input) {
     try {
         // Check that a file was successfully uploaded
@@ -84,7 +92,7 @@ function readFile(input) {
 /* Comment form handler.
  * Validates inputs and appends new comment component to the page.
 */
-function submitHandler(event) {
+async function submitHandler(event) {
     event.preventDefault();
     const form = event.target;
     const nameVal = form.name.value.trim();
@@ -93,8 +101,7 @@ function submitHandler(event) {
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn i");
     
-    // Only submit the form if the text fields are filled.
-    // Adding and removing classes would not work on empty input for form validation.
+    // Only submit the form if the text fields are filled
     if (!isValid(nameVal)) {
         document.getElementById("name").style.borderColor = "#D22D2D";
     }
@@ -107,18 +114,20 @@ function submitHandler(event) {
         document.getElementById("name").style.borderColor = "#E1E1E1";
         document.getElementById("comment").style.borderColor = "#E1E1E1";
 
-        const date = new Date();
-        // date = `${dateMonthMap[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}`;   // Previous timestamp format
-
         // New comment object
         const newCommentObj = {
-            avatar: avatarURL ? avatarURL : null,
             name: toTitleCase(nameVal),
-            timestamp: date,
             comment: commentVal[0].toUpperCase() + commentVal.slice(1)
         };
 
-        data.splice(0, 0, newCommentObj);   // Add to the front of the list
+        // API call
+        const responseObj = await api.postComment(newCommentObj);   
+
+        // Cache avatar file path to local store
+        if (avatarURL) {
+            avatarMap[responseObj.id] = avatarURL.slice(4, -1);
+        }
+
         clearComments();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
@@ -153,29 +162,36 @@ function createNewCommentComponent(commentObject) {
     const newComponentNode = document.createElement("article");
     const newAvatarNode = document.createElement("div");
     const newCommentTextContainerNode = document.createElement("div");
+    const newCommentDeleteIconContainerNode = document.createElement("div");
     const newCommentHeaderNode = document.createElement("div"); 
     const newCommentNameNode = document.createElement("p");
     const newCommentTimestampNode = document.createElement("p");
     const newCommentNode = document.createElement("p");
+    const newCommentLikesContainerNode = document.createElement("div");
+    const newCommentLikesSpanNode = document.createElement("span");
     const newDividerNode = document.createElement("hr");
 
     // Add class names for style rulesets
     newComponentNode.classList.add("comments__comment-component");
+    newComponentNode.id = commentObject.id;                                 // Use id provided by API
     newAvatarNode.classList.add("comments__avatar-placeholder");
     newCommentTextContainerNode.classList.add("comments__text-container");
+    newCommentDeleteIconContainerNode.classList.add("comments__delete-icon-container");
     newCommentHeaderNode.classList.add("comments__component-header");
     newCommentNameNode.classList.add("comments__name");
     newCommentTimestampNode.classList.add("comments__timestamp");
     newCommentNode.classList.add("comments__text");
+    newCommentLikesContainerNode.classList.add("comments__likes");
 
     // Create text nodes for comment object values
     const newNameTextNode = document.createTextNode(commentObject.name);
     const newTimestampTextNode = document.createTextNode(getTimeDiff(commentObject.timestamp));     // Get time passed from current date/time and use as timestamp
     const newCommentTextNode = document.createTextNode(commentObject.comment);
+    const newCommentLikesTextNode = document.createTextNode(commentObject.likes + " Likes");
 
-    // Check if user uploaded an avatar file
-    if (commentObject.avatar) {
-        newAvatarNode.style.backgroundImage = commentObject.avatar;
+    // Check if user uploaded an avatar file and retrieve if true
+    if (commentObject.id in avatarMap) {
+        newAvatarNode.style.backgroundImage = `url(${avatarMap[commentObject.id]})`;
         newAvatarNode.classList.add("comments__avatar-image-position");
     }
 
@@ -183,18 +199,56 @@ function createNewCommentComponent(commentObject) {
     newCommentNameNode.appendChild(newNameTextNode);
     newCommentTimestampNode.appendChild(newTimestampTextNode);
     newCommentNode.appendChild(newCommentTextNode);
+    newCommentLikesSpanNode.appendChild(newCommentLikesTextNode);
 
     // Create the DOM tree for the comment component
     newCommentHeaderNode.appendChild(newCommentNameNode);
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
+    newCommentDeleteIconContainerNode.innerHTML += "<i class=\"fa-solid fa-minus comments__delete-icon\"></i>";
+    newCommentLikesContainerNode.innerHTML = "<i class=\"fa-regular fa-heart comments__heart-regular\"></i>";
+    newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid\"></i>";
+    newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
+    newCommentTextContainerNode.appendChild(newCommentDeleteIconContainerNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
     newCommentTextContainerNode.appendChild(newCommentTextNode);
+    newCommentTextContainerNode.appendChild(newCommentLikesContainerNode);
     newComponentNode.appendChild(newAvatarNode);
     newComponentNode.appendChild(newCommentTextContainerNode);
 
     // Append the comment component to the comments section in the DOM tree
     parentNode.appendChild(newComponentNode);
     parentNode.appendChild(newDividerNode);
+}
+
+async function heartClickHandler(event) {
+    const heartIcon = event.target
+    // Swap icons for clicked appearance
+    heartIcon.style.display = "none";
+    heartIcon.nextElementSibling.style.display = "inline";
+
+    // Update likes count
+    const commentComponentElem = event.target.parentNode.parentNode.parentNode;
+    const updatedCommentObj = await api.likeComment(commentComponentElem.id);
+    heartIcon.nextElementSibling.nextElementSibling.textContent = `${updatedCommentObj.likes} Likes`;
+
+    // Reset heart display
+    setTimeout(() => {
+        heartIcon.style.display = "inline";
+        heartIcon.nextElementSibling.style.display = "none";
+    }, 5000);
+}
+
+// Remove comment and make delete API call
+async function deleteCommentHandler(event) {
+    const commentComponentElem = event.target.parentNode.parentNode.parentNode;
+    const commentId = commentComponentElem.id;
+    const horizontalLine = commentComponentElem.nextElementSibling;
+    const commentsBodyContainer = document.querySelector(".comments__body-container");
+
+    await api.deleteComment(commentId); // API call
+
+    commentsBodyContainer.removeChild(horizontalLine);
+    commentsBodyContainer.removeChild(commentComponentElem);
 }
 
 /* Calculates difference between input date/time and current date/time,
@@ -210,7 +264,15 @@ function getTimeDiff(prevDate) {
 
     if (diff < msToMin) {
         const diffSeconds = Math.round(diff / 1000);
-        return diffSeconds === 0 ? "Now" : `${diffSeconds} seconds ago`;
+        if (diffSeconds <= 0) {
+            return "Now";
+        }
+        else if (diffSeconds === 1) {
+            return "1 second ago";
+        }
+        else {
+            return `${diffSeconds} seconds ago`;
+        }
     }
     else if (diff < msToHour) {
         const diffMinutes = Math.round(diff / msToMin);

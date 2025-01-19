@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/bio.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/883886845b.js" crossorigin="anonymous"></script>
+    <script src="./scripts/band-site-api.js" defer></script>
     <script src="./scripts/index-page.js" defer></script>
     <title>Bandsite</title>
 </head>
@@ -130,11 +132,19 @@
                 <!-- <article class="comments__comment-component">
                     <div class="comments__avatar-placeholder"></div>
                     <div class="comments__text-container">
+                        <div class="comments__delete-icon-container">
+                            <i class="fa-solid fa-minus comments__delete-icon"></i>
+                        </div>
                         <div class="comments__component-header">
                             <p class="comments__name">John Doe</p>
                             <p class="comments__timestamp">12/1/2024</p>
                         </div>
                         <p class="comments__text">This is some comment</p>
+                        <div class="comments__likes">
+                            <i class="fa-regular fa-heart comments__heart-regular"></i>
+                            <i class="fa-solid fa-heart comments__heart-solid hidden"></i>
+                            <span>Likes</span>
+                        </div>
                     </div>
                 </article>
                 <hr /> -->

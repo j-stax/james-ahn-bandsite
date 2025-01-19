@@ -111,6 +111,11 @@ a {
             padding-top: 20%;
         }
     }
+
+    &__selected {
+        @include nav-hover-and-active;
+        font-weight: 700;
+    }
 }
 
 .contacts {
