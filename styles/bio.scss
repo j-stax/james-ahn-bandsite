@@ -415,9 +415,9 @@
                 transform: scale(0.90);
             }
         }
+    }
 
-        span {
-            margin-left: 0.25rem;
-        }
+    &__likes-count {
+        margin-left: 0.25rem;
     }
 }

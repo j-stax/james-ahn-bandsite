@@ -1,47 +1,20 @@
-// const data = [
-//     {
-//         avatar: `url(\"../assets/images/Mohan-muruge.jpg\")`,
-//         name: "Victor Pinto",
-//         timestamp: new Date(2023, 10, 2),
-//         comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
-//                 "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
-//     },
-//     {
-//         name: "Christina Cabrera",
-//         timestamp: new Date(2023, 9, 28),
-//         comment: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
-//                 "If there was one day of my life I could relive, this would be it. What an incredible day."
-//     },
-//     {
-//         name: "Issac Tadesse",
-//         timestamp: new Date(2023, 9, 20),
-//         comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
-//                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
-//     }
-// ];
-
 const avatarMap = {}
 let api = null;
 
-window.addEventListener("DOMContentLoaded", loadedHandler);
+// Add event listeners
+document.querySelector(".comments__form").addEventListener("submit", submitHandler);
+document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
+    document.querySelector(".comments__avatar-file-input").click();
+});
+document.querySelector(".comments__avatar-file-input").addEventListener("change", (event) => {
+    readFile(event.target);
+});
 
-/* Style navigation tab as active.
- * Add event listeners to elements.
- * Register API key.
- * Display comments on page.
-*/ 
-async function loadedHandler() {
-    document.querySelector(".comments__form").addEventListener("submit", submitHandler);
-    document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
-        document.querySelector(".comments__avatar-file-input").click();
-    });
-    document.querySelector(".comments__avatar-file-input").addEventListener("change", (event) => {
-        readFile(event.target);
-    });
-
+// Display Comments section
+async function initComments() {
     api = await BandSiteApi.getInstance();
-    loadComments();
-} 
+    await loadComments();
+}
 
 // Generate and display all comments from the comments list
 async function loadComments() {
@@ -180,6 +153,7 @@ function createNewCommentComponent(commentObject) {
     newCommentTimestampNode.classList.add("comments__timestamp");
     newCommentNode.classList.add("comments__text");
     newCommentLikesContainerNode.classList.add("comments__likes");
+    newCommentLikesSpanNode.classList.add("comments__likes-count");
 
     // Create text nodes for comment object values
     const newNameTextNode = document.createTextNode(commentObject.name);
@@ -301,3 +275,5 @@ function toTitleCase(str) {
     });
     return sections.join(" ");
 }
+
+initComments();
