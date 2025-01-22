@@ -1,3 +1,5 @@
+import BandSiteApi from "./band-site-api.js";
+
 // Converts integer representation of the days of the week to plain English
 const dayMap = {
     0: "Mon",

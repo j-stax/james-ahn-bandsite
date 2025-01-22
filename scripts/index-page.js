@@ -1,4 +1,6 @@
-const avatarMap = {}
+import BandSiteApi from "./band-site-api.js";
+
+const avatarMap = {}    // local store for avatar URLs for new comments
 let api = null;
 
 // Add event listeners
