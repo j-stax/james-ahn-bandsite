@@ -76,16 +76,16 @@ async function submitHandler(event) {
     
     // Only submit the form if the text fields are filled
     if (!isValid(nameVal)) {
-        document.getElementById("name").style.borderColor = "#D22D2D";
+        document.getElementById("name").classList.add("invalid");
     }
 
     if (!isValid(commentVal)) {
-        document.getElementById("comment").style.borderColor = "#D22D2D";
+        document.getElementById("comment").classList.add("invalid")
     }
 
     if (isValid(nameVal) && isValid(commentVal)) {
-        document.getElementById("name").style.borderColor = "#E1E1E1";
-        document.getElementById("comment").style.borderColor = "#E1E1E1";
+        document.getElementById("name").classList.remove("invalid");
+        document.getElementById("comment").classList.remove("invalid");
 
         // New comment object
         const newCommentObj = {
@@ -146,7 +146,7 @@ function createNewCommentComponent(commentObject) {
 
     // Add class names for style rulesets
     newComponentNode.classList.add("comments__comment-component");
-    newComponentNode.id = commentObject.id;                                 // Use id provided by API
+    newComponentNode.id = commentObject.id;                                 // Assign id provided by API
     newAvatarNode.classList.add("comments__avatar-placeholder");
     newCommentTextContainerNode.classList.add("comments__text-container");
     newCommentDeleteIconContainerNode.classList.add("comments__delete-icon-container");
@@ -241,33 +241,29 @@ function getTimeDiff(prevDate) {
         if (diffSeconds <= 0) {
             return "Now";
         }
-        else if (diffSeconds === 1) {
+        if (diffSeconds === 1) {
             return "1 second ago";
         }
-        else {
-            return `${diffSeconds} seconds ago`;
-        }
+        return `${diffSeconds} seconds ago`;
     }
-    else if (diff < msToHour) {
+    if (diff < msToHour) {
         const diffMinutes = Math.round(diff / msToMin);
         return diffMinutes > 1 ? `${diffMinutes} minutes ago` : `${diffMinutes} minute ago`;
     }
-    else if (diff < msToDay) {
+    if (diff < msToDay) {
         const diffHrs = Math.round(diff / msToHour);
         return diffHrs > 1 ? `${diffHrs} hours ago` : `${diffHrs} hour ago`;
     }
-    else if (diff < msToMonth) {
+    if (diff < msToMonth) {
         const diffDays = Math.round(diff / msToDay);
         return diffDays > 1 ? `${diffDays} days ago` : `${diffDays} day ago`;
     }
-    else if (diff < msToYear) {
+    if (diff < msToYear) {
         const diffMonths = Math.round(diff / msToMonth);
         return diffMonths > 1 ? `${diffMonths} months ago` : `${diffMonths} month ago`;
     }
-    else {
-        const diffYears = Math.round(diff / msToYear);
-        return diffYears > 1 ? `${diffYears} years ago` : `${diffYears} year ago`;
-    }
+    const diffYears = Math.round(diff / msToYear);
+    return diffYears > 1 ? `${diffYears} years ago` : `${diffYears} year ago`;
 }
 
 function toTitleCase(str) {

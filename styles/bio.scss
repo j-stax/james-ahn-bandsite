@@ -297,7 +297,8 @@
         font-size: inherit;
 
         &:focus {
-            @include form-field-border-active;
+            outline: none;
+            border: 1px solid $primary-color-black;
         }
 
         &::placeholder {
@@ -420,4 +421,8 @@
     &__likes-count {
         margin-left: 0.25rem;
     }
+}
+
+.invalid {
+    border: 1px solid #D22D2D;
 }
