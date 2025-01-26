@@ -27,10 +27,6 @@ async function loadComments() {
         createNewCommentComponent(commentObj);
     }
 
-    // Hide filled hearts initially
-    const heartsFilled = document.querySelectorAll(".comments__heart-solid");
-    heartsFilled.forEach(heart => heart.style.setProperty("display", "none"));
-
     // Add likes event listeners
     const heartsRegular = document.querySelectorAll(".comments__heart-regular");
     heartsRegular.forEach(heart => heart.addEventListener("click", heartClickHandler));
@@ -53,7 +49,7 @@ function readFile(input) {
             // Display the image
             avatarElem.style.backgroundImage = `url(${url})`;
             avatarElem.classList.add("comments__avatar-image-position");
-            document.querySelector(".comments__avatar-file-icon-btn i").style.setProperty("visibility", "hidden");
+            document.querySelector(".comments__avatar-file-icon-btn i").classList.add("invisible");
         }
     }
     catch (exception) {
@@ -104,7 +100,7 @@ async function submitHandler(event) {
         clearComments();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
-        avatarIcon.style.visibility = "visible";
+        avatarIcon.classList.remove("invisible");
         loadComments();  // Display all comments including newly submitted comment
         form.reset();   // Clear input text fields
     }
@@ -180,7 +176,6 @@ function createNewCommentComponent(commentObject) {
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
     newCommentDeleteIconContainerNode.innerHTML += "<i class=\"fa-solid fa-minus comments__delete-icon\"></i>";
     newCommentLikesContainerNode.innerHTML = "<i class=\"fa-regular fa-heart comments__heart-regular\"></i>";
-    newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid hidden\"></i>";
     newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
     newCommentTextContainerNode.appendChild(newCommentDeleteIconContainerNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
@@ -196,19 +191,20 @@ function createNewCommentComponent(commentObject) {
 
 async function heartClickHandler(event) {
     const heartIcon = event.target
+
     // Swap icons for clicked appearance
-    heartIcon.style.display = "none";
-    heartIcon.nextElementSibling.style.display = "inline";
+    heartIcon.classList.add("fa-solid");
+    heartIcon.classList.remove("fa-regular");
 
     // Update likes count
-    const commentComponentElem = event.target.parentNode.parentNode.parentNode;
+    const commentComponentElem = heartIcon.parentNode.parentNode.parentNode;
     const updatedCommentObj = await api.likeComment(commentComponentElem.id);
-    heartIcon.nextElementSibling.nextElementSibling.textContent = `${updatedCommentObj.likes} Likes`;
+    heartIcon.nextElementSibling.textContent = `${updatedCommentObj.likes} Likes`;
 
     // Reset heart display
     setTimeout(() => {
-        heartIcon.style.display = "inline";
-        heartIcon.nextElementSibling.style.display = "none";
+        heartIcon.classList.add("fa-regular");
+        heartIcon.classList.remove("fa-solid");
     }, 5000);
 }
 
