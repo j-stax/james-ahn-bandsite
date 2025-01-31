@@ -8,7 +8,7 @@ export default class BandSiteApi {
         const storedApiKey = sessionStorage.getItem('apiKey');
         if (storedApiKey) {
             BandSiteApi.instance = new BandSiteApi(storedApiKey);
-            console.log(`Api instance retrieved from storage: ${BandSiteApi.instance}`);
+            console.log("Api instance retrieved from storage.");
         }
         else {
             try {
@@ -17,7 +17,7 @@ export default class BandSiteApi {
                     const apiKey = response.data.api_key;
                     BandSiteApi.instance = new BandSiteApi(apiKey);
                     sessionStorage.setItem('apiKey', apiKey);
-                    console.log(`New Api instance init: ${BandSiteApi.instance}`);
+                    console.log("New Api instance created.");
                 }
                 else {
                     console.log(`Status: ${response.status}`);
