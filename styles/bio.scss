@@ -353,6 +353,11 @@
         border: 1px solid $secondary-color-mercury;
     }
 
+    &__loading {
+        margin: 1rem;
+        text-align: center;
+    }
+
     &__comment-component {
         margin: 0.25rem 0 0.75rem;
         display: flex;

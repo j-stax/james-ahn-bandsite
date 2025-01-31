@@ -19,21 +19,33 @@ async function initComments() {
 }
 
 // Generate and display all comments from the comments list
-async function loadComments() {
-    const data = await api.getComments();
-    data.sort((a, b) => b.timestamp - a.timestamp);
+function loadComments() {
+
+    // Create and display 'loading' element
+    const loadingElemNode = document.createElement("h3");
+    const loadingElemTextNode = document.createTextNode("Loading...");
+    loadingElemNode.classList.add("comments__loading");
+    loadingElemNode.appendChild(loadingElemTextNode);
+    const commentsNode = document.querySelector(".comments__body-container");
+    commentsNode.appendChild(loadingElemNode);
+
+    setTimeout(async () => {
+        commentsNode.removeChild(loadingElemNode);      // remove loading element
+        const data = await api.getComments();
+        data.sort((a, b) => b.timestamp - a.timestamp);
     
-    for (let commentObj of data) {
-        createNewCommentComponent(commentObj);
-    }
+        for (let commentObj of data) {
+            createNewCommentComponent(commentObj);
+        }
 
-    // Add likes event listeners
-    const heartsRegular = document.querySelectorAll(".comments__heart-regular");
-    heartsRegular.forEach(heart => heart.addEventListener("click", heartClickHandler));
+        // Add likes event listeners
+        const heartsRegular = document.querySelectorAll(".comments__heart-regular");
+        heartsRegular.forEach(heart => heart.addEventListener("click", heartClickHandler));
 
-    // Add delete icon event listener
-    const deleteIcons = document.querySelectorAll(".comments__delete-icon");
-    deleteIcons.forEach(icon => icon.addEventListener("click", deleteCommentHandler));
+        // Add delete icon event listener
+        const deleteIcons = document.querySelectorAll(".comments__delete-icon");
+        deleteIcons.forEach(icon => icon.addEventListener("click", deleteCommentHandler));
+    }, 2000)
 }
 
 // Read the uploaded image file and display the image
@@ -66,6 +78,7 @@ async function submitHandler(event) {
     const form = event.target;
     const nameVal = form.name.value.trim();
     const commentVal = form.comment.value.trim();
+
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn i");
@@ -100,7 +113,7 @@ async function submitHandler(event) {
         clearComments();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
-        avatarIcon.classList.remove("invisible");
+        avatarIcon.classList.remove("invisible");        
         loadComments();  // Display all comments including newly submitted comment
         form.reset();   // Clear input text fields
     }
