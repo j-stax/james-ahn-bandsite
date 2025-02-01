@@ -4,6 +4,7 @@ export default class BandSiteApi {
         this.baseURL = "https://unit-2-project-api-25c1595833b2.herokuapp.com/";
     }
 
+    // Register for API key only once and use that for all instances
     static async getInstance() {
         const storedApiKey = sessionStorage.getItem('apiKey');
         if (storedApiKey) {
