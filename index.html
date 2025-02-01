@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="./styles/bio.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/883886845b.js" crossorigin="anonymous"></script>
-    <script src="./scripts/band-site-api.js" defer></script>
-    <script src="./scripts/index-page.js" defer></script>
+    <script src="./scripts/band-site-api.js" type="module" defer></script>
+    <script src="./scripts/index-page.js" type="module" defer></script>
     <title>Bandsite</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
         <section class="about">
             <h2>About the Musicians</h2>
             <div class="about__image-container">
-                <img class="about__image" src="./assets/images/band.jpg" alt="band image">
+                <img class="about__image" src="./assets/images/band.jpg" alt="Band performing on stage.">
             </div>
             <blockquote class="about__quote">
                 "We push each other to be the best. It's not
@@ -78,15 +78,15 @@
         <section class="photo-gallery">
             <h2>Photo Gallery</h2>
             <div class="photo-gallery__flex-container">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-1.jpg" alt="image1">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-2.jpg" alt="image2">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-3.jpg" alt="image3">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-4.jpg" alt="image4">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-5.jpg" alt="image5">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-6.jpg" alt="image6">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-7.jpg" alt="image7">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-8.jpg" alt="image8">
-                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-9.jpg" alt="image9">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-1.jpg" alt="Image of crowd.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-2.jpg" alt="Fan in the crowd.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-3.jpg" alt="Crowd with hands up.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-4.jpg" alt="Fan looking up to the stage.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-5.jpg" alt="Party strings falling from ceiling.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-6.jpg" alt="Confetti falling on crowd.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-7.jpg" alt="Distant view of confetti falling on crowd.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-8.jpg" alt="Dj on the turntables.">
+                <img class="photo-gallery__image" src="./assets/images/Photo-gallery-9.jpg" alt="Artist singing to the crowd.">
             </div>
         </section>
         <section class="comments">
@@ -142,8 +142,7 @@
                         <p class="comments__text">This is some comment</p>
                         <div class="comments__likes">
                             <i class="fa-regular fa-heart comments__heart-regular"></i>
-                            <i class="fa-solid fa-heart comments__heart-solid hidden"></i>
-                            <span>Likes</span>
+                            <span class="comments__likes-count">Likes</span>
                         </div>
                     </div>
                 </article>

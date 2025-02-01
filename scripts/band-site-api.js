@@ -1,4 +1,4 @@
-class BandSiteApi {
+export default class BandSiteApi {
     constructor(apiKey) {
         this.apiKey = apiKey;
         this.baseURL = "https://unit-2-project-api-25c1595833b2.herokuapp.com/";
@@ -8,7 +8,7 @@ class BandSiteApi {
         const storedApiKey = sessionStorage.getItem('apiKey');
         if (storedApiKey) {
             BandSiteApi.instance = new BandSiteApi(storedApiKey);
-            console.log(`Api instance retrieved from storage: ${BandSiteApi.instance}`);
+            console.log("Api instance retrieved from storage.");
         }
         else {
             try {
@@ -17,7 +17,7 @@ class BandSiteApi {
                     const apiKey = response.data.api_key;
                     BandSiteApi.instance = new BandSiteApi(apiKey);
                     sessionStorage.setItem('apiKey', apiKey);
-                    console.log(`New Api instance init: ${BandSiteApi.instance}`);
+                    console.log("New Api instance created.");
                 }
                 else {
                     console.log(`Status: ${response.status}`);
@@ -105,22 +105,3 @@ class BandSiteApi {
         }
     }
 }
-
-async function main() {
-    const response = await axios.get('https://unit-2-project-api-25c1595833b2.herokuapp.com/register');
-    const apiKey = response.data["api_key"];
-    const api = new BandSiteApi(apiKey);
-    const comments = await api.getComments();
-    console.log(comments[0]);
-    await api.likeComment(comments[0].id);
-    // await api.getShows();
-    // const newCommentObj = {
-    //     name: "Bruce Wayne",
-    //     comment: "No comment."
-    // }
-    // const res = await api.postComment(newCommentObj);
-    // const delObject = await api.deleteComment(res.id);
-    // console.log(`Comment deleted: ${delObject.id}`);
-}
-
-// main();

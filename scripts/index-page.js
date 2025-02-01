@@ -1,70 +1,51 @@
-// const data = [
-//     {
-//         avatar: `url(\"../assets/images/Mohan-muruge.jpg\")`,
-//         name: "Victor Pinto",
-//         timestamp: new Date(2023, 10, 2),
-//         comment: "This is art. This is inexplicable magic expressed in the purest way everything that makes " + 
-//                 "up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
-//     },
-//     {
-//         name: "Christina Cabrera",
-//         timestamp: new Date(2023, 9, 28),
-//         comment: "I feel blessed to have seen them in person. What a show! They were just perfection. " + 
-//                 "If there was one day of my life I could relive, this would be it. What an incredible day."
-//     },
-//     {
-//         name: "Issac Tadesse",
-//         timestamp: new Date(2023, 9, 20),
-//         comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. " + 
-//                 "Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
-//     }
-// ];
+import BandSiteApi from "./band-site-api.js";
 
-const avatarMap = {}
+const avatarMap = {}    // local store for avatar URLs for new comments
 let api = null;
 
-window.addEventListener("DOMContentLoaded", loadedHandler);
+// Add event listeners
+document.querySelector(".comments__form").addEventListener("submit", submitHandler);
+document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
+    document.querySelector(".comments__avatar-file-input").click();
+});
+document.querySelector(".comments__avatar-file-input").addEventListener("change", (event) => {
+    readFile(event.target);
+});
 
-/* Style navigation tab as active.
- * Add event listeners to elements.
- * Register API key.
- * Display comments on page.
-*/ 
-async function loadedHandler() {
-    document.querySelector(".comments__form").addEventListener("submit", submitHandler);
-    document.querySelector(".comments__avatar-file-icon-btn").addEventListener("click", () => {
-        document.querySelector(".comments__avatar-file-input").click();
-    });
-    document.querySelector(".comments__avatar-file-input").addEventListener("change", (event) => {
-        readFile(event.target);
-    });
-
+// Display Comments section
+async function initComments() {
     api = await BandSiteApi.getInstance();
-    loadComments();
-} 
+    await loadComments();
+}
 
 // Generate and display all comments from the comments list
-async function loadComments() {
-    const data = await api.getComments();
-    data.sort((a, b) => b.timestamp - a.timestamp);
+function loadComments() {
+
+    // Create and display 'loading' element
+    const loadingElemNode = document.createElement("h3");
+    const loadingElemTextNode = document.createTextNode("Loading...");
+    loadingElemNode.classList.add("comments__loading");
+    loadingElemNode.appendChild(loadingElemTextNode);
+    const commentsNode = document.querySelector(".comments__body-container");
+    commentsNode.appendChild(loadingElemNode);
+
+    setTimeout(async () => {
+        commentsNode.removeChild(loadingElemNode);      // remove loading element
+        const data = await api.getComments();
+        data.sort((a, b) => b.timestamp - a.timestamp);
     
-    for (let commentObj of data) {
-        createNewCommentComponent(commentObj);
-    }
+        for (let commentObj of data) {
+            createNewCommentComponent(commentObj);
+        }
 
-    // Hide filled hearts initially
-    const heartsFilled = document.querySelectorAll(".comments__heart-solid");
-    for (let heart of heartsFilled) {
-        heart.style.display = "none";   // FIX ME!!!: CHECK IF CLASS IS ALREADY DISPLAYING NONE
-    }
+        // Add likes event listeners
+        const heartsRegular = document.querySelectorAll(".comments__heart-regular");
+        heartsRegular.forEach(heart => heart.addEventListener("click", heartClickHandler));
 
-    // Add likes event listeners
-    const heartsRegular = document.querySelectorAll(".comments__heart-regular");
-    heartsRegular.forEach(heart => heart.addEventListener("click", heartClickHandler));
-
-    // Add delete icon event listener
-    const deleteIcons = document.querySelectorAll(".comments__delete-icon");
-    deleteIcons.forEach(icon => icon.addEventListener("click", deleteCommentHandler));
+        // Add delete icon event listener
+        const deleteIcons = document.querySelectorAll(".comments__delete-icon");
+        deleteIcons.forEach(icon => icon.addEventListener("click", deleteCommentHandler));
+    }, 2000)
 }
 
 // Read the uploaded image file and display the image
@@ -80,7 +61,7 @@ function readFile(input) {
             // Display the image
             avatarElem.style.backgroundImage = `url(${url})`;
             avatarElem.classList.add("comments__avatar-image-position");
-            document.querySelector(".comments__avatar-file-icon-btn i").style.setProperty("visibility", "hidden");
+            document.querySelector(".comments__avatar-file-icon-btn i").classList.add("invisible");
         }
     }
     catch (exception) {
@@ -97,22 +78,23 @@ async function submitHandler(event) {
     const form = event.target;
     const nameVal = form.name.value.trim();
     const commentVal = form.comment.value.trim();
+
     const avatarElem = document.querySelector(".comments__new-avatar-container");
     const avatarURL = avatarElem.style.getPropertyValue("background-image");
     const avatarIcon = document.querySelector(".comments__avatar-file-icon-btn i");
     
     // Only submit the form if the text fields are filled
     if (!isValid(nameVal)) {
-        document.getElementById("name").style.borderColor = "#D22D2D";
+        document.getElementById("name").classList.add("invalid");
     }
 
     if (!isValid(commentVal)) {
-        document.getElementById("comment").style.borderColor = "#D22D2D";
+        document.getElementById("comment").classList.add("invalid")
     }
 
     if (isValid(nameVal) && isValid(commentVal)) {
-        document.getElementById("name").style.borderColor = "#E1E1E1";
-        document.getElementById("comment").style.borderColor = "#E1E1E1";
+        document.getElementById("name").classList.remove("invalid");
+        document.getElementById("comment").classList.remove("invalid");
 
         // New comment object
         const newCommentObj = {
@@ -131,7 +113,7 @@ async function submitHandler(event) {
         clearComments();
         avatarElem.style.removeProperty("background-image");    // Reset for new avatar
         avatarElem.classList.remove("comments__avatar-image-position");
-        avatarIcon.style.visibility = "visible";
+        avatarIcon.classList.remove("invisible");        
         loadComments();  // Display all comments including newly submitted comment
         form.reset();   // Clear input text fields
     }
@@ -173,7 +155,7 @@ function createNewCommentComponent(commentObject) {
 
     // Add class names for style rulesets
     newComponentNode.classList.add("comments__comment-component");
-    newComponentNode.id = commentObject.id;                                 // Use id provided by API
+    newComponentNode.id = commentObject.id;                                 // Assign id provided by API
     newAvatarNode.classList.add("comments__avatar-placeholder");
     newCommentTextContainerNode.classList.add("comments__text-container");
     newCommentDeleteIconContainerNode.classList.add("comments__delete-icon-container");
@@ -182,6 +164,7 @@ function createNewCommentComponent(commentObject) {
     newCommentTimestampNode.classList.add("comments__timestamp");
     newCommentNode.classList.add("comments__text");
     newCommentLikesContainerNode.classList.add("comments__likes");
+    newCommentLikesSpanNode.classList.add("comments__likes-count");
 
     // Create text nodes for comment object values
     const newNameTextNode = document.createTextNode(commentObject.name);
@@ -206,11 +189,10 @@ function createNewCommentComponent(commentObject) {
     newCommentHeaderNode.appendChild(newCommentTimestampNode);
     newCommentDeleteIconContainerNode.innerHTML += "<i class=\"fa-solid fa-minus comments__delete-icon\"></i>";
     newCommentLikesContainerNode.innerHTML = "<i class=\"fa-regular fa-heart comments__heart-regular\"></i>";
-    newCommentLikesContainerNode.innerHTML += "<i class=\"fa-solid fa-heart comments__heart-solid\"></i>";
     newCommentLikesContainerNode.appendChild(newCommentLikesSpanNode);
     newCommentTextContainerNode.appendChild(newCommentDeleteIconContainerNode);
     newCommentTextContainerNode.appendChild(newCommentHeaderNode);
-    newCommentTextContainerNode.appendChild(newCommentTextNode);
+    newCommentTextContainerNode.appendChild(newCommentNode);
     newCommentTextContainerNode.appendChild(newCommentLikesContainerNode);
     newComponentNode.appendChild(newAvatarNode);
     newComponentNode.appendChild(newCommentTextContainerNode);
@@ -222,19 +204,20 @@ function createNewCommentComponent(commentObject) {
 
 async function heartClickHandler(event) {
     const heartIcon = event.target
+
     // Swap icons for clicked appearance
-    heartIcon.style.display = "none";
-    heartIcon.nextElementSibling.style.display = "inline";
+    heartIcon.classList.add("fa-solid");
+    heartIcon.classList.remove("fa-regular");
 
     // Update likes count
-    const commentComponentElem = event.target.parentNode.parentNode.parentNode;
+    const commentComponentElem = heartIcon.parentNode.parentNode.parentNode;
     const updatedCommentObj = await api.likeComment(commentComponentElem.id);
-    heartIcon.nextElementSibling.nextElementSibling.textContent = `${updatedCommentObj.likes} Likes`;
+    heartIcon.nextElementSibling.textContent = `${updatedCommentObj.likes} Likes`;
 
     // Reset heart display
     setTimeout(() => {
-        heartIcon.style.display = "inline";
-        heartIcon.nextElementSibling.style.display = "none";
+        heartIcon.classList.add("fa-regular");
+        heartIcon.classList.remove("fa-solid");
     }, 5000);
 }
 
@@ -267,33 +250,29 @@ function getTimeDiff(prevDate) {
         if (diffSeconds <= 0) {
             return "Now";
         }
-        else if (diffSeconds === 1) {
+        if (diffSeconds === 1) {
             return "1 second ago";
         }
-        else {
-            return `${diffSeconds} seconds ago`;
-        }
+        return `${diffSeconds} seconds ago`;
     }
-    else if (diff < msToHour) {
+    if (diff < msToHour) {
         const diffMinutes = Math.round(diff / msToMin);
         return diffMinutes > 1 ? `${diffMinutes} minutes ago` : `${diffMinutes} minute ago`;
     }
-    else if (diff < msToDay) {
+    if (diff < msToDay) {
         const diffHrs = Math.round(diff / msToHour);
         return diffHrs > 1 ? `${diffHrs} hours ago` : `${diffHrs} hour ago`;
     }
-    else if (diff < msToMonth) {
+    if (diff < msToMonth) {
         const diffDays = Math.round(diff / msToDay);
         return diffDays > 1 ? `${diffDays} days ago` : `${diffDays} day ago`;
     }
-    else if (diff < msToYear) {
+    if (diff < msToYear) {
         const diffMonths = Math.round(diff / msToMonth);
         return diffMonths > 1 ? `${diffMonths} months ago` : `${diffMonths} month ago`;
     }
-    else {
-        const diffYears = Math.round(diff / msToYear);
-        return diffYears > 1 ? `${diffYears} years ago` : `${diffYears} year ago`;
-    }
+    const diffYears = Math.round(diff / msToYear);
+    return diffYears > 1 ? `${diffYears} years ago` : `${diffYears} year ago`;
 }
 
 function toTitleCase(str) {
@@ -303,3 +282,5 @@ function toTitleCase(str) {
     });
     return sections.join(" ");
 }
+
+initComments();

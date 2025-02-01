@@ -1,3 +1,5 @@
+import BandSiteApi from "./band-site-api.js";
+
 // Converts integer representation of the days of the week to plain English
 const dayMap = {
     0: "Mon",
@@ -27,14 +29,12 @@ const monthMap = {
 
 let api = null;
 
-// Once HTML is loaded and parsed, call function to initialize dynamic features
-window.addEventListener("DOMContentLoaded", loadedHandler);
-
-// Initialize dynamic page features
-async function loadedHandler() {
+// Display Shows section
+async function initShows() { 
     api = await BandSiteApi.getInstance();
     await createShowsSection();
-  
+
+    // Add event listeners  
     const showsComponents = document.querySelectorAll(".shows__component");
     showsComponents.forEach(component => component.addEventListener("click", selectComponent.bind(component)));
     const showsButtons = document.querySelectorAll(".shows__button");
@@ -176,3 +176,5 @@ function msToDate(ms) {
     const day = date.getDate().toString().length == 1 ? `0${date.getDate()}` : date.getDate();
     return `${dayMap[date.getDay()]} ${monthMap[date.getMonth()]} ${day} ${date.getFullYear()}`;
 }
+
+initShows();
