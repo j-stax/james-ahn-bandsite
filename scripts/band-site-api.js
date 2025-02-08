@@ -25,7 +25,7 @@ export default class BandSiteApi {
                 }
             }
             catch (err) {
-                console.log(err);
+                console.log(`Error ${err}: API key registration failed.`);
             }
         }
         return BandSiteApi.instance;
@@ -42,7 +42,7 @@ export default class BandSiteApi {
             }
         }
         catch (err) {
-            console.log(err);
+            console.log(`Error ${err}: POST request for comment failed.`);
         }
     }
 
@@ -57,7 +57,7 @@ export default class BandSiteApi {
             }
         } 
         catch (err) {
-            console.log(err);
+            console.log(`Error ${err}: GET request for comments failed.`);
         }
     }
 
@@ -72,7 +72,7 @@ export default class BandSiteApi {
             }
         }
         catch (err) {
-            console.log(err);
+            console.log(`Error ${err}: PUT request for liking comment failed.`);
         }
     }
 
@@ -87,7 +87,7 @@ export default class BandSiteApi {
             }
         }
         catch (err) {
-            console.log(err);
+            console.log(`Error ${err}: DELETE request for comment failed.`);
         }
     }
 
@@ -102,7 +102,7 @@ export default class BandSiteApi {
             }
         }
         catch (err) {
-            console.log(err);
+            console.log(`Error ${err}: GET request for shows failed.`);
         }
     }
 }
