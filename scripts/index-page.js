@@ -30,7 +30,7 @@ function loadComments() {
     commentsNode.appendChild(loadingElemNode);
 
     setTimeout(async () => {
-        commentsNode.removeChild(loadingElemNode);      // remove loading element
+        commentsNode.removeChild(loadingElemNode);      // remove loading message
         const data = await api.getComments();
         data.sort((a, b) => b.timestamp - a.timestamp);
     

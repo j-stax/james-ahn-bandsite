@@ -354,8 +354,12 @@
     }
 
     &__loading {
-        margin: 1rem;
+        margin-top: 1rem;
         text-align: center;
+
+        @include tablet {
+            margin-top: 1.75rem;
+        }
     }
 
     &__comment-component {
